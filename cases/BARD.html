@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Bayesian Tree</title>
+	<link rel="stylesheet" type="text/css" href="../styles/styles.css"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+	<p id="problem">Imagine you are the manager of a business investigating missing petty cash. Your investigation involves collecting reports from employees. It is unclear whether the cash is missing due to an error or because it was stolen, but you initially have a strong hunch that it was not stolen (you assume only a one in 3 chance of theft, i.e. a 33% chance).
+
+	<br>
+  <br>
+  
+  During the course of your investigation, Robert (an employee) approaches you to provide a report that one of your other employees (Thomas) stole the cash. Dan, the supposed direct witness to this event, is on leave and cannot give his statement directly. However, you have confirmed that Dan was at work at the time the incident occurred. Instead Dan’s witness statement is being supplied to you via another employee. This employee, Robert, who was not present himself when the incident occurred, has come forward, reporting to you that Dan told him that he (Dan) witnessed Thomas stealing the cash.
+  
+  <br>
+  <br>
+
+  To determine the probability that the cash was in fact stolen, you must take into account the chance of Dan’s and Robert’s statements being true or false. Both Dan and Robert are more likely to provide a true report than a false one. Specifically, there is a 90% chance that Dan’s report is true (hit rate), and only a 10% chance that his report will wrongly implicate Thomas (false positive rate). Robert’s report has a 60% chance of being true (hit rate) and a 40% chance of wrongly implicating Thomas (false positive rate). 
+
+	
+  </p>
+
+
+  <div id="myDIV">
+    <button class="btn probability active">Probability</button>
+    <button class="btn percentage">Percentage</button>
+  </div>
+
+
+<div id="main">
+   
+
+  <div id="tree">
+    <div class="pop">Population</div>
+    
+    <div class="pop_number">1000</div>
+
+    <div style="font-size: 15px;margin-left: 151px;">hit + miss + false alarm + correct reject</div>
+
+    <img src="../pic/arrow1.png", style="width: 250px; margin-left:150px; display: block;">
+	
+
+    <input type="number" id="baseRate" value="0.5" step="0.1" min="0" max="1">
+ 
+	   <div class = "base">500</div>
+    
+
+     <input type="number" id="nbaseRate" value="0.5" step="0.1" min="0" max="1">
+   
+   
+
+    <div class = "noise">500</div>
+
+    <div style="font-size: 15px;margin-left: 130px;display: block;">hit + miss    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;     false alarm + correct reject</div>
+
+    <img src="../pic/arrow2.png" style="width: 180px; margin-left:70px; display: inline-block;">
+
+    <img src="../pic/arrow2.png" style="width: 180px; margin-left:80px; display: inline-block;">
+
+	 <div id="bottom">
+  		
+  		<input type="number" id="hitRate" value="0.5" step="0.1" min="0" max="1">
+		  <div id="hit">250</div>
+
+
+		  <input type="number" id="missRate" value="0.5" step="0.1" min="0" max="1">
+		  <div id="miss">250</div>
+
+
+		  <input type="number" id="faRate" value="0.5" step="0.1" min="0" max="1">
+		  <div id="fa">250</div>
+
+		  <input type="number" id="crRate" value="0.5" step="0.1" min="0" max="1">
+		  <div id="cr">250</div>
+
+  	</div>
+
+  	<div id="bottomNotation">
+  		<div style="margin-left: 45px;">hit</div>
+  		<div style="margin-left: 140px;">miss</div>
+  		<div style="margin-left: 80px;">false alarm</div>
+  		<div style="margin-left: 100px;">correct reject</div>
+  	</div>
+
+  	<img src="../pic/arrow3.png" style="width: 250px;height:60px;margin-left: 80px;display: block;">
+
+  	<div id="probability"> 
+  		
+      <div>p(H/D) = </div>
+        <div> 
+          <span class="hitResult prob_sup">250</span> 
+          <span class="hitResult prob_bottom">250</span> <span class="prob_bottom">+</span><span class="faResult prob_bottom">250</span>
+        </div>
+      <span> = </span>
+      <div class="results"> 0.5</div>
+      
+    </div>
+   
+   </div>
+  
+	
+
+
+ <table>
+
+      <tr>
+        <th>Frequency</th>
+        <th>Breast Cancer</th>
+        <th>No Cancer</th>
+        <th>Total</th>
+      </tr>
+
+    <tr>
+      <td></td>
+      <td>hit</td>
+      <td>false alarm</td>
+      <td>All positive</td>
+    </tr>
+
+      <tr>
+        <td>Positive test</td>
+        <td><div class="hitResult">250</div></td>
+        <td><div class="faResult">250</div></td>
+        <td><div class="marginalPositiveResult">500</div></td>
+      </tr>
+  
+    <tr>
+      <td></td>
+      <td>miss</td>
+      <td>correct reject</td>
+      <td>All negative</td>
+    </tr>
+
+      <tr>
+        <td>Negative test</td>
+        <td><div class="missResult">250</div></td>
+        <td><div class="crResult"> 250</div></td>
+        <td><div class="marginalNegativeResult">500</div></td>
+      </tr>
+
+      <tr>
+        <td>Total</td>
+        <td class="baseResult">500</td>
+        <td class="noiseResult">500</td>
+        <td class="freTableTotal">1000</td>
+      </tr>
+
+    </table>
+  
+	
+
+</div>
+
+	<script src ="../js/myscripts.js"></script>
+	<script src='../decimal.js-10.0.1/decimal.min.js'></script>
+
+ 
+</body>
+
+</html>

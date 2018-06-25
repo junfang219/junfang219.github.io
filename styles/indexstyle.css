@@ -1,0 +1,40 @@
+
+
+h1 {
+	margin-left:40%;
+}
+ul {
+    border-radius: 20px;
+    box-shadow: 5px 10px #888888;
+	background-color: orange;
+	margin-left: 30%;
+	margin-right: 30%;
+	margin-top: 10%;
+	list-style-type: none;
+}
+
+li {
+	margin-left:30%;
+	margin-top: 2%;
+}
+
+a:link {
+    color: blue;
+    background-color: transparent;
+    text-decoration: none;
+}
+a:visited {
+    color: black;
+    background-color: transparent;
+    text-decoration: none;
+}
+a:hover {
+    color: blue;
+    background-color: transparent;
+    text-decoration: underline;
+}
+a:active {
+    color: yellow;
+    background-color: transparent;
+    text-decoration: underline;
+}
