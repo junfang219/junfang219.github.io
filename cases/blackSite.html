@@ -1,161 +1,942 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Bayesian Tree</title>
-	<link rel="stylesheet" type="text/css" href="../styles/styles.css"> 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Black Site Surveillance</title>
+  <link rel="stylesheet" type="text/css" href="../styles/styles.css"> 
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 
 </head>
 <body>
-	<p id="problem">Imagine you are the manager of a business investigating missing petty cash. Your investigation involves collecting reports from employees. It is unclear whether the cash is missing due to an error or because it was stolen, but you initially have a strong hunch that it was not stolen (you assume only a one in 3 chance of theft, i.e. a 33% chance).
 
-	<br>
-  <br>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+        <div id="instruction">
+          <h4>Instructions:</h4>
+          
+            <div id="inst"></div>
+          
+            <ul class="pager" style="margin: 0px">
+              <li class="previous"><a href="#" onclick="prevInst()">Previous</a></li>
+              <li class="next"><a href="#" onclick="nextInst()">Next</a></li>
+            </ul>
+        </div>  
   
-  During the course of your investigation, Robert (an employee) approaches you to provide a report that one of your other employees (Thomas) stole the cash. Dan, the supposed direct witness to this event, is on leave and cannot give his statement directly. However, you have confirmed that Dan was at work at the time the incident occurred. Instead Dan’s witness statement is being supplied to you via another employee. This employee, Robert, who was not present himself when the incident occurred, has come forward, reporting to you that Dan told him that he (Dan) witnessed Thomas stealing the cash.
+    </div>  
+
+  <div class="row">
+
+    <div class="col-sm-6">
+
+      <ul class="nav nav-tabs">
+        
+
+        <li><a data-toggle = "tab" href="#Case" id="navCase">Case</a></li>
+        
+        
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle = "dropdown" href="#" id="evidence">Evidence <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#" id="navevidences">List of evidence sources</a></li>
+            <li><a href="#" id="navevidence1">Evidence 1</a></li>
+            <li><a href="#" id="navevidence2">Evidence 2</a></li>
+            <li><a href="#" id="navevidence3">Evidence 3</a></li>
+            <li><a href="#" id="navevidence4">Evidence 4</a></li>
+            <li><a href="#" id="navevidence5">Evidence 5</a></li>
+          </ul>
+        </li>
   
-  <br>
-  <br>
+        <li><a data-toggle = "tab" href="#Questions" id="navQuestions">Questions</a></li>
 
-  To determine the probability that the cash was in fact stolen, you must take into account the chance of Dan’s and Robert’s statements being true or false. Both Dan and Robert are more likely to provide a true report than a false one. Specifically, there is a 90% chance that Dan’s report is true (hit rate), and only a 10% chance that his report will wrongly implicate Thomas (false positive rate). Robert’s report has a 60% chance of being true (hit rate) and a 40% chance of wrongly implicating Thomas (false positive rate). 
+      </ul>
 
-	
-  </p>
-
-
-  <div id="myDIV">
-    <button class="btn probability active">Probability</button>
-    <button class="btn percentage">Percentage</button>
-  </div>
-
-
-<div id="main">
-   
-
-  <div id="tree">
-    <div class="pop">Population</div>
-    
-    <div class="pop_number">1000</div>
-
-    <div style="font-size: 15px;margin-left: 151px;">hit + miss + false alarm + correct reject</div>
-
-    <img src="../pic/arrow1.png", style="width: 250px; margin-left:150px; display: block;">
-	
-
-    <input type="number" id="baseRate" value="0.5" step="0.1" min="0" max="1">
- 
-	   <div class = "base">500</div>
-    
-
-     <input type="number" id="nbaseRate" value="0.5" step="0.1" min="0" max="1">
-   
-   
-
-    <div class = "noise">500</div>
-
-    <div style="font-size: 15px;margin-left: 130px;display: block;">hit + miss    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;     false alarm + correct reject</div>
-
-    <img src="../pic/arrow2.png" style="width: 180px; margin-left:70px; display: inline-block;">
-
-    <img src="../pic/arrow2.png" style="width: 180px; margin-left:80px; display: inline-block;">
-
-	 <div id="bottom">
-  		
-  		<input type="number" id="hitRate" value="0.5" step="0.1" min="0" max="1">
-		  <div id="hit">250</div>
-
-
-		  <input type="number" id="missRate" value="0.5" step="0.1" min="0" max="1">
-		  <div id="miss">250</div>
-
-
-		  <input type="number" id="faRate" value="0.5" step="0.1" min="0" max="1">
-		  <div id="fa">250</div>
-
-		  <input type="number" id="crRate" value="0.5" step="0.1" min="0" max="1">
-		  <div id="cr">250</div>
-
-  	</div>
-
-  	<div id="bottomNotation">
-  		<div style="margin-left: 45px;">hit</div>
-  		<div style="margin-left: 140px;">miss</div>
-  		<div style="margin-left: 80px;">false alarm</div>
-  		<div style="margin-left: 100px;">correct reject</div>
-  	</div>
-
-  	<img src="../pic/arrow3.png" style="width: 250px;height:60px;margin-left: 80px;display: block;">
-
-  	<div id="probability"> 
-  		
-      <div>p(H/D) = </div>
-        <div> 
-          <span class="hitResult prob_sup">250</span> 
-          <span class="hitResult prob_bottom">250</span> <span class="prob_bottom">+</span><span class="faResult prob_bottom">250</span>
+      <div class="dropdown-content tab-content">
+        
+        <div id="Case" href="Case" class="tab-pane fade in active" style="overflow: scroll; height: 720px;">
+            
+                <em><u>Please note:</u> In this problem, there are two fictional countries: Ul’Sanda and Rinia. These two countries are not at war, but each is known to carefully monitor the other.</em>
+                <br><br>
+            
+                <h4><u>Situation:</u></h4>
+                You and your Ul’Sandan investigative team have been tasked with assessing whether a temporary Ul’Sandan Black Site (unacknowledged military facility) was observed by foreign surveillance.
+                <br><br>
+                The Black Site was located in the middle of a small island off the coast of Ul’Sanda, not visible from the sea. The island is small, remote, and unpopulated; it can safely be assumed that any potential surveillance of the island was airborne.
+                <br><br>
+                Crucially, the Black Site team had lookouts stationed at it throughout the day. One of the lookouts reported seeing (and then photographing) some thin, wispy clouds which looked like potential contrails from an aircraft. This raised alarms due to the possibility of a surveillance aircraft having flown overhead. Apart from this, there were no other lookout observations indicating that an aircraft of any sort overflew the island. Of course, there is the possibility that the lookouts missed another aircraft flying over the site.
+                <br><br>
+                The site was located on the island for approximately 24 hours, before being moved elsewhere. It is your job to determine the probability that the site was overflown by aerial reconnaissance during that time.
+                <br><br>
+                There are a number of possible candidates that may have flown over the island over the period of 24 hours. The two leading candidates, based on the location of the island, and known historical flight paths, are:
+                <br><br>
+              <ol>
+                <li><u>Rinian Spy Plane:</u> These unmanned aircraft have been known to fly over theareas close to the Ul’Sandan mainland. When the site was moved onto theisland, Ul’Sandan intelligence - based on evidence available at the time(including known flight paths) - concluded that there was a 10% probabilitythat a Rinian spy plane would fly over the island during that 24-hour period. Inthe intelligence community, a 10% probability is taken to mean that an assessed event is highly improbable.</li>
+                <br><br>
+                <li><u>Ul’Sandan Drone:</u> Operated by the Ul’Sandan Navy and Air Force, these remote operated aircraft have long-range capabilities, and have been known to follow flight paths that take them over the island. When the site was moved onto the island, Ul’Sandan intelligence - based on evidence available at the time (including known flight paths) - concluded that there was a 5% probability that a Ul’Sandan Drone would fly over the island during that 24-hour period. In the intelligence community, a 5% probability is taken to mean that an assessed event is remote.              
+                </li>
+              </ol>
+            
+            
+          
         </div>
-      <span> = </span>
-      <div class="results"> 0.5</div>
+
+        <div id="Questions" href="#Questions"class="tab-pane fade">
+          <p>
+            <h4>Questions:</h4>
+            For your answers, assume the facts to be as stated in the problem.
+            <br><br>
+            <ol>
+              <li>What do you believe is the probability of a Rinian spy plane having overflown the Black Site, referring to all relevant evidence?</li>
+              <br>
+              <li>What do you believe is the probability of a Ul’Sandan drone having overflown the Black Site, referring to all relevant evidence?</li>
+              <br>
+              <li>Which of these two scenarios (Rinian spy plane or Ul’Sandan drone flying over the island) is more likely?</li>
+              <br>
+              <li>Does the report need to recommend notifying counter-intelligence agencies immediately (i.e. is the  probability of the Black Site having being overflown by a Rinian spy plane over 50%, having considered the evidence)?</li>
+
+              <br>
+              Please provide your reasoning for all responses, referring to the evidence in each case.
+            </ol>
+
+          </p>
+        </div>
+
       
+        <div id="evidencesC" class="tab-pane fade">
+          <p>
+            <h4><u>List of evidence sources:</u></h4>
+            You are tasked with evaluating the impact of reports from the following sources:
+            <ul>
+              <li>Foreign Intelligence Intercepts of Rinian Spy Plane activity</li>
+              <li>Ul’Sandan Department of Defence report on Ul’Sandan Drone activit</li>
+              <li>Domestic Contrail Expert on Rinian spy planes</li>
+              <li>Domestic Contrail Expert on Ul’Sandan Drones</li>
+              <li>Radar Station (Technical Report)</li>
+            </ul>
+            
+            <br><br>
+
+            <h4><u>Critical purpose of investigation:</u></h4>
+
+            There is a pertinent purpose for your investigation: Crucially, if – having evaluated the evidence available to you – you believe the probability of a Rinian spy plane having flown over the island during the 24-hours that the Black site was on the island surpasses 50% (even-odds) <em>by any amount</em>, then <u>you are required to recommend notifying counter-intelligence agencies immediately.</u> If you do not think this probability exceeds 50%, immediate notification is not required and you can postpone communicating your judgment - one way or the other - for up to 48 hours on the possibility that more information may come available.
+
+
+          </p>
+
+        </div>
+
+        <div id="evidence1" class="tab-pane fade">
+            <h4>Rinian Spy Plane Evidence</h4>
+            <em><u>Evidence 1:</u></em>
+            <p>
+              <em>Foreign Intelligence Intercepts</em>
+              <br><br>
+              Translated intercepts of Rinian intelligence activities. These are translated, assessed, and summarised   by experts on Rinian intelligence and counterintelligence. Due to the possibility of mistranslations, misinterpretations, and the possible sowing of false information, the following statistics on how to  consider the uncertainty surrounding reports have been compiled for your use:
+              <br><br>
+              <u>Report Reliability Statistics:</u>
+              <br>
+              <em>False Positive Rate (reporting that activity occurred, when in fact none took place):10% </em>
+              <br>
+              <em>False Negative Rate (reporting that activity did not occur, when in fact it did take place): 15%</em>
+
+              <br><br>
+              <u>Report Summary:</u>
+              <br>
+              The report states that, based on intercepted Rinian intelligence transmissions, a Rinian spy plane flew   over the island while the Black Site was present.
+
+            </p>
+        </div>
+
+        <div id="evidence2" class="tab-pane fade">
+          <h4>Rinian Spy Plane Evidence</h4>
+            <em><u>Evidence 2:</u></em>
+            <p>
+              <em>Domestic Contrail Expert on Rinian Spy Planes</em>
+              <br><br>
+              A member of your team is an expert on the contrails of Rinian spy planes, and has experience  with a  large number of prior incidents, so you show the expert the image taken of the potential contrails.
+              <br><br>
+              Your teammate’s history of reliability and accuracy reveals, however, that his assessments are not  perfect. In particular, verification statistics indicate that this expert is overly bold; frequently  proclaiming that suspicious cloud formations /contrails are the contrails of Rinian spy planes when   they in fact are not (although he sometimes makes the opposite mistake). Checking the expert’s  verified performance statistics you find:
+
+              <br><br>
+              <u>Expert Reliability Statistics:</u>
+              <br>
+              <em>False Positive Rate (classifying suspicious image as a Rinian spy plane contrail, when in fact it is not): 40% </em>
+              <br>
+              <em>False Negative Rate (classifying suspicious image as not a Rinian spy plane contrail, when in fact it is): 20%</em>
+
+              <br><br>
+              <u>Report Summary:</u>
+              <br>
+              The expert reports that, based on his assessment of the image, a Rinian spy plane was not flying over   the island at the time the images were captured.
+
+            </p>
+        </div>
+
+        <div id="evidence3" class="tab-pane fade">
+          <h4>Ul’Sandan Drone Evidence</h4>
+            <em><u>Evidence 3:</u></em>
+            <p>
+              <em>Department of Defense Report</em>
+              <br><br>
+              As an Ul’Sandan official, you have access to Ul’Sandan military logs regarding possible flight paths of Ul’Sandan aircraft – including Ul’Sandan drones. These reports can generally be considered to be highly reliable, and the report reliability statistics  are taken to be the following:
+
+              <br><br>
+              <u>Report Reliability Statistics:</u>
+              <br>
+              <em>False Positive Rate (reporting that a certain flight path was followed when in fact it was not): 5%</em>
+              <br>
+              <em>False Negative Rate (reporting that a certain flight path was not followed when in fact it was the path taken): 5%</em>
+
+              <br><br>
+              <u>Report Summary:</u>
+              <br>
+              The report states that, based on an assessment of Defence Department logs, a Ul’Sandan  drone flew over the island while the Black Site was present.
+
+            </p>
+        </div>
+
+        <div id="evidence4" class="tab-pane fade">
+          <h4>Ul’Sandan Drone Evidence</h4>
+            <em><u>Evidence 4:</u></em>
+            <p>
+              <em>Domestic Contrail Expert on Ul’Sandan Drones</em>
+              <br><br>
+              Contrails of Ul’Sandan drones are quite different from contrails of Rinian spy planes. A member of your team is an expert on the contrails of Ul’Sandan drones, and has experience with a large number of prior incidents, so you show the expert the image taken of the potential contrails.
+
+              <br><br>
+              Your teammate’s history of reliability and accuracy reveals, however, that her assessments are not perfect. In particular, verification statistics indicate that this expert is overly cautious; frequently proclaiming that suspicious cloud formations / contrails are not the contrails of Ul’Sandan Drones when they in fact are (although she sometimes makes the opposite mistake). Checking the expert’s verified performance statistics you find:
+
+              <br><br>
+              <u>Expert Reliability Statistics:</u>
+              <br>
+              <em>False Positive Rate (classifying suspicious image as an Ul’Sandan drone contrail, when in fact it is not): 20%</em>
+              <br>
+              <em>False Negative Rate (classifying suspicious image as not an Ul’Sandan drone contrail, when in fact it is): 30%</em>
+
+              <br><br>
+              <u>Report Summary:</u>
+              <br>
+              The expert reports that, based on her assessment of the image, a Ul’Sandan drone was not flying over the island at the time the images were captured.
+
+            </p>
+        </div>
+
+        <div id="evidence5" class="tab-pane fade">
+          <h4>Technical Report Evidence</h4>
+            <em><u>Evidence 5:</u></em>
+            <p>
+              <em>Radar Station automated logs</em>
+              <br><br>
+              An old radar listening station is located on the island, covering the area of sky above the island’s landmass.
+
+              <br><br>
+              These stations were automated, and were designed to look for particular radar signatures, providing a simple daily report log that indicated positive if anything meeting its target signature characteristics had been detected in the last 24 hours(and negative if nothing had).
+
+              <br><br>
+
+              <u>Automated Report Log Reliability:</u>
+              <br>
+               Even now, the automated report logs are considered highly reliable, in that they have very low chances of false positives (0.5%) if no such signatures were present. There is however, an issue with the report logs: Although the radar station was originally designed to look for signatures corresponding to the typical size and altitudes of Rinian spy planes, in more modern times, two types of plane are known to fit these criteria: Rinian spy planes and Ul’Sandan drones. As such, the engineers who maintain the station provide you with the statistics they have regarding typical detection probabilities for each of these two cases:
+
+              <br><br>
+
+              Ul-Sandan drones have typically triggered positive reports 95% of the time they have been known to fly within the range of the radar, while modern Rinian spy planes have typically triggered positive reports 90% of the time that they are known to be within the area covered by the radar.
+
+              <br><br>
+
+              <u>Automated Report Log:</u>
+              <br>
+              The report comes back as positive for the 24-hour period when the Black Site was present.
+
+            </p>
+        </div>
+
+      </div>
+
+
     </div>
-   
-   </div>
+
   
-	
+
+    <div class="col-sm-6">
+
+        <ul class="nav nav-tabs">
+          <li class="active"><a data-toggle = "tab" href="#E1Tree" id="E1tab">Evidence 1</a></li>
+          <li><a data-toggle = "tab" href="#E2Tree" id="E2tab">Evidence 2</a></li>
+          <li><a data-toggle = "tab" href="#E3Tree" id="E3tab">Evidence 3</a></li>
+          <li><a data-toggle = "tab" href="#E4Tree" id="E4tab">Evidence 4</a></li>
+          <li><a data-toggle = "tab" href="#E5Tree" id="E5tab">Evidence 5</a></li>
+        </ul>
 
 
- <table>
+        <div class="tab-content">
 
-      <tr>
-        <th>Frequency</th>
-        <th>Breast Cancer</th>
-        <th>No Cancer</th>
-        <th>Total</th>
-      </tr>
+          <div id="E1Tree" class="tab-pane fade in active">
 
-    <tr>
-      <td></td>
-      <td>hit</td>
-      <td>false alarm</td>
-      <td>All positive</td>
-    </tr>
+              <div class="main">
+                <div class="tree">
 
-      <tr>
-        <td>Positive test</td>
-        <td><div class="hitResult">250</div></td>
-        <td><div class="faResult">250</div></td>
-        <td><div class="marginalPositiveResult">500</div></td>
-      </tr>
-  
-    <tr>
-      <td></td>
-      <td>miss</td>
-      <td>correct reject</td>
-      <td>All negative</td>
-    </tr>
+                  
+                    <button class="btn probability active1">Probability</button>
+                    <button class="btn percentage">Percentage</button>
+               
+                    <div class="pop">Population</div>
+                  
+                    <div class="pop_number">1000</div>
 
-      <tr>
-        <td>Negative test</td>
-        <td><div class="missResult">250</div></td>
-        <td><div class="crResult"> 250</div></td>
-        <td><div class="marginalNegativeResult">500</div></td>
-      </tr>
+                    <div style="font-size: 15px;margin-left: 151px;">hit + miss + false alarm + correct reject</div>
 
-      <tr>
-        <td>Total</td>
-        <td class="baseResult">500</td>
-        <td class="noiseResult">500</td>
-        <td class="freTableTotal">1000</td>
-      </tr>
+                    <img src="../pic/arrow2.png", style="width: 200px; margin-left:180px; display: block;">
+                
 
-    </table>
-  
-	
+                    <input type="number" class="baseRate" value="0.5" step="0.1" min="0" max="1">
+               
+                    <div class = "base">500</div>
+                  
+
+                    <input type="number" class="nbaseRate" value="0.5" step="0.1" min="0" max="1">
+                 
+                 
+
+                    <div class = "noise">500</div>
+
+                    <div style="font-size: 15px;margin-left: 80px;display: block;"> base rate &emsp;&emsp;hit + miss    &emsp;&emsp;&emsp;
+                    1 - base rate&emsp;&emsp;    false alarm(FA) + correct reject(CR)</div>
+
+                    <img src="../pic/arrow2.png" style="width: 180px; margin-left:70px; display: inline-block;">
+
+                    <img src="../pic/arrow2.png" style="width: 180px; margin-left:80px; display: inline-block;">
+
+                  <div class="bottom">
+                  
+                    <input type="number" class="hitRate" value="0.5" step="0.1" min="0" max="1">
+                    <div class="hit">250</div>
+
+
+                    <input type="number" class="missRate" value="0.5" step="0.1" min="0" max="1">
+                    <div class="miss">250</div>
+
+
+                    <input type="number" class="faRate" value="0.5" step="0.1" min="0" max="1">
+                    <div class="fa">250</div>
+
+                    <input type="number" class="crRate" value="0.5" step="0.1" min="0" max="1">
+                    <div class="cr">250</div>
+
+                  </div>
+
+                  <div class="bottomNotation">
+                    <div style="margin-left: 0px;">hit rate&emsp;&emsp;hit</div>
+                    <div style="margin-left: 60px;">miss rate &emsp;miss</div>
+                    <div style="margin-left: 30px;">FA rate &emsp;&emsp;FA</div>
+                    <div style="margin-left: 70px;">CR rate &emsp;&emsp;CR</div>
+                  </div>
+
+                  <img src="../pic/arrow3.png" style="width: 250px;height:60px;margin-left: 80px;display: block;">
+
+                  <div class="probability1"> 
+                  
+                    <div>p(H/D) = </div>
+                      <div class="innerProb"> 
+                        <span class="hitResult prob_sup">250</span> 
+                        <span class="hitResult prob_bottom">250</span> <span class="prob_bottom">+</span><span class="faResult prob_bottom">250</span>
+                      </div>
+                      <span> = </span>
+                    <div class="results"> 0.5</div>
+                  
+                  </div>
+               
+                </div>
+            
+
+                <table class="table">
+
+                    <tr>
+                      <th>Frequency</th>
+                      <th>True positive</th>
+                      <th>True negative</th>
+                      <th>Total</th>
+                    </tr>
+
+                  <tr>
+                    <td></td>
+                    <td>hit</td>
+                    <td>false alarm</td>
+                    <td>All positive</td>
+                  </tr>
+
+                    <tr class="row1">
+                      <td>Positive test</td>
+                      <td class="row11"><div class="hitTableResult">250</div></td>
+                      <td class="row12"><div class="faTableResult">250</div></td>
+                      <td class="row13"><div class="marginalPositiveResult">500</div></td>
+                    </tr>
+                
+                  <tr>
+                    <td></td>
+                    <td>miss</td>
+                    <td>correct reject</td>
+                    <td>All negative</td>
+                  </tr>
+
+                    <tr class="row2">
+                      <td>Negative test</td>
+                      <td class="row21"><div class="missTableResult">250</div></td>
+                      <td class="row22"><div class="crTableResult"> 250</div></td>
+                      <td class="row23"><div class="marginalNegativeResult">500</div></td>
+                    </tr>
+
+                    <tr class="row3">
+                      <td>Total</td>
+                      <td class="baseTableResult">500</td>
+                      <td class="noiseTableResult">500</td>
+                      <td class="freTableTotal">1000</td>
+                    </tr>
+
+                </table>
+            
+              </div>
+          
+          </div>
+          
+
+          <div id="E2Tree" class="tab-pane fade">
+            
+          
+              <div class="main">
+             
+
+                <div class="tree">
+
+                    <button class="btn probability active1">Probability</button>
+                    <button class="btn percentage">Percentage</button>
+
+                    <div class="pop">Population</div>
+                  
+                    <div class="pop_number">1000</div>
+
+                    <div style="font-size: 15px;margin-left: 151px;">hit + miss + false alarm + correct reject</div>
+
+                    <img src="../pic/arrow2.png", style="width: 200px; margin-left:180px; display: block;">
+                
+
+                    <input type="number" class="baseRate" value="0.5" step="0.1" min="0" max="1">
+               
+                    <div class = "base">500</div>
+                  
+
+                    <input type="number" class="nbaseRate" value="0.5" step="0.1" min="0" max="1">
+                 
+                 
+
+                    <div class = "noise">500</div>
+
+                    <div style="font-size: 15px;margin-left: 80px;display: block;"> base rate &emsp;&emsp;hit + miss    &emsp;&emsp;&emsp;
+                    1 - base rate&emsp;&emsp;    false alarm(FA) + correct reject(CR)</div>
+
+                    <img src="../pic/arrow2.png" style="width: 180px; margin-left:70px; display: inline-block;">
+
+                    <img src="../pic/arrow2.png" style="width: 180px; margin-left:80px; display: inline-block;">
+
+                  <div class="bottom">
+                  
+                    <input type="number" class="hitRate" value="0.5" step="0.1" min="0" max="1">
+                    <div class="hit">250</div>
+
+
+                    <input type="number" class="missRate" value="0.5" step="0.1" min="0" max="1">
+                    <div class="miss">250</div>
+
+
+                    <input type="number" class="faRate" value="0.5" step="0.1" min="0" max="1">
+                    <div class="fa">250</div>
+
+                    <input type="number" class="crRate" value="0.5" step="0.1" min="0" max="1">
+                    <div class="cr">250</div>
+
+                  </div>
+
+                  <div class="bottomNotation">
+                    <div style="margin-left: 0px;">hit rate&emsp;&emsp;hit</div>
+                    <div style="margin-left: 60px;">miss rate &emsp;miss</div>
+                    <div style="margin-left: 30px;">FA rate &emsp;&emsp;FA</div>
+                    <div style="margin-left: 70px;">CR rate &emsp;&emsp;CR</div>
+                  </div>
+
+                  <img src="../pic/arrow3.png" style="width: 250px;height:60px;margin-left: 80px;display: block;">
+
+                   <div class="probability1"> 
+                  
+                    <div>p(H/D) = </div>
+                      <div class="innerProb"> 
+                        <span class="hitResult prob_sup">250</span> 
+                        <span class="hitResult prob_bottom">250</span> <span class="prob_bottom">+</span><span class="faResult prob_bottom">250</span>
+                      </div>
+                      <span> = </span>
+                    <div class="results"> 0.5</div>
+                  
+                  </div>
+               
+                </div>
+            
+
+                 <table class="table">
+
+                    <tr>
+                      <th>Frequency</th>
+                      <th>True positive</th>
+                      <th>True negative</th>
+                      <th>Total</th>
+                    </tr>
+
+                  <tr>
+                    <td></td>
+                    <td>hit</td>
+                    <td>false alarm</td>
+                    <td>All positive</td>
+                  </tr>
+
+                    <tr class="row1">
+                      <td>Positive test</td>
+                      <td class="row11"><div class="hitTableResult">250</div></td>
+                      <td class="row12"><div class="faTableResult">250</div></td>
+                      <td class="row13"><div class="marginalPositiveResult">500</div></td>
+                    </tr>
+                
+                  <tr>
+                    <td></td>
+                    <td>miss</td>
+                    <td>correct reject</td>
+                    <td>All negative</td>
+                  </tr>
+
+                    <tr class="row2">
+                      <td>Negative test</td>
+                      <td class="row21"><div class="missTableResult">250</div></td>
+                      <td class="row22"><div class="crTableResult"> 250</div></td>
+                      <td class="row23"><div class="marginalNegativeResult">500</div></td>
+                    </tr>
+
+                    <tr class="row3">
+                      <td>Total</td>
+                      <td class="baseTableResult">500</td>
+                      <td class="noiseTableResult">500</td>
+                      <td class="freTableTotal">1000</td>
+                    </tr>
+
+                </table>
+            
+            
+              </div>
+          </div>
+          
+          <div id="E3Tree" class="tab-pane fade">
+             
+            
+              <div class="main">
+             
+
+                <div class="tree">
+
+                    <button class="btn probability active1">Probability</button>
+                    <button class="btn percentage">Percentage</button>
+
+                    <div class="pop">Population</div>
+                  
+                    <div class="pop_number">1000</div>
+
+                    <div style="font-size: 15px;margin-left: 151px;">hit + miss + false alarm + correct reject</div>
+
+                    <img src="../pic/arrow2.png", style="width: 200px; margin-left:180px; display: block;">
+                
+
+                    <input type="number" class="baseRate" value="0.5" step="0.1" min="0" max="1">
+               
+                    <div class = "base">500</div>
+                  
+
+                    <input type="number" class="nbaseRate" value="0.5" step="0.1" min="0" max="1">
+                 
+                 
+
+                    <div class = "noise">500</div>
+
+                    <div style="font-size: 15px;margin-left: 80px;display: block;"> base rate &emsp;&emsp;hit + miss    &emsp;&emsp;&emsp;
+                    1 - base rate&emsp;&emsp;    false alarm(FA) + correct reject(CR)</div>
+
+                    <img src="../pic/arrow2.png" style="width: 180px; margin-left:70px; display: inline-block;">
+
+                    <img src="../pic/arrow2.png" style="width: 180px; margin-left:80px; display: inline-block;">
+
+                  <div class="bottom">
+                  
+                    <input type="number" class="hitRate" value="0.5" step="0.1" min="0" max="1">
+                    <div class="hit">250</div>
+
+
+                    <input type="number" class="missRate" value="0.5" step="0.1" min="0" max="1">
+                    <div class="miss">250</div>
+
+
+                    <input type="number" class="faRate" value="0.5" step="0.1" min="0" max="1">
+                    <div class="fa">250</div>
+
+                    <input type="number" class="crRate" value="0.5" step="0.1" min="0" max="1">
+                    <div class="cr">250</div>
+
+                  </div>
+
+                  <div class="bottomNotation">
+                    <div style="margin-left: 0px;">hit rate&emsp;&emsp;hit</div>
+                    <div style="margin-left: 60px;">miss rate &emsp;miss</div>
+                    <div style="margin-left: 30px;">FA rate &emsp;&emsp;FA</div>
+                    <div style="margin-left: 70px;">CR rate &emsp;&emsp;CR</div>
+                  </div>
+
+                  <img src="../pic/arrow3.png" style="width: 250px;height:60px;margin-left: 80px;display: block;">
+
+                   <div class="probability1"> 
+                  
+                    <div>p(H/D) = </div>
+                      <div class="innerProb"> 
+                        <span class="hitResult prob_sup">250</span> 
+                        <span class="hitResult prob_bottom">250</span> <span class="prob_bottom">+</span><span class="faResult prob_bottom">250</span>
+                      </div>
+                      <span> = </span>
+                    <div class="results"> 0.5</div>
+                  
+                  </div>
+               
+                </div>
+            
+
+                 <table class="table">
+
+                    <tr>
+                      <th>Frequency</th>
+                      <th>True positive</th>
+                      <th>True negative</th>
+                      <th>Total</th>
+                    </tr>
+
+                  <tr>
+                    <td></td>
+                    <td>hit</td>
+                    <td>false alarm</td>
+                    <td>All positive</td>
+                  </tr>
+
+                    <tr class="row1">
+                      <td>Positive test</td>
+                      <td class="row11"><div class="hitTableResult">250</div></td>
+                      <td class="row12"><div class="faTableResult">250</div></td>
+                      <td class="row13"><div class="marginalPositiveResult">500</div></td>
+                    </tr>
+                
+                  <tr>
+                    <td></td>
+                    <td>miss</td>
+                    <td>correct reject</td>
+                    <td>All negative</td>
+                  </tr>
+
+                    <tr class="row2">
+                      <td>Negative test</td>
+                      <td class="row21"><div class="missTableResult">250</div></td>
+                      <td class="row22"><div class="crTableResult"> 250</div></td>
+                      <td class="row23"><div class="marginalNegativeResult">500</div></td>
+                    </tr>
+
+                    <tr class="row3">
+                      <td>Total</td>
+                      <td class="baseTableResult">500</td>
+                      <td class="noiseTableResult">500</td>
+                      <td class="freTableTotal">1000</td>
+                    </tr>
+
+                </table>
+            
+            
+              </div>
+          </div>
+          
+          <div id="E4Tree" class="tab-pane fade">
+             
+              <div class="main">
+             
+
+                <div class="tree">
+
+                    <button class="btn probability active1">Probability</button>
+                    <button class="btn percentage">Percentage</button>
+
+                    <div class="pop">Population</div>
+                  
+                    <div class="pop_number">1000</div>
+
+                    <div style="font-size: 15px;margin-left: 151px;">hit + miss + false alarm + correct reject</div>
+
+                    <img src="../pic/arrow2.png", style="width: 200px; margin-left:180px; display: block;">
+                
+
+                    <input type="number" class="baseRate" value="0.5" step="0.1" min="0" max="1">
+               
+                    <div class = "base">500</div>
+                  
+
+                    <input type="number" class="nbaseRate" value="0.5" step="0.1" min="0" max="1">
+                 
+                 
+
+                    <div class = "noise">500</div>
+
+                    <div style="font-size: 15px;margin-left: 80px;display: block;"> base rate &emsp;&emsp;hit + miss    &emsp;&emsp;&emsp;
+                    1 - base rate&emsp;&emsp;    false alarm(FA) + correct reject(CR)</div>
+
+                    <img src="../pic/arrow2.png" style="width: 180px; margin-left:70px; display: inline-block;">
+
+                    <img src="../pic/arrow2.png" style="width: 180px; margin-left:80px; display: inline-block;">
+
+                  <div class="bottom">
+                  
+                    <input type="number" class="hitRate" value="0.5" step="0.1" min="0" max="1">
+                    <div class="hit">250</div>
+
+
+                    <input type="number" class="missRate" value="0.5" step="0.1" min="0" max="1">
+                    <div class="miss">250</div>
+
+
+                    <input type="number" class="faRate" value="0.5" step="0.1" min="0" max="1">
+                    <div class="fa">250</div>
+
+                    <input type="number" class="crRate" value="0.5" step="0.1" min="0" max="1">
+                    <div class="cr">250</div>
+
+                  </div>
+
+                  <div class="bottomNotation">
+                    <div style="margin-left: 0px;">hit rate&emsp;&emsp;hit</div>
+                    <div style="margin-left: 60px;">miss rate &emsp;miss</div>
+                    <div style="margin-left: 30px;">FA rate &emsp;&emsp;FA</div>
+                    <div style="margin-left: 70px;">CR rate &emsp;&emsp;CR</div>
+                  </div>
+
+                  <img src="../pic/arrow3.png" style="width: 250px;height:60px;margin-left: 80px;display: block;">
+
+                   <div class="probability1"> 
+                  
+                    <div>p(H/D) = </div>
+                      <div class="innerProb"> 
+                        <span class="hitResult prob_sup">250</span> 
+                        <span class="hitResult prob_bottom">250</span> <span class="prob_bottom">+</span><span class="faResult prob_bottom">250</span>
+                      </div>
+                      <span> = </span>
+                    <div class="results"> 0.5</div>
+                  
+                  </div>
+               
+                </div>
+            
+
+                 <table class="table">
+
+                    <tr>
+                      <th>Frequency</th>
+                      <th>True positive</th>
+                      <th>True negative</th>
+                      <th>Total</th>
+                    </tr>
+
+                  <tr>
+                    <td></td>
+                    <td>hit</td>
+                    <td>false alarm</td>
+                    <td>All positive</td>
+                  </tr>
+
+                    <tr class="row1">
+                      <td>Positive test</td>
+                      <td class="row11"><div class="hitTableResult">250</div></td>
+                      <td class="row12"><div class="faTableResult">250</div></td>
+                      <td class="row13"><div class="marginalPositiveResult">500</div></td>
+                    </tr>
+                
+                  <tr>
+                    <td></td>
+                    <td>miss</td>
+                    <td>correct reject</td>
+                    <td>All negative</td>
+                  </tr>
+
+                    <tr class="row2">
+                      <td>Negative test</td>
+                      <td class="row21"><div class="missTableResult">250</div></td>
+                      <td class="row22"><div class="crTableResult"> 250</div></td>
+                      <td class="row23"><div class="marginalNegativeResult">500</div></td>
+                    </tr>
+
+                    <tr class="row3">
+                      <td>Total</td>
+                      <td class="baseTableResult">500</td>
+                      <td class="noiseTableResult">500</td>
+                      <td class="freTableTotal">1000</td>
+                    </tr>
+
+                </table>
+            
+            
+              </div>
+          </div>
+          
+
+          <div id="E5Tree" class="tab-pane fade">
+
+              <div class="main">
+                <div class="tree">
+
+                  
+                    <button class="btn probability active1">Probability</button>
+                    <button class="btn percentage">Percentage</button>
+               
+                    <div class="pop">Population</div>
+                  
+                    <div class="pop_number">1000</div>
+
+                    <div style="font-size: 15px;margin-left: 151px;">hit + miss + false alarm + correct reject</div>
+
+                    <img src="../pic/arrow2.png", style="width: 200px; margin-left:180px; display: block;">
+                
+
+                    <input type="number" class="baseRate" value="0.5" step="0.1" min="0" max="1">
+               
+                    <div class = "base">500</div>
+                  
+
+                    <input type="number" class="nbaseRate" value="0.5" step="0.1" min="0" max="1">
+                 
+                 
+
+                    <div class = "noise">500</div>
+
+                    <div style="font-size: 15px;margin-left: 80px;display: block;"> base rate &emsp;&emsp;hit + miss    &emsp;&emsp;&emsp;
+                    1 - base rate&emsp;&emsp;    false alarm(FA) + correct reject(CR)</div>
+
+                    <img src="../pic/arrow2.png" style="width: 180px; margin-left:70px; display: inline-block;">
+
+                    <img src="../pic/arrow2.png" style="width: 180px; margin-left:80px; display: inline-block;">
+
+                  <div class="bottom">
+                  
+                    <input type="number" class="hitRate" value="0.5" step="0.1" min="0" max="1">
+                    <div class="hit">250</div>
+
+
+                    <input type="number" class="missRate" value="0.5" step="0.1" min="0" max="1">
+                    <div class="miss">250</div>
+
+
+                    <input type="number" class="faRate" value="0.5" step="0.1" min="0" max="1">
+                    <div class="fa">250</div>
+
+                    <input type="number" class="crRate" value="0.5" step="0.1" min="0" max="1">
+                    <div class="cr">250</div>
+
+                  </div>
+
+                  <div class="bottomNotation">
+                    <div style="margin-left: 0px;">hit rate&emsp;&emsp;hit</div>
+                    <div style="margin-left: 60px;">miss rate &emsp;miss</div>
+                    <div style="margin-left: 30px;">FA rate &emsp;&emsp;FA</div>
+                    <div style="margin-left: 70px;">CR rate &emsp;&emsp;CR</div>
+                  </div>
+
+                  <img src="../pic/arrow3.png" style="width: 250px;height:60px;margin-left: 80px;display: block;">
+
+                  <div class="probability1"> 
+                  
+                    <div>p(H/D) = </div>
+                      <div class="innerProb"> 
+                        <span class="hitResult prob_sup">250</span> 
+                        <span class="hitResult prob_bottom">250</span> <span class="prob_bottom">+</span><span class="faResult prob_bottom">250</span>
+                      </div>
+                      <span> = </span>
+                    <div class="results"> 0.5</div>
+                  
+                  </div>
+               
+                </div>
+            
+
+                <table class="table">
+
+                    <tr>
+                      <th>Frequency</th>
+                      <th>True positive</th>
+                      <th>True negative</th>
+                      <th>Total</th>
+                    </tr>
+
+                  <tr>
+                    <td></td>
+                    <td>hit</td>
+                    <td>false alarm</td>
+                    <td>All positive</td>
+                  </tr>
+
+                    <tr class="row1">
+                      <td>Positive test</td>
+                      <td class="row11"><div class="hitTableResult">250</div></td>
+                      <td class="row12"><div class="faTableResult">250</div></td>
+                      <td class="row13"><div class="marginalPositiveResult">500</div></td>
+                    </tr>
+                
+                  <tr>
+                    <td></td>
+                    <td>miss</td>
+                    <td>correct reject</td>
+                    <td>All negative</td>
+                  </tr>
+
+                    <tr class="row2">
+                      <td>Negative test</td>
+                      <td class="row21"><div class="missTableResult">250</div></td>
+                      <td class="row22"><div class="crTableResult"> 250</div></td>
+                      <td class="row23"><div class="marginalNegativeResult">500</div></td>
+                    </tr>
+
+                    <tr class="row3">
+                      <td>Total</td>
+                      <td class="baseTableResult">500</td>
+                      <td class="noiseTableResult">500</td>
+                      <td class="freTableTotal">1000</td>
+                    </tr>
+
+                </table>
+            
+              </div>
+          
+          </div>
+
+        
+        </div>
+
+
+    </div> 
+          
+
+  </div>
 
 </div>
 
-	<script src ="../js/myscripts.js"></script>
-	<script src='../decimal.js-10.0.1/decimal.min.js'></script>
+
+  <script src ="../js/treeScripts_BlackSite.js"></script>
+  <script src='../decimal.js-10.0.1/decimal.min.js'></script>
+  <script src="../js/demo_BlackSite.js"></script>
+  <script src="../js/scNavBlackSite.js"></script>
 
  
 </body>

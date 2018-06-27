@@ -1,15 +1,22 @@
 
+#inst {
+	height: 60px;
+	overflow: scroll;
+
+}
+
 #instruction {
 	margin-top: 2px;
 	margin-bottom: 5px;
 	padding: 6px;
 	border: 1px solid lightgrey;
 	border-radius: 18px;
-	height: 160px;
-
-
 }
 
+.pager {
+	margin: 0px;
+	padding-top: 0px;
+}
 
 .dropdown-content{
 	background-color: lavender;
