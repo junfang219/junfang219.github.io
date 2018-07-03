@@ -1,0 +1,145 @@
+
+.hypothesis {
+	padding:10px;
+}
+
+.oneC3Vpop {
+	margin-left: 300px;
+	font-size: 18px;
+}
+
+.oneC3Vpop_number {
+	margin-left: 300px;
+	font-size: 18px;
+	color: #0000CD;
+}
+
+.oneC3VbaseRate {
+	margin-left: 100px;
+	width: 55px;
+}
+
+.oneC3Vbase {
+	margin-left: 15px;
+	font-size: 18px;
+	color: #0000CD;
+	display: inline-block;
+	width: 100px;
+}
+
+.oneC3Vnoise {
+	margin-left: 15px;
+	font-size: 18px;
+	color: #0000CD;
+	display: inline-block;
+}
+
+.oneC3VnbaseRate {
+	margin-left: 120px;
+	width: 55px;
+}
+
+.oneC3VhitRate {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 0px;
+	display:inline-flex;
+	padding: 0px;
+}
+
+.oneC3Vhit {
+	font-size: 18px;
+	color: #0000CD;
+	margin-left: 5px;
+	display: inline;
+	width: 60px;
+}
+
+.oneC3VunclearRate1 {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 0px;
+	display:inline-flex;
+	padding: 0px;
+}
+
+.oneC3Vunclear1 {
+	font-size: 18px;
+	color: #0000CD;
+	margin-left: 5px;
+	display: inline;
+	width: 60px;
+
+}
+
+.oneC3VmissRate {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 0px;
+	display:inline-flex;
+	padding: 0px;
+}
+.oneC3Vmiss {
+	font-size: 18px;
+	color: #0000CD;
+	margin-left: 5px;
+	display: inline;
+	width: 60px;
+}
+
+.oneC3VfaRate {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 0px;
+	display:inline-flex;
+	padding: 0px;
+}
+
+.oneC3Vfa {
+	font-size: 18px;
+	color: #0000CD;
+	margin-left: 5px;
+	display: inline;
+	width: 60px;
+}
+
+.oneC3VunclearRate2 {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 0px;
+	display:inline-flex;
+	padding: 0px;
+}
+
+.oneC3Vunclear2 {
+	font-size: 18px;
+	color: #0000CD;
+	margin-left: 5px;
+	display: inline;
+	width: 60px;
+
+}
+
+.oneC3VcrRate {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 0px;
+	display:inline-flex;
+	padding: 0px;
+}
+
+.oneC3Vcr {
+	font-size: 18px;
+	color: #0000CD;
+	margin-left: 5px;
+	display: inline;
+	width: 60px;
+}
+
+.oneC3Vprobability1 {
+	font-size: 18px;
+	display: flex;
+	margin-left: 200px;
+}
+
+

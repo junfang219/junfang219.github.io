@@ -25,6 +25,14 @@
 	height: 750px;
 }
 
+.left {
+	background-color: lavender;
+	padding: 15px;
+	font-size: 18px;
+	height: 750px;
+
+}
+
 .main{
 	/*display: flex;*/
 	align-items: flex-start;
