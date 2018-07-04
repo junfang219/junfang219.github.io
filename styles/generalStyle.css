@@ -3,6 +3,8 @@
 	padding:10px;
 }
 
+/*one cue and 3 values*/
+
 .oneC3Vpop {
 	margin-left: 300px;
 	font-size: 18px;
@@ -141,5 +143,162 @@
 	display: flex;
 	margin-left: 200px;
 }
+
+/*three hypothesis*/
+.h3pop {
+	margin-left: 300px;
+	font-size: 18px;
+}
+
+.h3pop_number {
+	margin-left: 300px;
+	font-size: 18px;
+	color: #0000CD;
+}
+
+.h3baseRate1 {
+	margin-left: 80px;
+	width: 55px;
+}
+
+.h3base1 {
+	margin-left: 15px;
+	font-size: 18px;
+	color: #0000CD;
+	display: inline-block;
+	width: 90px;
+}
+
+.h3baseRate2 {
+	margin-left: 5px;
+	width: 55px;
+}
+
+.h3base2 {
+	margin-left: 15px;
+	font-size: 18px;
+	color: #0000CD;
+	display: inline-block;
+	width: 70px;
+}
+
+.h3noise {
+	margin-left: 15px;
+	font-size: 18px;
+	color: #0000CD;
+	display: inline-block;
+}
+
+.h3nbaseRate {
+	margin-left: 30px;
+	width: 55px;
+}
+
+.h3hitRate1 {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 0px;
+	display:inline-flex;
+	padding: 0px;
+}
+
+.h3hit1 {
+	font-size: 18px;
+	color: #0000CD;
+	margin-left: 5px;
+	display: inline;
+	width: 60px;
+}
+
+
+.h3missRate1 {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 0px;
+	display:inline-flex;
+	padding: 0px;
+}
+.h3miss1 {
+	font-size: 18px;
+	color: #0000CD;
+	margin-left: 5px;
+	display: inline;
+	width: 60px;
+}
+
+
+.h3hitRate2 {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 0px;
+	display:inline-flex;
+	padding: 0px;
+}
+
+.h3hit2 {
+	font-size: 18px;
+	color: #0000CD;
+	margin-left: 5px;
+	display: inline;
+	width: 60px;
+}
+
+
+.h3missRate2 {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 0px;
+	display:inline-flex;
+	padding: 0px;
+}
+.h3miss2 {
+	font-size: 18px;
+	color: #0000CD;
+	margin-left: 5px;
+	display: inline;
+	width: 60px;
+}
+
+
+.h3faRate {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 0px;
+	display:inline-flex;
+	padding: 0px;
+}
+
+.h3fa {
+	font-size: 18px;
+	color: #0000CD;
+	margin-left: 5px;
+	display: inline;
+	width: 60px;
+}
+
+
+.h3crRate {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 0px;
+	display:inline-flex;
+	padding: 0px;
+}
+
+.h3cr {
+	font-size: 18px;
+	color: #0000CD;
+	margin-left: 5px;
+	display: inline;
+	width: 60px;
+}
+
+.h3probability1 {
+	font-size: 18px;
+	display: flex;
+	margin-left: 300px;
+	padding: 5px;
+}
+
 
 

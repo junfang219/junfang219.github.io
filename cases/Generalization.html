@@ -161,7 +161,7 @@
                   
                     <div class="pop_number">1000</div>
 
-                    <div style="font-size: 15px;margin-left: 250px;">Hypothesis</div>
+                    <div style="font-size: 15px;margin-left: 250px;">Hypotheses</div>
 
                     <img src="../pic/arrow4.png", style="width: 200px; margin-left:190px; display: block;">
                 
@@ -300,7 +300,7 @@
                   
                     <div class="oneC3Vpop_number">600</div>
 
-                    <div style="font-size: 15px;margin-left: 300px;">Hypothesis</div>
+                    <div style="font-size: 15px;margin-left: 300px;">Hypotheses</div>
 
                     <img src="../pic/arrow4.png", style="width: 250px; margin-left:200px; display: block;">
                 
@@ -325,24 +325,24 @@
 
                   <div class="bottom">
                   
-                    <input type="number" class="oneC3VhitRate" value="0.5" step="0.1" min="0" max="1">
+                    <input type="number" class="oneC3VhitRate" value="0.33" step="0.1" min="0" max="1">
                     <div class="oneC3Vhit">100</div>
 
-                    <input type="number" class="oneC3VunclearRate1" value="0.5" step="0.1" min="0" max="1">
+                    <input type="number" class="oneC3VunclearRate1" value="0.33" step="0.1" min="0" max="1">
                     <div class="oneC3Vunclear1">100</div>
 
 
-                    <input type="number" class="oneC3VmissRate" value="0.5" step="0.1" min="0" max="1">
+                    <input type="number" class="oneC3VmissRate" value="0.33" step="0.1" min="0" max="1">
                     <div class="oneC3Vmiss">100</div>
 
 
-                    <input type="number" class="oneC3VfaRate" value="0.5" step="0.1" min="0" max="1">
+                    <input type="number" class="oneC3VfaRate" value="0.33" step="0.1" min="0" max="1">
                     <div class="oneC3Vfa">100</div>
 
-                    <input type="number" class="oneC3VunclearRate2" value="0.5" step="0.1" min="0" max="1">
+                    <input type="number" class="oneC3VunclearRate2" value="0.33" step="0.1" min="0" max="1">
                     <div class="oneC3Vunclear2">100</div>
 
-                    <input type="number" class="oneC3VcrRate" value="0.5" step="0.1" min="0" max="1">
+                    <input type="number" class="oneC3VcrRate" value="0.33" step="0.1" min="0" max="1">
                     <div class="oneC3Vcr">100</div>
 
                   </div>
@@ -425,129 +425,129 @@
           
           <div id="E3Tree" class="tab-pane fade">
              
-            
               <div class="main">
-             
+
+                <div class="hypothesis">
+                  <form >
+                  Hypothesis 1: <input type="text" name="hypohtesis1" value="disease A"><br>
+                  Hypothesis 2: <input type="text" name="hypothesis2" value="disease B"><br>
+                  Hypothesis 3: <input type="text" name="hypothesis3" value="No disease"><br>
+                 
+                  </form>
+                  <hr>
+                </div>
 
                 <div class="tree">
 
                     <button class="btn probability active1">Probability</button>
                     <button class="btn percentage">Percentage</button>
 
-                    <div class="pop">Population</div>
+                    <div class="h3pop">Population</div>
                   
-                    <div class="pop_number">1000</div>
+                    <div class="h3pop_number">900</div>
 
-                    <div style="font-size: 15px;margin-left: 151px;">hit + miss + false alarm + correct reject</div>
+                    <div style="font-size: 15px;margin-left: 300px;">Hypotheses</div>
 
-                    <img src="../pic/arrow2.png", style="width: 200px; margin-left:180px; display: block;">
+                    <img src="../pic/arrow6.png", style="width: 300px; margin-left:180px; display: block;">
                 
 
-                    <input type="number" class="baseRate" value="0.5" step="0.1" min="0" max="1">
+                    <input type="number" class="h3baseRate1" value="0.33" step="0.1" min="0" max="1">
                
-                    <div class = "base">500</div>
+                    <div class = "h3base1">300</div>
+
+                    <input type="number" class="h3baseRate2" value="0.33" step="0.1" min="0" max="1">
+               
+                    <div class = "h3base2">300</div>
                   
 
-                    <input type="number" class="nbaseRate" value="0.5" step="0.1" min="0" max="1">
+                    <input type="number" class="h3nbaseRate" value="0.33" step="0.1" min="0" max="1">
                  
                  
+                    <div class = "h3noise">300</div>
 
-                    <div class = "noise">500</div>
+                    <div style="font-size: 12px;margin-left: 60px;display: block;"> base rate_1 &emsp;hit_1 + miss_1   &emsp;&emsp;base rate_2 &emsp;hit_2 + miss_2&emsp;&emsp;
+                    1 - base rates&emsp;false alarm(FA) + correct reject(CR)</div>
 
-                    <div style="font-size: 15px;margin-left: 80px;display: block;"> base rate &emsp;&emsp;hit + miss    &emsp;&emsp;&emsp;
-                    1 - base rate&emsp;&emsp;    false alarm(FA) + correct reject(CR)</div>
+                    <img src="../pic/arrow2.png" style="width: 150px; margin-left:60px; display: inline-block;">
 
-                    <img src="../pic/arrow2.png" style="width: 180px; margin-left:70px; display: inline-block;">
+                    <img src="../pic/arrow2.png" style="width: 150px; margin-left:60px; display: inline-block;">
 
-                    <img src="../pic/arrow2.png" style="width: 180px; margin-left:80px; display: inline-block;">
+                    <img src="../pic/arrow2.png" style="width: 150px; margin-left:80px; display: inline-block;">
 
                   <div class="bottom">
                   
-                    <input type="number" class="hitRate" value="0.5" step="0.1" min="0" max="1">
-                    <div class="hit">250</div>
+                    <input type="number" class="h3hitRate1" value="0.5" step="0.1" min="0" max="1">
+                    <div class="h3hit1">150</div>
 
 
-                    <input type="number" class="missRate" value="0.5" step="0.1" min="0" max="1">
-                    <div class="miss">250</div>
+                    <input type="number" class="h3missRate1" value="0.5" step="0.1" min="0" max="1">
+                    <div class="h3miss1">150</div>
+
+                    <input type="number" class="h3hitRate2" value="0.5" step="0.1" min="0" max="1">
+                    <div class="h3hit2">150</div>
 
 
-                    <input type="number" class="faRate" value="0.5" step="0.1" min="0" max="1">
-                    <div class="fa">250</div>
+                    <input type="number" class="h3missRate2" value="0.5" step="0.1" min="0" max="1">
+                    <div class="h3miss2">150</div>
 
-                    <input type="number" class="crRate" value="0.5" step="0.1" min="0" max="1">
-                    <div class="cr">250</div>
+
+                    <input type="number" class="h3faRate" value="0.5" step="0.1" min="0" max="1">
+                    <div class="h3fa">150</div>
+
+                    <input type="number" class="h3crRate" value="0.5" step="0.1" min="0" max="1">
+                    <div class="h3cr">150</div>
 
                   </div>
 
-                  <div class="bottomNotation">
-                    <div style="margin-left: 0px;">hit rate&emsp;&emsp;hit</div>
-                    <div style="margin-left: 60px;">miss rate &emsp;miss</div>
-                    <div style="margin-left: 30px;">FA rate &emsp;&emsp;FA</div>
-                    <div style="margin-left: 70px;">CR rate &emsp;&emsp;CR</div>
+                  <div class="bottomNotation" style="margin-left: 0px;">
+                    <div style="margin-left: 0px;font-size: 12px">hit rate_1&emsp;hit_1</div>
+                    <div style="margin-left: 20px;font-size: 12px">miss rate_1 &emsp;miss_1</div>
+                    <div style="margin-left: 15px;font-size: 12px">hit rate_2&emsp;hit_2</div>
+                    <div style="margin-left: 20px;font-size: 12px">miss rate_2 &emsp;miss_2</div>
+                    <div style="margin-left: 20px;font-size: 12px">FA rate &emsp;&emsp;FA</div>
+                    <div style="margin-left: 40px;font-size: 12px">CR rate &emsp;CR</div>
                   </div>
 
-                  <img src="../pic/arrow3.png" style="width: 250px;height:60px;margin-left: 80px;display: block;">
+                  <img src="../pic/arrow7.png" style="width: 450px;height:60px;margin-left: 80px;display: block;">
 
-                   <div class="probability1"> 
+                   <div class="h3probability1"> 
                   
-                    <div>p(H/D) = </div>
+                    <div>p(h1/D) = </div>
                       <div class="innerProb"> 
-                        <span class="hitResult prob_sup">250</span> 
-                        <span class="hitResult prob_bottom">250</span> <span class="prob_bottom">+</span><span class="faResult prob_bottom">250</span>
+                        <span class="hitResult1 prob_sup">150</span> 
+                        <span class="hitResult1 prob_bottom">150</span> <span class="prob_bottom">+</span><span class="hitResult2 prob_bottom">150</span><span class="prob_bottom">+</span><span class="faResult prob_bottom">150</span> 
                       </div>
                       <span> = </span>
-                    <div class="results"> 0.5</div>
+                    <div class="results"> 0.33</div>
+     
+                  </div>
+
+                   <div class="h3probability1"> 
                   
+                    <div>p(h2/D) = </div>
+                      <div class="innerProb"> 
+                        <span class="hitResult1 prob_sup">150</span> 
+                        <span class="hitResult1 prob_bottom">150</span> <span class="prob_bottom">+</span><span class="hitResult2 prob_bottom">150</span><span class="prob_bottom">+</span><span class="faResult prob_bottom">150</span> 
+                      </div>
+                      <span> = </span>
+                    <div class="results"> 0.33</div>
+     
+                  </div>
+
+                   <div class="h3probability1"> 
+                  
+                    <div>p(h3/D) = </div>
+                      <div class="innerProb"> 
+                        <span class="hitResult1 prob_sup">150</span> 
+                        <span class="hitResult1 prob_bottom">150</span> <span class="prob_bottom">+</span><span class="hitResult2 prob_bottom">150</span><span class="prob_bottom">+</span><span class="faResult prob_bottom">150</span> 
+                      </div>
+                      <span> = </span>
+                    <div class="results"> 0.33</div>
+     
                   </div>
                
                 </div>
             
-
-                 <table class="table">
-
-                    <tr>
-                      <th>Frequency</th>
-                      <th>True positive</th>
-                      <th>True negative</th>
-                      <th>Total</th>
-                    </tr>
-
-                  <tr>
-                    <td></td>
-                    <td>hit</td>
-                    <td>false alarm</td>
-                    <td>All positive</td>
-                  </tr>
-
-                    <tr class="row1">
-                      <td>Positive test</td>
-                      <td class="row11"><div class="hitTableResult">250</div></td>
-                      <td class="row12"><div class="faTableResult">250</div></td>
-                      <td class="row13"><div class="marginalPositiveResult">500</div></td>
-                    </tr>
-                
-                  <tr>
-                    <td></td>
-                    <td>miss</td>
-                    <td>correct reject</td>
-                    <td>All negative</td>
-                  </tr>
-
-                    <tr class="row2">
-                      <td>Negative test</td>
-                      <td class="row21"><div class="missTableResult">250</div></td>
-                      <td class="row22"><div class="crTableResult"> 250</div></td>
-                      <td class="row23"><div class="marginalNegativeResult">500</div></td>
-                    </tr>
-
-                    <tr class="row3">
-                      <td>Total</td>
-                      <td class="baseTableResult">500</td>
-                      <td class="noiseTableResult">500</td>
-                      <td class="freTableTotal">1000</td>
-                    </tr>
-
-                </table>
             
             
               </div>
@@ -567,9 +567,9 @@
                   
                     <div class="pop_number">1000</div>
 
-                    <div style="font-size: 15px;margin-left: 151px;">hit + miss + false alarm + correct reject</div>
+                    <div style="font-size: 15px;margin-left: 151px;">Hypothesis</div>
 
-                    <img src="../pic/arrow2.png", style="width: 200px; margin-left:180px; display: block;">
+                    <img src="../pic/arrow6.png", style="width: 200px; margin-left:180px; display: block;">
                 
 
                     <input type="number" class="baseRate" value="0.5" step="0.1" min="0" max="1">
@@ -632,51 +632,7 @@
                 </div>
             
 
-                 <table class="table">
-
-                    <tr>
-                      <th>Frequency</th>
-                      <th>True positive</th>
-                      <th>True negative</th>
-                      <th>Total</th>
-                    </tr>
-
-                  <tr>
-                    <td></td>
-                    <td>hit</td>
-                    <td>false alarm</td>
-                    <td>All positive</td>
-                  </tr>
-
-                    <tr class="row1">
-                      <td>Positive test</td>
-                      <td class="row11"><div class="hitTableResult">250</div></td>
-                      <td class="row12"><div class="faTableResult">250</div></td>
-                      <td class="row13"><div class="marginalPositiveResult">500</div></td>
-                    </tr>
                 
-                  <tr>
-                    <td></td>
-                    <td>miss</td>
-                    <td>correct reject</td>
-                    <td>All negative</td>
-                  </tr>
-
-                    <tr class="row2">
-                      <td>Negative test</td>
-                      <td class="row21"><div class="missTableResult">250</div></td>
-                      <td class="row22"><div class="crTableResult"> 250</div></td>
-                      <td class="row23"><div class="marginalNegativeResult">500</div></td>
-                    </tr>
-
-                    <tr class="row3">
-                      <td>Total</td>
-                      <td class="baseTableResult">500</td>
-                      <td class="noiseTableResult">500</td>
-                      <td class="freTableTotal">1000</td>
-                    </tr>
-
-                </table>
             
             
               </div>
