@@ -681,12 +681,12 @@ let selectTree = function() {
 				return;
 				}
 				result = new Decimal(100 - event.target.value);
-
-				if (event.target.className == "baseRate") {
-					nbaseRate.value = result;
-				} else if (event.target.className == "nbaseRate") {
-					baseRate.value = result;
-				} 
+				
+				if (event.target.className == "oneC3VbaseRate") {
+					nbaseRate.value = result.toPrecision(4);
+				} else if (event.target.className == "oneC3VnbaseRate") {
+					baseRate.value = result.toPrecision(4);
+				}
 
 				let nb = new Decimal(nbaseRate.value).dividedBy(100);
 				let h = new Decimal(hitRate.value).dividedBy(100);
@@ -705,7 +705,7 @@ let selectTree = function() {
 				let fuc2 = uc2.times(nb);
 
 				// Results
-				let f_max = max_factor(fhit,fmiss,ffa,fcr);
+				let f_max = oneC3V_max_factor(fhit,fuc1,fmiss,ffa,fuc2,fcr);
 				let popOutputTreeResult= f_max;
 				let baseOutputTreeResult = f_max.times(b);
 				let noiseOutputTreeResult = f_max.times(nb);
