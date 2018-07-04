@@ -1024,9 +1024,9 @@ let selectTree = function() {
 				} else if (event.target.className == "h3missRate2") {
 					hitRate2.value = result.toPrecision(4);
 				} else if (event.target.className == "h3crRate") {
-					crRate.value = result.toPrecision(4);
-				} else if (event.target.className == "h3faRate") {
 					faRate.value = result.toPrecision(4);
+				} else if (event.target.className == "h3faRate") {
+					crRate.value = result.toPrecision(4);
 				}
 
 				let nb = new Decimal(nbaseRate.value);
@@ -1104,9 +1104,9 @@ let selectTree = function() {
 				} else if (event.target.className == "h3missRate2") {
 					hitRate2.value = result.toPrecision(4);
 				} else if (event.target.className == "h3crRate") {
-					crRate.value = result.toPrecision(4);
-				} else if (event.target.className == "h3faRate") {
 					faRate.value = result.toPrecision(4);
+				} else if (event.target.className == "h3faRate") {
+					crRate.value = result.toPrecision(4);
 				}
 
 				
