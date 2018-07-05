@@ -835,7 +835,7 @@ let selectTree = function() {
 							}
 							else if (bottomDivClass == "h3hit1") {
 								hit1 = bottomDiv.children[jj];
-								console.log(hit1);
+								
 							}
 							else if (bottomDivClass == "h3hitRate2") {
 								hitRate2 = bottomDiv.children[jj];
@@ -1209,7 +1209,8 @@ let selectTree = function() {
 
 		// Probability div output
 		let results;
-		let hitResult_sup;
+		let hitResult1_sup;
+		let hitResult2_sup;
 		let hitResult1_bottom;
 		let hitResult2_bottom;
 		let falseAlarmResult1;
@@ -1358,10 +1359,8 @@ let selectTree = function() {
 									
 									let innerProbClass = innerProbDiv.children[jjjj].className;
 
-									if (innerProbClass == "hitResult prob_sup") {
-										hitResult_sup = innerProbDiv.children[jjjj];
-									}
-									else if (innerProbClass == "hitResult1 prob_bottom") {
+									
+									if (innerProbClass == "hitResult1 prob_bottom") {
 										hitResult1_bottom = innerProbDiv.children[jjjj];
 									}
 									else if (innerProbClass == "hitResult2 prob_bottom") {
@@ -1373,6 +1372,21 @@ let selectTree = function() {
 									else if (innerProbClass == "faResult2 prob_bottom") {
 										falseAlarmResult2 = innerProbDiv.children[jjjj];						
 									}
+									else if (innerProbClass == "prob_sup") {
+										let subProbDiv = innerProbDiv.children[jjjj];
+										for( let jjjjjj = 0; jjjjjj < subProbDiv.children.length; jjjjjj++) {
+											let subProbDivClass = subProbDiv.children[jjjjjj].className;
+												
+											if (subProbDivClass == "hitResult1_sup") {
+												hitResult1_sup = subProbDiv.children[jjjjjj];
+											}
+											else if (subProbDivClass == "hitResult2_sup") {
+												hitResult2_sup = subProbDiv.children[jjjjjj];
+												
+											}
+										}
+									}
+
 									
 								}
 							}
@@ -1621,12 +1635,13 @@ let selectTree = function() {
 				correctReject2.innerHTML = corretRejectTreeResult2.toNumber();
 
 				// assigned values for the equation
-				hitResult_sup.innerHTML = hit1TreeResult.toNumber();
+				hitResult1_sup.innerHTML = hit1TreeResult.toNumber();
+				hitResult2_sup.innerHTML = hit2TreeResult.toNumber();
 				hitResult1_bottom.innerHTML = hit1TreeResult.toNumber();
 				hitResult2_bottom.innerHTML = hit2TreeResult.toNumber();
 				falseAlarmResult1.innerHTML = falseAlarmTreeResult1.toNumber();
 				falseAlarmResult2.innerHTML = falseAlarmTreeResult2.toNumber();
-				results.innerHTML = hit1TreeResult.dividedBy(hit2TreeResult.plus(hit1TreeResult.plus(falseAlarmTreeResult1.plus(falseAlarmTreeResult2)))).toNumber().toPrecision(3);
+				results.innerHTML = (hit1TreeResult.plus(hit2TreeResult)).dividedBy(hit2TreeResult.plus(hit1TreeResult.plus(falseAlarmTreeResult1.plus(falseAlarmTreeResult2)))).toNumber().toPrecision(3);
 
 
 			} else {
@@ -1741,12 +1756,13 @@ let selectTree = function() {
 				correctReject2.innerHTML = corretRejectTreeResult2.toNumber();
 
 				// assigned values for the equation
-				hitResult_sup.innerHTML = hit1TreeResult.toNumber();
+				hitResult1_sup.innerHTML = hit1TreeResult.toNumber();
+				hitResult2_sup.innerHTML = hit2TreeResult.toNumber();
 				hitResult1_bottom.innerHTML = hit1TreeResult.toNumber();
 				hitResult2_bottom.innerHTML = hit2TreeResult.toNumber();
 				falseAlarmResult1.innerHTML = falseAlarmTreeResult1.toNumber();
 				falseAlarmResult2.innerHTML = falseAlarmTreeResult2.toNumber();
-				results.innerHTML = hit1TreeResult.dividedBy(hit2TreeResult.plus(hit1TreeResult.plus(falseAlarmTreeResult1.plus(falseAlarmTreeResult2)))).toNumber().toPrecision(3);
+				results.innerHTML = (hit1TreeResult.plus(hit2TreeResult)).dividedBy(hit2TreeResult.plus(hit1TreeResult.plus(falseAlarmTreeResult1.plus(falseAlarmTreeResult2)))).toNumber().toPrecision(3);
 			}
 		}
 
