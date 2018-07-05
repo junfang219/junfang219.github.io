@@ -1168,6 +1168,588 @@ let selectTree = function() {
 			}
 		}
 
+	}else if(tree.id == "E4Tree") {
+		let main = tree.firstElementChild;
+
+		// Declare input
+		let baseRate;
+		let nbaseRate;
+		let hitRate;
+		let missRate;
+		let faRate;
+		let crRate;
+		let hitRate1;
+		let missRate1;
+		let hitRate2;
+		let missRate2;
+		let faRate1;
+		let crRate1;
+		let faRate2;
+		let crRate2;
+		
+
+		// Declare tree output
+		let popOutput;
+		let baseOutput;
+		let noiseOutput;
+
+		let hit;
+		let miss;
+		let falseAlarm;
+		let correctReject;
+		let hit1;
+		let miss1;
+		let hit2;
+		let miss2;
+		let falseAlarm1;
+		let correctReject1;
+		let falseAlarm2;
+		let correctReject2;
+		
+
+		// Probability div output
+		let results;
+		let hitResult_sup;
+		let hitResult1_bottom;
+		let hitResult2_bottom;
+		let falseAlarmResult1;
+		let falseAlarmResult2;
+
+		//Probability & Percentage btn
+		let probability;
+		let percentage;
+
+		// check probability or percentage
+		let isProb = true;
+
+
+		// Get input and output from DOM
+		for (let i = 0; i < main.children.length; i++) {
+			let currChild = main.children[i];
+			if (currChild.className == "tree") {
+				treeDiv = currChild;
+				for (let j = 0; j < treeDiv.children.length; j++) {	
+					
+					let childClass = treeDiv.children[j].className;
+	    			if (treeDiv.children[j].classList.contains('probability')) {
+						probability = treeDiv.children[j];
+					}
+					else if (treeDiv.children[j].classList.contains('percentage')) {
+						percentage = treeDiv.children[j]; 
+					}
+					else if (childClass == "c2pop_number") {
+						popOutput = treeDiv.children[j];
+					}
+					else if (childClass == "c2baseRate") {
+						baseRate = treeDiv.children[j];	
+					}
+					else if (childClass == "c2base") {
+						baseOutput = treeDiv.children[j];
+					}
+					else if (childClass == "c2nbaseRate") {
+						nbaseRate = treeDiv.children[j];
+					}
+					else if (childClass == "c2noise") {
+						noiseOutput = treeDiv.children[j];
+					}
+					else if (childClass == "bottom") {
+						
+						let bottomDiv = treeDiv.children[j];
+
+						for (let jj = 0; jj < bottomDiv.children.length; jj++) {
+							
+							let bottomDivClass = bottomDiv.children[jj].className;
+							if (bottomDivClass == "c2hitRate") {
+								hitRate = bottomDiv.children[jj];
+							}
+							else if (bottomDivClass == "c2hit") {
+								hit = bottomDiv.children[jj];
+							}
+							else if (bottomDivClass == "c2missRate") {
+								missRate = bottomDiv.children[jj];
+							}
+							else if (bottomDivClass == "c2miss") {
+								miss = bottomDiv.children[jj];
+							}
+							else if (bottomDivClass == "c2faRate") {
+								faRate = bottomDiv.children[jj];
+							}
+							else if (bottomDivClass == "c2fa") {
+								falseAlarm = bottomDiv.children[jj];
+							}
+							else if (bottomDivClass == "c2crRate") {
+								crRate = bottomDiv.children[jj];
+							}
+							else if (bottomDivClass == "c2cr") {
+								correctReject = bottomDiv.children[jj];
+							}
+						}
+					}
+					else if (childClass == "bottom2") {
+						
+						let bottom2Div = treeDiv.children[j];
+
+						for (let jjjjj = 0; jjjjj < bottom2Div.children.length; jjjjj++) {
+							
+							let bottom2DivClass = bottom2Div.children[jjjjj].className;
+							
+							if (bottom2DivClass == "c2hitRate1") {
+								hitRate1 = bottom2Div.children[jjjjj];
+							}
+							else if (bottom2DivClass == "c2hit1") {
+								hit1 = bottom2Div.children[jjjjj];
+							}
+							else if (bottom2DivClass == "c2hitRate2") {
+								hitRate2 = bottom2Div.children[jjjjj];
+							}
+							else if (bottom2DivClass == "c2hit2") {
+								hit2 = bottom2Div.children[jjjjj];
+							}
+							else if (bottom2DivClass == "c2missRate1") {
+								missRate1 = bottom2Div.children[jjjjj];
+							}
+							else if (bottom2DivClass == "c2miss1") {
+								miss1 = bottom2Div.children[jjjjj];
+							}
+							else if (bottom2DivClass == "c2missRate2") {
+								missRate2 = bottom2Div.children[jjjjj];
+							}
+							else if (bottom2DivClass == "c2miss2") {
+								miss2 = bottom2Div.children[jjjjj];
+							}
+							else if (bottom2DivClass == "c2faRate1") {
+								faRate1 = bottom2Div.children[jjjjj];
+							}
+							else if (bottom2DivClass == "c2fa1") {
+								falseAlarm1 = bottom2Div.children[jjjjj];
+							}
+							else if (bottom2DivClass == "c2faRate2") {
+								faRate2 = bottom2Div.children[jjjjj];
+							}
+							else if (bottom2DivClass == "c2fa2") {
+								falseAlarm2 = bottom2Div.children[jjjjj];
+							}
+							else if (bottom2DivClass == "c2crRate1") {
+								crRate1 = bottom2Div.children[jjjjj];
+							}
+							else if (bottom2DivClass == "c2cr1") {
+								correctReject1 = bottom2Div.children[jjjjj];
+							}
+							else if (bottom2DivClass == "c2crRate2") {
+								crRate2 = bottom2Div.children[jjjjj];
+							}
+							else if (bottom2DivClass == "c2cr2") {
+								correctReject2 = bottom2Div.children[jjjjj];
+							}
+						}
+					}
+					else if (childClass == "c2probability1") {
+
+						let probDiv = treeDiv.children[j];
+
+						for (let jjj = 0; jjj < probDiv.children.length; jjj++) {
+							
+							let probDivClass = probDiv.children[jjj].className;
+							if (probDivClass == "innerProb") {
+
+								let innerProbDiv = probDiv.children[jjj];
+
+								for (let jjjj = 0; jjjj < innerProbDiv.children.length; jjjj++) {
+									
+									let innerProbClass = innerProbDiv.children[jjjj].className;
+
+									if (innerProbClass == "hitResult prob_sup") {
+										hitResult_sup = innerProbDiv.children[jjjj];
+									}
+									else if (innerProbClass == "hitResult1 prob_bottom") {
+										hitResult1_bottom = innerProbDiv.children[jjjj];
+									}
+									else if (innerProbClass == "hitResult2 prob_bottom") {
+										hitResult2_bottom = innerProbDiv.children[jjjj];
+									}
+									else if (innerProbClass == "faResult1 prob_bottom") {
+										falseAlarmResult1 = innerProbDiv.children[jjjj];						
+									}
+									else if (innerProbClass == "faResult2 prob_bottom") {
+										falseAlarmResult2 = innerProbDiv.children[jjjj];						
+									}
+									
+								}
+							}
+							else if (probDivClass == "results") {
+								results = probDiv.children[jjj];
+							}
+							
+						}
+					}
+					
+				}
+			}	
+	    } 
+
+	    function probPercToggle(event) {
+	    	// If the same button is clicked, do nothing
+	    	if (event.target.classList.contains(ACTIVATED_BUTTON_CLASS)) {
+	    		return;
+	    	}
+
+			let probActive = probability.classList.contains(ACTIVATED_BUTTON_CLASS);
+			if (probActive) {
+				probability.className = probability.className.replace(" " + ACTIVATED_BUTTON_CLASS, "");
+				percentage.className += " " + ACTIVATED_BUTTON_CLASS;
+			} else {
+				percentage.className = percentage.className.replace(" " + ACTIVATED_BUTTON_CLASS, "");
+				probability.className += " " + ACTIVATED_BUTTON_CLASS;
+			}
+		}
+
+		//output initilization
+		function OutputInitialize() {
+			 //Tree
+			 popOutput.innerHTML = 800;
+			 baseOutput.innerHTML = 400;
+			 noiseOutput.innerHTML = 400;
+
+			 hit.innerHTML = 200;
+			 miss.innerHTML = 200;
+			 falseAlarm.innerHTML= 200;
+			 correctReject.innerHTML = 200;
+			 hit1.innerHTML = 100;
+			 miss1.innerHTML = 100;
+			 hit2.innerHTML = 100;
+			 miss2.innerHTML = 100;
+			 falseAlarm1.innerHTML = 100;
+			 correctReject1.innerHTML = 100;
+			 falseAlarm2.innerHTML = 100;
+			 correctReject2.innerHTML = 100;
+
+
+			 
+			 // equation result
+			 hitResult_sup.innerHTML = 100;
+			 hitResult1_bottom.innerHTML = 100;
+			 hitResult2_bottom.innerHTML = 100;
+			 falseAlarmResult1.innerHTML = 100;
+			 falseAlarmResult2.innerHTML = 100;
+			 
+		}
+	  		
+	  	probability.addEventListener("click", function(e) {
+	  		 // initialize input values
+	  		 isProb = true;
+			 baseRate.value = 0.5;
+			 nbaseRate.value = 0.5;
+
+			 hitRate.value = 0.5;
+			 missRate.value = 0.5;
+			 faRate.value = 0.5;
+			 crRate.value = 0.5;
+
+
+			 hitRate1.value = 0.5;
+			 missRate1.value = 0.5;
+			 hitRate2.value = 0.5;
+			 missRate2.value = 0.5;
+			 faRate1.value = 0.5;
+			 crRate1.value = 0.5;
+			 faRate2.value = 0.5;
+			 crRate2.value = 0.5;
+			 
+
+			 results.innerHTML = 0.25;
+
+			 probPercToggle(e);
+			 OutputInitialize();
+	  	});
+
+	  	percentage.addEventListener("click", function(e) {
+	  		 isProb = false;
+			 baseRate.value = 50;
+			 nbaseRate.value = 50;
+
+			 hitRate.value = 50;
+			 missRate.value = 50;
+			 faRate.value = 50;
+			 crRate.value = 50;
+
+			 hitRate1.value = 50;
+			 missRate1.value = 50;
+			 hitRate2.value = 50;
+			 missRate2.value = 50;
+			 faRate1.value = 50;
+			 crRate1.value = 50;
+			 faRate2.value = 50;
+			 crRate2.value = 50;
+
+			 results.innerHTML = 25+'%';
+
+			 probPercToggle(e);
+			 OutputInitialize();
+
+	  	});
+
+	    baseRate.addEventListener("change", changeEventHandler);
+		nbaseRate.addEventListener("change", changeEventHandler);
+		
+		hitRate.addEventListener("change", changeEventHandler);
+		missRate.addEventListener("change", changeEventHandler);
+		faRate.addEventListener("change", changeEventHandler);
+		crRate.addEventListener("change", changeEventHandler);
+
+		hitRate1.addEventListener("change", changeEventHandler);
+		missRate1.addEventListener("change", changeEventHandler);
+		hitRate2.addEventListener("change", changeEventHandler);
+		missRate2.addEventListener("change", changeEventHandler);
+		faRate1.addEventListener("change", changeEventHandler);
+		crRate1.addEventListener("change", changeEventHandler);
+		faRate2.addEventListener("change", changeEventHandler);
+		crRate2.addEventListener("change", changeEventHandler);
+		
+
+		function changeEventHandler(event) {
+			let one, targetValue, result;
+
+			// probability
+			if (isProb) {
+				if (event.target.value < 0 || event.target.value > 1) {	
+					alert("Please enter probability between 0 and 1");
+					return;
+				}
+
+				one = new Decimal(1);
+				targetValue = new Decimal(event.target.value);
+				result = one.minus(targetValue);
+
+				if (event.target.className == "c2hitRate") {
+					missRate.value = result.toPrecision(4);
+				} else if (event.target.className == "c2missRate") {
+					hitRate.value = result.toPrecision(4);
+				} else if (event.target.className == "c2hitRate1") {
+					missRate1.value = result.toPrecision(4);
+				} else if (event.target.className == "c2missRate1") {
+					hitRate1.value = result.toPrecision(4);
+				} else if (event.target.className == "c2hitRate2") {
+					missRate2.value = result.toPrecision(4);
+				} else if (event.target.className == "c2missRate2") {
+					hitRate2.value = result.toPrecision(4);
+				} else if (event.target.className == "c2crRate1") {
+					faRate1.value = result.toPrecision(4);
+				} else if (event.target.className == "c2faRate1") {
+					crRate1.value = result.toPrecision(4);
+				} else if (event.target.className == "c2crRate2") {
+					faRate2.value = result.toPrecision(4);
+				} else if (event.target.className == "c2faRate2") {
+					crRate2.value = result.toPrecision(4);
+				} else if(event.target.className == "c2faRate") {
+					crRate.value = result.toPrecision(4);
+				} else if(event.target.className == "c2crRate") {
+					faRate.value = result.toPrecision(4);
+				} else if (event.target.className == "c2baseRate") {
+					nbaseRate.value = result.toPrecision(4);
+				} else if (event.target.className == "c2nbaseRate") {
+					baseRate.value = result.toPrecision(4);
+				} 
+
+				let nb = new Decimal(nbaseRate.value);
+				let b = new Decimal(baseRate.value);
+
+				let h  = new Decimal(hitRate.value);
+				let m  = new Decimal(missRate.value);
+				let fa = new Decimal(faRate.value);
+				let cr = new Decimal(crRate.value);
+
+				let h1 = new Decimal(hitRate1.value);
+				let h2 = new Decimal(hitRate2.value);
+				let m1 = new Decimal(missRate1.value);
+				let m2 = new Decimal(missRate2.value);
+				let fa1 = new Decimal(faRate1.value);
+				let cr1 = new Decimal(crRate1.value);
+				let fa2 = new Decimal(faRate2.value);
+				let cr2 = new Decimal(crRate2.value);
+
+				let fhit1 = h1.times(h).times(b);
+				let fhit2 = h2.times(m).times(b);
+				let fmiss1 = m1.times(h).times(b);
+				let fmiss2 = m2.times(m).times(b);
+				let ffa1 = fa1.times(fa).times(nb);
+				let fcr1 =cr1.times(fa).times(nb);
+				let ffa2 = fa2.times(cr).times(nb);
+				let fcr2 = cr2.times(cr).times(nb);
+				
+
+				// Results
+				let f_max = c2_max_factor(fhit1,fhit2,fmiss1,fmiss2,ffa1,fcr1,ffa2,fcr2);
+				let popOutputTreeResult= f_max;
+				let baseOutputTreeResult = f_max.times(b);
+				let noiseOutputTreeResult = f_max.times(nb);	
+
+				let hitTreeResult = (f_max.times(b)).times(h);
+				let missTreeResult = (f_max.times(b)).times(m);
+				let falseAlarmTreeResult = (f_max.times(nb)).times(fa);
+				let corretRejectTreeResult = (f_max.times(nb)).times(cr);
+
+				let hit1TreeResult = ((f_max.times(b)).times(h)).times(h1);
+				let hit2TreeResult = ((f_max.times(b)).times(m)).times(h2);
+				let miss1TreeResult = ((f_max.times(b)).times(h)).times(m1);
+				let miss2TreeResult = ((f_max.times(b)).times(m)).times(m2);
+				let falseAlarmTreeResult1= ((f_max.times(nb)).times(fa)).times(fa1);
+				let corretRejectTreeResult1 = ((f_max.times(nb)).times(fa)).times(cr1);
+				let falseAlarmTreeResult2= ((f_max.times(nb)).times(cr)).times(fa2);
+				let corretRejectTreeResult2 = ((f_max.times(nb)).times(cr)).times(cr2);
+
+				// let postiveTestTreeResult = hitTreeResult.plus(falseAlarmTreeResult);
+				// let negativeTestTreeResult = missTreeResult.plus(corretRejectTreeResult);
+				
+
+				// assigned values for tree output
+				popOutput.innerHTML = popOutputTreeResult.toNumber();
+				baseOutput.innerHTML = baseOutputTreeResult.toNumber();
+				noiseOutput.innerHTML = noiseOutputTreeResult.toNumber();
+
+				hit.innerHTML = hitTreeResult.toNumber();
+				miss.innerHTML = missTreeResult.toNumber();
+				falseAlarm.innerHTML = falseAlarmTreeResult.toNumber();
+				correctReject.innerHTML = corretRejectTreeResult.toNumber();
+
+				hit1.innerHTML = hit1TreeResult.toNumber();
+				hit2.innerHTML = hit2TreeResult.toNumber();
+				miss1.innerHTML = miss1TreeResult.toNumber();
+				miss2.innerHTML = miss2TreeResult.toNumber();
+				falseAlarm1.innerHTML = falseAlarmTreeResult1.toNumber();
+				correctReject1.innerHTML = corretRejectTreeResult1.toNumber();
+				falseAlarm2.innerHTML = falseAlarmTreeResult2.toNumber();
+				correctReject2.innerHTML = corretRejectTreeResult2.toNumber();
+
+				// assigned values for the equation
+				hitResult_sup.innerHTML = hit1TreeResult.toNumber();
+				hitResult1_bottom.innerHTML = hit1TreeResult.toNumber();
+				hitResult2_bottom.innerHTML = hit2TreeResult.toNumber();
+				falseAlarmResult1.innerHTML = falseAlarmTreeResult1.toNumber();
+				falseAlarmResult2.innerHTML = falseAlarmTreeResult2.toNumber();
+				results.innerHTML = hit1TreeResult.dividedBy(hit2TreeResult.plus(hit1TreeResult.plus(falseAlarmTreeResult1.plus(falseAlarmTreeResult2)))).toNumber().toPrecision(3);
+
+
+			} else {
+			
+				//Percentage
+
+				if (event.target.value < 0 || event.target.value > 100) {	
+				alert("Please enter percentage between 0 and 100");
+				return;
+				}
+				result = new Decimal(100 - event.target.value);
+				
+				
+				
+				if (event.target.className == "c2hitRate") {
+					missRate.value = result.toPrecision(4);
+				} else if (event.target.className == "c2missRate") {
+					hitRate.value = result.toPrecision(4);
+				} else if (event.target.className == "c2hitRate1") {
+					missRate1.value = result.toPrecision(4);
+				} else if (event.target.className == "c2missRate1") {
+					hitRate1.value = result.toPrecision(4);
+				} else if (event.target.className == "c2hitRate2") {
+					missRate2.value = result.toPrecision(4);
+				} else if (event.target.className == "c2missRate2") {
+					hitRate2.value = result.toPrecision(4);
+				} else if (event.target.className == "c2crRate1") {
+					faRate1.value = result.toPrecision(4);
+				} else if (event.target.className == "c2faRate1") {
+					crRate1.value = result.toPrecision(4);
+				} else if (event.target.className == "c2crRate2") {
+					faRate2.value = result.toPrecision(4);
+				} else if (event.target.className == "c2faRate2") {
+					crRate2.value = result.toPrecision(4);
+				} else if(event.target.className == "c2faRate") {
+					crRate.value = result.toPrecision(4);
+				} else if(event.target.className == "c2crRate") {
+					faRate.value = result.toPrecision(4);
+				} else if (event.target.className == "c2baseRate") {
+					nbaseRate.value = result.toPrecision(4);
+				} else if (event.target.className == "c2nbaseRate") {
+					baseRate.value = result.toPrecision(4);
+				}
+
+				let nb = new Decimal(nbaseRate.value).dividedBy(100);
+				let b = new Decimal(baseRate.value).dividedBy(100);
+
+				let h  = new Decimal(hitRate.value).dividedBy(100);
+				let m  = new Decimal(missRate.value).dividedBy(100);
+				let fa = new Decimal(faRate.value).dividedBy(100);
+				let cr = new Decimal(crRate.value).dividedBy(100);
+
+				let h1 = new Decimal(hitRate1.value).dividedBy(100);
+				let h2 = new Decimal(hitRate2.value).dividedBy(100);
+				let m1 = new Decimal(missRate1.value).dividedBy(100);
+				let m2 = new Decimal(missRate2.value).dividedBy(100);
+				let fa1 = new Decimal(faRate1.value).dividedBy(100);
+				let cr1 = new Decimal(crRate1.value).dividedBy(100);
+				let fa2 = new Decimal(faRate2.value).dividedBy(100);
+				let cr2 = new Decimal(crRate2.value).dividedBy(100);
+
+				let fhit1 = h1.times(h).times(b);
+				let fhit2 = h2.times(m).times(b);
+				let fmiss1 = m1.times(h).times(b);
+				let fmiss2 = m2.times(m).times(b);
+				let ffa1 = fa1.times(fa).times(nb);
+				let fcr1 =cr1.times(fa).times(nb);
+				let ffa2 = fa2.times(cr).times(nb);
+				let fcr2 = cr2.times(cr).times(nb);
+
+
+				// Results
+				let f_max = c2_max_factor(fhit1,fhit2,fmiss1,fmiss2,ffa1,fcr1,ffa2,fcr2);
+				let popOutputTreeResult= f_max;
+				let baseOutputTreeResult = f_max.times(b);
+				let noiseOutputTreeResult = f_max.times(nb);	
+
+				let hitTreeResult = (f_max.times(b)).times(h);
+				let missTreeResult = (f_max.times(b)).times(m);
+				let falseAlarmTreeResult = (f_max.times(nb)).times(fa);
+				let corretRejectTreeResult = (f_max.times(nb)).times(cr);
+
+				let hit1TreeResult = ((f_max.times(b)).times(h)).times(h1);
+				let hit2TreeResult = ((f_max.times(b)).times(m)).times(h2);
+				let miss1TreeResult = ((f_max.times(b)).times(h)).times(m1);
+				let miss2TreeResult = ((f_max.times(b)).times(m)).times(m2);
+				let falseAlarmTreeResult1= ((f_max.times(nb)).times(fa)).times(fa1);
+				let corretRejectTreeResult1 = ((f_max.times(nb)).times(fa)).times(cr1);
+				let falseAlarmTreeResult2= ((f_max.times(nb)).times(cr)).times(fa2);
+				let corretRejectTreeResult2 = ((f_max.times(nb)).times(cr)).times(cr2);
+				// let postiveTestTreeResult = hitTreeResult.plus(falseAlarmTreeResult);
+				// let negativeTestTreeResult = missTreeResult.plus(corretRejectTreeResult);
+				
+
+				// assigned values for tree output
+				popOutput.innerHTML = popOutputTreeResult.toNumber();
+				baseOutput.innerHTML = baseOutputTreeResult.toNumber();
+				noiseOutput.innerHTML = noiseOutputTreeResult.toNumber();
+
+				hit.innerHTML = hitTreeResult.toNumber();
+				miss.innerHTML = missTreeResult.toNumber();
+				falseAlarm.innerHTML = falseAlarmTreeResult.toNumber();
+				correctReject.innerHTML = corretRejectTreeResult.toNumber();
+
+				hit1.innerHTML = hit1TreeResult.toNumber();
+				hit2.innerHTML = hit2TreeResult.toNumber();
+				miss1.innerHTML = miss1TreeResult.toNumber();
+				miss2.innerHTML = miss2TreeResult.toNumber();
+				falseAlarm1.innerHTML = falseAlarmTreeResult1.toNumber();
+				correctReject1.innerHTML = corretRejectTreeResult1.toNumber();
+				falseAlarm2.innerHTML = falseAlarmTreeResult2.toNumber();
+				correctReject2.innerHTML = corretRejectTreeResult2.toNumber();
+
+				// assigned values for the equation
+				hitResult_sup.innerHTML = hit1TreeResult.toNumber();
+				hitResult1_bottom.innerHTML = hit1TreeResult.toNumber();
+				hitResult2_bottom.innerHTML = hit2TreeResult.toNumber();
+				falseAlarmResult1.innerHTML = falseAlarmTreeResult1.toNumber();
+				falseAlarmResult2.innerHTML = falseAlarmTreeResult2.toNumber();
+				results.innerHTML = hit1TreeResult.dividedBy(hit2TreeResult.plus(hit1TreeResult.plus(falseAlarmTreeResult1.plus(falseAlarmTreeResult2)))).toNumber().toPrecision(3);
+			}
+		}
+
 	}
 }
 
@@ -1213,6 +1795,36 @@ function oneC3V_max_factor(p, q, r, s, l, m) {
     } else if (!l.times(f).equals(l.times(f).round())) {
     	continue;
     } else if (!m.times(f).equals(m.times(f).round())) {
+    	continue;
+    }
+    break;
+  }
+  return max;
+ }
+
+ function c2_max_factor(p, q, r, s, l, m, x, z) {
+  let max = new Decimal(10);
+  
+  for (var i = 1; i < 10; i++) {
+  
+    let f = new Decimal(Math.pow(10, i));
+    max = f;
+
+    if (!p.times(f).equals(p.times(f).round())) {
+      	continue;
+    } else if (!q.times(f).equals(q.times(f).round())) {
+      	continue;
+    } else if (!r.times(f).equals(r.times(f).round())) {
+      	continue;
+    } else if (!s.times(f).equals(s.times(f).round())) {
+      	continue;
+    } else if (!l.times(f).equals(l.times(f).round())) {
+    	continue;
+    } else if (!m.times(f).equals(m.times(f).round())) {
+    	continue;
+    } else if (!x.times(f).equals(x.times(f).round())) {
+    	continue;
+    } else if (!z.times(f).equals(z.times(f).round())) {
     	continue;
     }
     break;

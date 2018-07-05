@@ -308,4 +308,251 @@
 }
 
 
+/*two cues*/
+.c2pop {
+	margin-left: 350px;
+	font-size: 15px;
+}
+
+.c2pop_number {
+	margin-left: 350px;
+	font-size: 15px;
+	color: #0000CD;
+}
+
+.c2baseRate {
+	margin-left: 150px;
+	width: 55px;
+}
+
+.c2base {
+	margin-left: 10px;
+	font-size: 15px;
+	color: #0000CD;
+	display: inline-block;
+	width: 90px;
+}
+
+
+.c2noise {
+	margin-left: 10px;
+	font-size: 15px;
+	color: #0000CD;
+	display: inline-block;
+}
+
+.c2nbaseRate {
+	margin-left: 100px;
+	width: 55px;
+}
+
+.c2hitRate {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 50px;
+	display:inline-flex;
+	padding: 0px;
+}
+
+.c2hit {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 5px;
+	display: inline;
+	width: 60px;
+}
+
+
+.c2missRate {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 70px;
+	display:inline-flex;
+	padding: 0px;
+}
+.c2miss {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 5px;
+	display: inline;
+	width: 50px;
+}
+
+
+.c2faRate {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 0px;
+	display:inline-flex;
+	padding: 0px;
+}
+
+.c2fa {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 5px;
+	display: inline;
+	width: 60px;
+}
+
+
+.c2crRate {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 40px;
+	display:inline-flex;
+	padding: 0px;
+}
+
+.c2cr {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 5px;
+	display: inline;
+	width: 60px;
+}
+
+/*second layer*/
+.c2hitRate1 {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 0px;
+	display:inline-flex;
+	padding: 0px;
+}
+
+.c2hit1 {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 0px;
+	display: inline-flex;
+	width: 80px;
+}
+
+
+.c2missRate1 {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 80px;
+	display:inline-flex;
+	padding: 0px;
+}
+.c2miss1 {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 50px;
+	display: inline-flex;
+	width: 60px;
+
+}
+
+
+
+.c2hitRate2 {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 0px;
+	display:inline-flex;
+	padding: 0px;
+}
+
+.c2hit2 {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 0px;
+	display: inline-flex;
+	width: 80px;
+}
+
+
+.c2missRate2 {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 50px;
+	display:inline-flex;
+	padding: 0px;
+}
+.c2miss2 {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 20px;
+	display: inline-flex;
+	width: 60px;
+}
+
+
+.c2faRate1 {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 0px;
+	display:inline-flex;
+	padding: 0px;
+}
+
+.c2fa1 {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 0px;
+	display: inline-flex;
+	width: 80px;
+}
+
+
+.c2crRate1 {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 40px;
+	display:inline-flex;
+	padding: 0px;
+}
+
+.c2cr1 {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 10px;
+	display: inline-flex;
+	width: 60px;
+}
+
+
+.c2faRate2 {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 0px;
+	display:inline-flex;
+	padding: 0px;
+}
+
+.c2fa2 {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 0px;
+	display: inline-flex;
+	width: 80px;
+}
+
+
+.c2crRate2 {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 40px;
+	display:inline-flex;
+	padding: 0px;
+}
+
+.c2cr2 {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 10px;
+	display: inline-flex;
+	width: 80px;
+}
+
+.c2probability1 {
+	font-size: 15px;
+	display: flex;
+	margin-left: 250px;
+	padding: 5px;
+}
+
 
