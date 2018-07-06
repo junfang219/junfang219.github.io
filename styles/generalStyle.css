@@ -556,3 +556,504 @@
 }
 
 
+
+
+/*three cues*/
+.c3pop {
+	margin-left: 350px;
+	font-size: 15px;
+}
+
+.c3pop_number {
+	margin-left: 350px;
+	font-size: 15px;
+	color: #0000CD;
+}
+
+.c3baseRate {
+	margin-left: 150px;
+	width: 55px;
+}
+
+.c3base {
+	margin-left: 10px;
+	font-size: 15px;
+	color: #0000CD;
+	display: inline-block;
+	width: 90px;
+}
+
+
+.c3noise {
+	margin-left: 10px;
+	font-size: 15px;
+	color: #0000CD;
+	display: inline-block;
+}
+
+.c3nbaseRate {
+	margin-left: 100px;
+	width: 55px;
+}
+
+.c3hitRate {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 50px;
+	display:inline-flex;
+	padding: 0px;
+}
+
+.c3hit {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 5px;
+	display: inline;
+	width: 60px;
+}
+
+
+.c3missRate {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 70px;
+	display:inline-flex;
+	padding: 0px;
+}
+.c3miss {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 5px;
+	display: inline;
+	width: 50px;
+}
+
+
+.c3faRate {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 0px;
+	display:inline-flex;
+	padding: 0px;
+}
+
+.c3fa {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 5px;
+	display: inline;
+	width: 60px;
+}
+
+
+.c3crRate {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 40px;
+	display:inline-flex;
+	padding: 0px;
+}
+
+.c3cr {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 5px;
+	display: inline;
+	width: 60px;
+}
+
+/*second layer*/
+.c3hitRate1 {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 0px;
+	display:inline-flex;
+	padding: 0px;
+}
+
+.c3hit1 {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 10px;
+	display: inline-flex;
+	width: 80px;
+}
+
+
+.c3missRate1 {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 80px;
+	display:inline-flex;
+	padding: 0px;
+}
+.c3miss1 {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 40px;
+	display: inline-flex;
+	width: 60px;
+
+}
+
+
+
+.c3hitRate2 {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 0px;
+	display:inline-flex;
+	padding: 0px;
+}
+
+.c3hit2 {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 0px;
+	display: inline-flex;
+	width: 80px;
+}
+
+
+.c3missRate2 {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 50px;
+	display:inline-flex;
+	padding: 0px;
+}
+.c3miss2 {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 20px;
+	display: inline-flex;
+	width: 60px;
+}
+
+
+.c3faRate1 {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 0px;
+	display:inline-flex;
+	padding: 0px;
+}
+
+.c3fa1 {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 0px;
+	display: inline-flex;
+	width: 80px;
+}
+
+
+.c3crRate1 {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 40px;
+	display:inline-flex;
+	padding: 0px;
+}
+
+.c3cr1 {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 10px;
+	display: inline-flex;
+	width: 60px;
+}
+
+
+.c3faRate2 {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 0px;
+	display:inline-flex;
+	padding: 0px;
+}
+
+.c3fa2 {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 0px;
+	display: inline-flex;
+	width: 80px;
+}
+
+
+.c3crRate2 {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 40px;
+	display:inline-flex;
+	padding: 0px;
+}
+
+.c3cr2 {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 10px;
+	display: inline-flex;
+	width: 60px;
+}
+
+
+
+/*3rd layer*/
+
+.c3hitRate11 {
+	width: 40px;
+	display: inline-flex;
+	margin-left: 0px;
+	font-size: 12px;
+	padding: 0px;
+}
+
+.c3missRate11 {
+	width: 40px;
+	display: inline-flex;
+	margin-left: 0px;
+	font-size: 12px;
+	padding: 0px;
+
+}
+
+.c3hitRate12 {
+	width: 40px;
+	display: inline-flex;
+	margin-left: 0px;
+	font-size: 12px;
+	padding: 0px;
+
+}
+
+.c3missRate12 {
+	width: 40px;
+	display: inline-flex;
+	margin-left: 0px;
+	font-size: 12px;
+	padding: 0px;
+}
+
+.c3hitRate21 {
+	width: 40px;
+	display: inline-flex;
+	margin-left: 0px;
+	font-size: 12px;
+	padding: 0px;
+}
+
+.c3missRate21 {
+	width: 40px;
+	display: inline-flex;
+	margin-left: 0px;
+	font-size: 12px;
+	padding: 0px;
+}
+
+.c3hitRate22 {
+	width: 40px;
+	display: inline-flex;
+	margin-left: 0px;
+	font-size: 12px;
+	padding: 0px;
+}
+
+.c3missRate22 {
+	width: 40px;
+	display: inline-flex;
+	margin-left: 0px;
+	font-size: 12px;
+	padding: 0px;
+}
+
+.c3faRate11 {
+	width: 40px;
+	display: inline-flex;
+	margin-left: 0px;
+	font-size: 12px;
+	padding: 0px;
+}
+
+.c3crRate11 {
+	width: 40px;
+	display: inline-flex;
+	margin-left: 0px;
+	font-size: 12px;
+	padding: 0px;
+}
+.c3faRate12 {
+	width: 40px;
+	display: inline-flex;
+	margin-left: 0px;
+	font-size: 12px;
+	padding: 0px;
+}
+.c3crRate12 {
+	width: 40px;
+	display: inline-flex;
+	margin-left: 0px;
+	font-size: 12px;
+	padding: 0px;
+}
+
+.c3faRate21 {
+	width: 40px;
+	display: inline-flex;
+	margin-left: 0px;
+	font-size: 12px;
+	padding: 0px;
+}
+.c3crRate21 {
+	width: 40px;
+	display: inline-flex;
+	margin-left: 0px;
+	font-size: 12px;
+	padding: 0px;
+}
+
+.c3faRate22 {
+	width: 40px;
+	display: inline-flex;
+	margin-left: 0px;
+	font-size: 12px;
+	padding: 0px;
+}
+.c3crRate22 {
+	width: 40px;
+	display: inline-flex;
+	margin-left: 0px;
+	font-size: 12px;
+	padding: 0px;
+}
+
+/*output*/
+.c3hit11 {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 0px;
+	display: inline-flex;
+	width: 40px;
+}
+
+.c3miss11 {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 0px;
+	display: inline-flex;
+	width: 40px;
+}
+
+.c3hit12 {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 0px;
+	display: inline-flex;
+	width: 40px;
+}
+
+.c3miss12 {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 0px;
+	display: inline-flex;
+	width: 40px;
+}
+
+.c3hit21 {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 0px;
+	display: inline-flex;
+	width: 40px;
+}
+
+.c3miss21 {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 0px;
+	display: inline-flex;
+	width: 40px;
+}
+
+.c3hit22 {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 0px;
+	display: inline-flex;
+	width: 40px;
+}
+
+.c3miss22 {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 0px;
+	display: inline-flex;
+	width: 40px;
+}
+
+.c3fa11 {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 0px;
+	display: inline-flex;
+	width: 40px;
+}
+.c3cr11 {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 0px;
+	display: inline-flex;
+	width: 40px;
+}
+.c3fa12 {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 0px;
+	display: inline-flex;
+	width: 40px;
+}
+.c3cr12 {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 0px;
+	display: inline-flex;
+	width: 40px;
+}
+.c3fa21 {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 0px;
+	display: inline-flex;
+	width: 40px;
+}
+.c3cr21 {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 0px;
+	display: inline-flex;
+	width: 40px;
+}
+.c3fa22 {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 0px;
+	display: inline-flex;
+	width: 40px;
+}
+.c3cr22 {
+	font-size: 15px;
+	color: #0000CD;
+	margin-left: 0px;
+	display: inline-flex;
+	width: 40px;
+}
+/*prob*/
+
+.c3probability1 {
+	font-size: 15px;
+	display: flex;
+	margin-left: 50px;
+	padding: 25px;
+}

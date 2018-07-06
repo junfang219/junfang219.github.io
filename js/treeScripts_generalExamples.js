@@ -1440,7 +1440,8 @@ let selectTree = function() {
 
 			 
 			 // equation result
-			 hitResult_sup.innerHTML = 100;
+			 hitResult1_sup.innerHTML = 100;
+			 hitResult2_sup.innerHTML = 100;
 			 hitResult1_bottom.innerHTML = 100;
 			 hitResult2_bottom.innerHTML = 100;
 			 falseAlarmResult1.innerHTML = 100;
@@ -1470,7 +1471,7 @@ let selectTree = function() {
 			 crRate2.value = 0.5;
 			 
 
-			 results.innerHTML = 0.25;
+			 results.innerHTML = 0.5;
 
 			 probPercToggle(e);
 			 OutputInitialize();
@@ -1495,7 +1496,7 @@ let selectTree = function() {
 			 faRate2.value = 50;
 			 crRate2.value = 50;
 
-			 results.innerHTML = 25+'%';
+			 results.innerHTML = 50+'%';
 
 			 probPercToggle(e);
 			 OutputInitialize();
@@ -1766,6 +1767,1109 @@ let selectTree = function() {
 			}
 		}
 
+	}else if(tree.id == "E5Tree") {
+		let main = tree.firstElementChild;
+
+		// Declare input
+		let baseRate;
+		let nbaseRate;
+		let hitRate;
+		let missRate;
+		let faRate;
+		let crRate;
+
+		let hitRate1;
+		let missRate1;
+		let hitRate2;
+		let missRate2;
+		let faRate1;
+		let crRate1;
+		let faRate2;
+		let crRate2;
+
+		let hitRate11;
+		let missRate11;
+		let hitRate12;
+		let missRate12;
+		let hitRate21;
+		let missRate21;
+		let hitRate22;
+		let missRate22;
+
+		let faRate11;
+		let crRate11;
+		let faRate12;
+		let crRate12;
+		let faRate21;
+		let crRate21;
+		let faRate22;
+		let crRate22;
+		
+
+		// Declare tree output
+		let popOutput;
+		let baseOutput;
+		let noiseOutput;
+
+		let hit;
+		let miss;
+		let falseAlarm;
+		let correctReject;
+
+		let hit1;
+		let miss1;
+		let hit2;
+		let miss2;
+		let falseAlarm1;
+		let correctReject1;
+		let falseAlarm2;
+		let correctReject2;
+
+		let hit11;
+		let miss11;
+		let hit12;
+		let miss12;
+		let hit21;
+		let miss21;
+		let hit22;
+		let miss22;
+
+		let falseAlarm11;
+		let correctReject11;
+		let falseAlarm12;
+		let correctReject12;
+		let falseAlarm21;
+		let correctReject21;
+		let falseAlarm22;
+		let correctReject22;
+		
+
+		// Probability div output
+		let results;
+		let hitResult1_sup;
+		let hitResult2_sup;
+		let hitResult3_sup;
+		let hitResult4_sup;
+
+		let hitResult1_bottom;
+		let hitResult2_bottom;
+		let hitResult3_bottom;
+		let hitResult4_bottom;
+		let falseAlarmResult1;
+		let falseAlarmResult2;
+		let falseAlarmResult3;
+		let falseAlarmResult4;
+
+		//Probability & Percentage btn
+		let probability;
+		let percentage;
+
+		// check probability or percentage
+		let isProb = true;
+
+
+		// Get input and output from DOM
+		for (let i = 0; i < main.children.length; i++) {
+			let currChild = main.children[i];
+			if (currChild.className == "tree") {
+				treeDiv = currChild;
+				for (let j = 0; j < treeDiv.children.length; j++) {	
+					
+					let childClass = treeDiv.children[j].className;
+	    			if (treeDiv.children[j].classList.contains('probability')) {
+						probability = treeDiv.children[j];
+					}
+					else if (treeDiv.children[j].classList.contains('percentage')) {
+						percentage = treeDiv.children[j]; 
+					}
+					else if (childClass == "c3pop_number") {
+						popOutput = treeDiv.children[j];
+					}
+					else if (childClass == "c3baseRate") {
+						baseRate = treeDiv.children[j];	
+					}
+					else if (childClass == "c3base") {
+						baseOutput = treeDiv.children[j];
+					}
+					else if (childClass == "c3nbaseRate") {
+						nbaseRate = treeDiv.children[j];
+					}
+					else if (childClass == "c3noise") {
+						noiseOutput = treeDiv.children[j];
+					}
+					else if (childClass == "bottom") {
+						
+						let bottomDiv = treeDiv.children[j];
+
+						for (let jj = 0; jj < bottomDiv.children.length; jj++) {
+							
+							let bottomDivClass = bottomDiv.children[jj].className;
+							if (bottomDivClass == "c3hitRate") {
+								hitRate = bottomDiv.children[jj];
+							}
+							else if (bottomDivClass == "c3hit") {
+								hit = bottomDiv.children[jj];
+							}
+							else if (bottomDivClass == "c3missRate") {
+								missRate = bottomDiv.children[jj];
+							}
+							else if (bottomDivClass == "c3miss") {
+								miss = bottomDiv.children[jj];
+							}
+							else if (bottomDivClass == "c3faRate") {
+								faRate = bottomDiv.children[jj];
+							}
+							else if (bottomDivClass == "c3fa") {
+								falseAlarm = bottomDiv.children[jj];
+							}
+							else if (bottomDivClass == "c3crRate") {
+								crRate = bottomDiv.children[jj];
+							}
+							else if (bottomDivClass == "c3cr") {
+								correctReject = bottomDiv.children[jj];
+							}
+						}
+					}
+					else if (childClass == "bottom2") {
+						
+						let bottom2Div = treeDiv.children[j];
+
+						for (let jjjjj = 0; jjjjj < bottom2Div.children.length; jjjjj++) {
+							
+							let bottom2DivClass = bottom2Div.children[jjjjj].className;
+							
+							if (bottom2DivClass == "c3hitRate1") {
+								hitRate1 = bottom2Div.children[jjjjj];
+							}
+							else if (bottom2DivClass == "c3hit1") {
+								hit1 = bottom2Div.children[jjjjj];
+							}
+							else if (bottom2DivClass == "c3hitRate2") {
+								hitRate2 = bottom2Div.children[jjjjj];
+							}
+							else if (bottom2DivClass == "c3hit2") {
+								hit2 = bottom2Div.children[jjjjj];
+							}
+							else if (bottom2DivClass == "c3missRate1") {
+								missRate1 = bottom2Div.children[jjjjj];
+							}
+							else if (bottom2DivClass == "c3miss1") {
+								miss1 = bottom2Div.children[jjjjj];
+							}
+							else if (bottom2DivClass == "c3missRate2") {
+								missRate2 = bottom2Div.children[jjjjj];
+							}
+							else if (bottom2DivClass == "c3miss2") {
+								miss2 = bottom2Div.children[jjjjj];
+							}
+							else if (bottom2DivClass == "c3faRate1") {
+								faRate1 = bottom2Div.children[jjjjj];
+							}
+							else if (bottom2DivClass == "c3fa1") {
+								falseAlarm1 = bottom2Div.children[jjjjj];
+							}
+							else if (bottom2DivClass == "c3faRate2") {
+								faRate2 = bottom2Div.children[jjjjj];
+							}
+							else if (bottom2DivClass == "c3fa2") {
+								falseAlarm2 = bottom2Div.children[jjjjj];
+							}
+							else if (bottom2DivClass == "c3crRate1") {
+								crRate1 = bottom2Div.children[jjjjj];
+							}
+							else if (bottom2DivClass == "c3cr1") {
+								correctReject1 = bottom2Div.children[jjjjj];
+							}
+							else if (bottom2DivClass == "c3crRate2") {
+								crRate2 = bottom2Div.children[jjjjj];
+							}
+							else if (bottom2DivClass == "c3cr2") {
+								correctReject2 = bottom2Div.children[jjjjj];
+							}
+						}
+					} 
+					else if (childClass == "bottom3") {
+						let bottom3Div = treeDiv.children[j];
+						for (let jjjjjjj = 0; jjjjjjj < bottom3Div.children.length; jjjjjjj++) {
+
+							let bottom3DivClass = bottom3Div.children[jjjjjjj].className;
+
+							if (bottom3DivClass == "c3hitRate11") {
+								hitRate11 = bottom3Div.children[jjjjjjj];
+							}
+							else if (bottom3DivClass == "c3hit11") {
+								hit11 = bottom3Div.children[jjjjjjj];
+							}
+							else if (bottom3DivClass == "c3hitRate12") {
+								hitRate12 = bottom3Div.children[jjjjjjj];
+							}
+							else if (bottom3DivClass == "c3hit12") {
+								hit12 = bottom3Div.children[jjjjjjj];
+							}
+							else if (bottom3DivClass == "c3hitRate21") {
+								hitRate21 = bottom3Div.children[jjjjjjj];
+							}
+							else if (bottom3DivClass == "c3hit21") {
+								hit21 = bottom3Div.children[jjjjjjj];
+							}
+							else if (bottom3DivClass == "c3hitRate22") {
+								hitRate22 = bottom3Div.children[jjjjjjj];
+							}
+							else if (bottom3DivClass == "c3hit22") {
+								hit22 = bottom3Div.children[jjjjjjj];
+							}
+							else if (bottom3DivClass == "c3missRate11") {
+								missRate11 = bottom3Div.children[jjjjjjj];
+							}
+							else if (bottom3DivClass == "c3miss11") {
+								miss11 = bottom3Div.children[jjjjjjj];
+							}
+							else if (bottom3DivClass == "c3missRate12") {
+								missRate12 = bottom3Div.children[jjjjjjj];
+							}
+							else if (bottom3DivClass == "c3miss12") {
+								miss12 = bottom3Div.children[jjjjjjj];
+							}
+							else if (bottom3DivClass == "c3missRate21") {
+								missRate21 = bottom3Div.children[jjjjjjj];
+							}
+							else if (bottom3DivClass == "c3miss21") {
+								miss21 = bottom3Div.children[jjjjjjj];
+							}
+							else if (bottom3DivClass == "c3missRate22") {
+								missRate22 = bottom3Div.children[jjjjjjj];
+							}
+							else if (bottom3DivClass == "c3miss22") {
+								miss22 = bottom3Div.children[jjjjjjj];
+							}
+							else if (bottom3DivClass == "c3faRate11") {
+								faRate11 = bottom3Div.children[jjjjjjj];
+							}
+							else if (bottom3DivClass == "c3fa11") {
+								falseAlarm11 = bottom3Div.children[jjjjjjj];
+							}
+							else if (bottom3DivClass == "c3faRate12") {
+								faRate12 = bottom3Div.children[jjjjjjj];
+							}
+							else if (bottom3DivClass == "c3fa12") {
+								falseAlarm12 = bottom3Div.children[jjjjjjj];
+							}
+							else if (bottom3DivClass == "c3faRate21") {
+								faRate21 = bottom3Div.children[jjjjjjj];
+							}
+							else if (bottom3DivClass == "c3fa21") {
+								falseAlarm21 = bottom3Div.children[jjjjjjj];
+							}
+							else if (bottom3DivClass == "c3faRate22") {
+								faRate22 = bottom3Div.children[jjjjjjj];
+							}
+							else if (bottom3DivClass == "c3fa22") {
+								falseAlarm22 = bottom3Div.children[jjjjjjj];
+							}
+							else if (bottom3DivClass == "c3crRate11") {
+								crRate11 = bottom3Div.children[jjjjjjj];
+							}
+							else if (bottom3DivClass == "c3cr11") {
+								correctReject11 = bottom3Div.children[jjjjjjj];
+							}
+							else if (bottom3DivClass == "c3crRate12") {
+								crRate12 = bottom3Div.children[jjjjjjj];
+							}
+							else if (bottom3DivClass == "c3cr12") {
+								correctReject12 = bottom3Div.children[jjjjjjj];
+							}
+							else if (bottom3DivClass == "c3crRate21") {
+								crRate21 = bottom3Div.children[jjjjjjj];
+							}
+							else if (bottom3DivClass == "c3cr21") {
+								correctReject21 = bottom3Div.children[jjjjjjj];
+							}
+							else if (bottom3DivClass == "c3crRate22") {
+								crRate22 = bottom3Div.children[jjjjjjj];
+							}
+							else if (bottom3DivClass == "c3cr22") {
+								correctReject22 = bottom3Div.children[jjjjjjj];
+							}
+
+
+						}
+
+					}
+					else if (childClass == "c3probability1") {
+
+						let probDiv = treeDiv.children[j];
+
+						for (let jjj = 0; jjj < probDiv.children.length; jjj++) {
+							
+							let probDivClass = probDiv.children[jjj].className;
+							if (probDivClass == "innerProb") {
+
+								let innerProbDiv = probDiv.children[jjj];
+
+								for (let jjjj = 0; jjjj < innerProbDiv.children.length; jjjj++) {
+									
+									let innerProbClass = innerProbDiv.children[jjjj].className;
+
+									
+									if (innerProbClass == "hitResult1 prob_bottom") {
+										hitResult1_bottom = innerProbDiv.children[jjjj];
+									}
+									else if (innerProbClass == "hitResult2 prob_bottom") {
+										hitResult2_bottom = innerProbDiv.children[jjjj];
+									}
+									else if (innerProbClass == "hitResult3 prob_bottom") {
+										hitResult3_bottom = innerProbDiv.children[jjjj];
+									}
+									else if (innerProbClass == "hitResult4 prob_bottom") {
+										hitResult4_bottom = innerProbDiv.children[jjjj];
+									}
+									else if (innerProbClass == "faResult1 prob_bottom") {
+										falseAlarmResult1 = innerProbDiv.children[jjjj];						
+									}
+									else if (innerProbClass == "faResult2 prob_bottom") {
+										falseAlarmResult2 = innerProbDiv.children[jjjj];						
+									}
+									else if (innerProbClass == "faResult3 prob_bottom") {
+										falseAlarmResult3 = innerProbDiv.children[jjjj];						
+									}
+									else if (innerProbClass == "faResult4 prob_bottom") {
+										falseAlarmResult4 = innerProbDiv.children[jjjj];						
+									}
+									else if (innerProbClass == "prob_sup") {
+										let subProbDiv = innerProbDiv.children[jjjj];
+										for( let jjjjjj = 0; jjjjjj < subProbDiv.children.length; jjjjjj++) {
+											let subProbDivClass = subProbDiv.children[jjjjjj].className;
+												
+											if (subProbDivClass == "hitResult1_sup") {
+												hitResult1_sup = subProbDiv.children[jjjjjj];
+											}
+											else if (subProbDivClass == "hitResult2_sup") {
+												hitResult2_sup = subProbDiv.children[jjjjjj];	
+											}
+											else if (subProbDivClass == "hitResult3_sup") {
+												hitResult3_sup = subProbDiv.children[jjjjjj];	
+											}
+											else if (subProbDivClass == "hitResult4_sup") {
+												hitResult4_sup = subProbDiv.children[jjjjjj];	
+											}
+										}
+									}
+
+									
+								}
+							}
+							else if (probDivClass == "results") {
+								results = probDiv.children[jjj];
+							}
+							
+						}
+					}
+					
+				}
+			}	
+	    } 
+
+	    function probPercToggle(event) {
+	    	// If the same button is clicked, do nothing
+	    	if (event.target.classList.contains(ACTIVATED_BUTTON_CLASS)) {
+	    		return;
+	    	}
+
+			let probActive = probability.classList.contains(ACTIVATED_BUTTON_CLASS);
+			if (probActive) {
+				probability.className = probability.className.replace(" " + ACTIVATED_BUTTON_CLASS, "");
+				percentage.className += " " + ACTIVATED_BUTTON_CLASS;
+			} else {
+				percentage.className = percentage.className.replace(" " + ACTIVATED_BUTTON_CLASS, "");
+				probability.className += " " + ACTIVATED_BUTTON_CLASS;
+			}
+		}
+
+		//output initilization
+		function OutputInitialize() {
+			 //Tree
+			 popOutput.innerHTML = 800;
+			 baseOutput.innerHTML = 400;
+			 noiseOutput.innerHTML = 400;
+
+			 hit.innerHTML = 200;
+			 miss.innerHTML = 200;
+			 falseAlarm.innerHTML= 200;
+			 correctReject.innerHTML = 200;
+
+			 hit1.innerHTML = 100;
+			 miss1.innerHTML = 100;
+			 hit2.innerHTML = 100;
+			 miss2.innerHTML = 100;
+			 falseAlarm1.innerHTML = 100;
+			 correctReject1.innerHTML = 100;
+			 falseAlarm2.innerHTML = 100;
+			 correctReject2.innerHTML = 100;
+
+			 hit11.innerHTML = 50;
+			 hit12.innerHTML = 50;
+			 hit21.innerHTML = 50;
+			 hit22.innerHTML = 50;
+
+			 miss11.innerHTML = 50;
+			 miss12.innerHTML = 50;
+			 miss21.innerHTML = 50;
+			 miss22.innerHTML = 50;
+
+			 falseAlarm11.innerHTML = 50;
+			 falseAlarm12.innerHTML = 50;
+			 falseAlarm21.innerHTML = 50;
+			 falseAlarm22.innerHTML = 50;
+
+			 correctReject11.innerHTML = 50;
+			 correctReject12.innerHTML = 50;
+			 correctReject21.innerHTML = 50;
+			 correctReject22.innerHTML = 50;
+
+
+			 
+			 // equation result
+			 hitResult1_sup.innerHTML = 50;
+			 hitResult2_sup.innerHTML = 50;
+			 hitResult3_sup.innerHTML = 50;
+			 hitResult4_sup.innerHTML = 50;
+			 hitResult1_bottom.innerHTML = 50;
+			 hitResult2_bottom.innerHTML = 50;
+			 hitResult3_bottom.innerHTML = 50;
+			 hitResult4_bottom.innerHTML = 50;
+			 falseAlarmResult1.innerHTML = 50;
+			 falseAlarmResult2.innerHTML = 50;
+			 falseAlarmResult3.innerHTML = 50;
+			 falseAlarmResult4.innerHTML = 50;
+			 
+		}
+	  		
+	  	probability.addEventListener("click", function(e) {
+	  		 // initialize input values
+	  		 isProb = true;
+			 baseRate.value = 0.5;
+			 nbaseRate.value = 0.5;
+
+			 hitRate.value = 0.5;
+			 missRate.value = 0.5;
+			 faRate.value = 0.5;
+			 crRate.value = 0.5;
+
+
+			 hitRate1.value = 0.5;
+			 missRate1.value = 0.5;
+			 hitRate2.value = 0.5;
+			 missRate2.value = 0.5;
+			 faRate1.value = 0.5;
+			 crRate1.value = 0.5;
+			 faRate2.value = 0.5;
+			 crRate2.value = 0.5;
+
+			 hitRate11.value = 0.5;
+			 missRate11.value = 0.5;
+			 hitRate12.value = 0.5;
+			 missRate12.value = 0.5;
+
+			 hitRate21.value = 0.5;
+			 missRate21.value = 0.5;
+			 hitRate22.value = 0.5;
+			 missRate22.value = 0.5;
+
+			 faRate11.value = 0.5;
+			 crRate11.value = 0.5;
+			 faRate12.value = 0.5;
+			 crRate12.value = 0.5;
+
+			 faRate21.value = 0.5;
+			 crRate21.value = 0.5;
+			 faRate22.value = 0.5;
+			 crRate22.value = 0.5;
+			 
+
+			 results.innerHTML = 0.5;
+
+			 probPercToggle(e);
+			 OutputInitialize();
+	  	});
+
+	  	percentage.addEventListener("click", function(e) {
+	  		 isProb = false;
+			 baseRate.value = 50;
+			 nbaseRate.value = 50;
+
+			 hitRate.value = 50;
+			 missRate.value = 50;
+			 faRate.value = 50;
+			 crRate.value = 50;
+
+			 hitRate1.value = 50;
+			 missRate1.value = 50;
+			 hitRate2.value = 50;
+			 missRate2.value = 50;
+			 faRate1.value = 50;
+			 crRate1.value = 50;
+			 faRate2.value = 50;
+			 crRate2.value = 50;
+
+			 hitRate11.value = 50;
+			 missRate11.value = 50;
+			 hitRate12.value = 50;
+			 missRate12.value = 50;
+
+			 hitRate21.value = 50;
+			 missRate21.value = 50;
+			 hitRate22.value = 50;
+			 missRate22.value = 50;
+
+			 faRate11.value = 50;
+			 crRate11.value = 50;
+			 faRate12.value = 50;
+			 crRate12.value = 50;
+
+			 faRate21.value = 50;
+			 crRate21.value = 50;
+			 faRate22.value = 50;
+			 crRate22.value = 50;
+
+			 results.innerHTML = 50+'%';
+
+			 probPercToggle(e);
+			 OutputInitialize();
+
+	  	});
+
+	    baseRate.addEventListener("change", changeEventHandler);
+		nbaseRate.addEventListener("change", changeEventHandler);
+		
+		hitRate.addEventListener("change", changeEventHandler);
+		missRate.addEventListener("change", changeEventHandler);
+		faRate.addEventListener("change", changeEventHandler);
+		crRate.addEventListener("change", changeEventHandler);
+
+		hitRate1.addEventListener("change", changeEventHandler);
+		missRate1.addEventListener("change", changeEventHandler);
+		hitRate2.addEventListener("change", changeEventHandler);
+		missRate2.addEventListener("change", changeEventHandler);
+		faRate1.addEventListener("change", changeEventHandler);
+		crRate1.addEventListener("change", changeEventHandler);
+		faRate2.addEventListener("change", changeEventHandler);
+		crRate2.addEventListener("change", changeEventHandler);
+
+		hitRate11.addEventListener("change", changeEventHandler);
+		missRate11.addEventListener("change", changeEventHandler);
+		hitRate12.addEventListener("change", changeEventHandler);
+		missRate12.addEventListener("change", changeEventHandler);
+		faRate11.addEventListener("change", changeEventHandler);
+		crRate11.addEventListener("change", changeEventHandler);
+		faRate12.addEventListener("change", changeEventHandler);
+		crRate12.addEventListener("change", changeEventHandler);
+
+		hitRate21.addEventListener("change", changeEventHandler);
+		missRate21.addEventListener("change", changeEventHandler);
+		hitRate22.addEventListener("change", changeEventHandler);
+		missRate22.addEventListener("change", changeEventHandler);
+		faRate21.addEventListener("change", changeEventHandler);
+		crRate21.addEventListener("change", changeEventHandler);
+		faRate22.addEventListener("change", changeEventHandler);
+		crRate22.addEventListener("change", changeEventHandler);
+		
+
+		function changeEventHandler(event) {
+			let one, targetValue, result;
+
+			// probability
+			if (isProb) {
+				if (event.target.value < 0 || event.target.value > 1) {	
+					alert("Please enter probability between 0 and 1");
+					return;
+				}
+
+				one = new Decimal(1);
+				targetValue = new Decimal(event.target.value);
+				result = one.minus(targetValue);
+
+				if (event.target.className == "c3hitRate") {
+					missRate.value = result.toPrecision(4);
+				} else if (event.target.className == "c3missRate") {
+					hitRate.value = result.toPrecision(4);
+				} else if (event.target.className == "c3hitRate1") {
+					missRate1.value = result.toPrecision(4);
+				} else if (event.target.className == "c3missRate1") {
+					hitRate1.value = result.toPrecision(4);
+				} else if (event.target.className == "c3hitRate2") {
+					missRate2.value = result.toPrecision(4);
+				} else if (event.target.className == "c3missRate2") {
+					hitRate2.value = result.toPrecision(4);
+				} else if (event.target.className == "c3crRate1") {
+					faRate1.value = result.toPrecision(4);
+				} else if (event.target.className == "c3faRate1") {
+					crRate1.value = result.toPrecision(4);
+				} else if (event.target.className == "c3crRate2") {
+					faRate2.value = result.toPrecision(4);
+				} else if (event.target.className == "c3faRate2") {
+					crRate2.value = result.toPrecision(4);
+				} else if(event.target.className == "c3faRate") {
+					crRate.value = result.toPrecision(4);
+				} else if(event.target.className == "c3crRate") {
+					faRate.value = result.toPrecision(4);
+				} else if (event.target.className == "c3baseRate") {
+					nbaseRate.value = result.toPrecision(4);
+				} else if (event.target.className == "c3nbaseRate") {
+					baseRate.value = result.toPrecision(4);
+				} else if (event.target.className == "c3missRate11") {
+					hitRate11.value = result.toPrecision(4);
+				} else if (event.target.className == "c3hitRate11") {
+					missRate11.value = result.toPrecision(4);
+				} else if (event.target.className == "c3missRate12") {
+					hitRate12.value = result.toPrecision(4);
+				} else if (event.target.className == "c3hitRate12") {
+					missRate12.value = result.toPrecision(4);
+				} else if (event.target.className == "c3missRate21") {
+					hitRate21.value = result.toPrecision(4);
+				} else if (event.target.className == "c3hitRate21") {
+					missRate21.value = result.toPrecision(4);
+				} else if (event.target.className == "c3missRate22") {
+					hitRate22.value = result.toPrecision(4);
+				} else if (event.target.className == "c3hitRate22") {
+					missRate22.value = result.toPrecision(4);
+				} else if (event.target.className == "c3crRate11") {
+					faRate11.value = result.toPrecision(4);
+				} else if (event.target.className == "c3faRate11") {
+					crRate11.value = result.toPrecision(4);
+				} else if (event.target.className == "c3crRate12") {
+					faRate12.value = result.toPrecision(4);
+				} else if (event.target.className == "c3faRate12") {
+					crRate12.value = result.toPrecision(4);
+				} else if (event.target.className == "c3crRate21") {
+					faRate21.value = result.toPrecision(4);
+				} else if (event.target.className == "c3faRate21") {
+					crRate21.value = result.toPrecision(4);
+				} else if (event.target.className == "c3crRate22") {
+					faRate22.value = result.toPrecision(4);
+				} else if (event.target.className == "c3faRate22") {
+					crRate22.value = result.toPrecision(4);
+				}
+
+				let nb = new Decimal(nbaseRate.value);
+				let b = new Decimal(baseRate.value);
+
+				let h  = new Decimal(hitRate.value);
+				let m  = new Decimal(missRate.value);
+				let fa = new Decimal(faRate.value);
+				let cr = new Decimal(crRate.value);
+
+				let h1 = new Decimal(hitRate1.value);
+				let h2 = new Decimal(hitRate2.value);
+				let m1 = new Decimal(missRate1.value);
+				let m2 = new Decimal(missRate2.value);
+				let fa1 = new Decimal(faRate1.value);
+				let cr1 = new Decimal(crRate1.value);
+				let fa2 = new Decimal(faRate2.value);
+				let cr2 = new Decimal(crRate2.value);
+
+				let h11 = new Decimal(hitRate11.value);
+				let h12 = new Decimal(hitRate12.value);
+				let h21 = new Decimal(hitRate21.value);
+				let h22 = new Decimal(hitRate22.value);
+
+				let m11 = new Decimal(missRate11.value);
+				let m12 = new Decimal(missRate12.value);
+				let m21 = new Decimal(missRate21.value);
+				let m22 = new Decimal(missRate22.value);
+
+				let fa11 = new Decimal(faRate11.value);
+				let cr11 = new Decimal(crRate11.value);
+				let fa12 = new Decimal(faRate12.value);
+				let cr12 = new Decimal(crRate12.value);
+
+				let fa21 = new Decimal(faRate21.value);
+				let cr21 = new Decimal(crRate21.value);
+				let fa22 = new Decimal(faRate22.value);
+				let cr22 = new Decimal(crRate22.value);
+
+				let fhit11 = h11.times(h1).times(h).times(b);
+				let fmiss11 = m11.times(h1).times(h).times(b);
+
+				let fhit12 = h12.times(m1).times(h).times(b);
+				let fmiss12 = m12.times(m1).times(h).times(b);
+
+				let fhit21 = h21.times(h2).times(m).times(b);
+				let fmiss21 = m21.times(h2).times(m).times(b);
+
+				let fhit22 = h22.times(m2).times(m).times(b);
+				let fmiss22 = m22.times(m2).times(m).times(b);
+
+				let ffa11 = fa11.times(fa1).times(fa).times(nb);
+				let fcr11 = cr11.times(fa1).times(fa).times(nb);
+				
+				let ffa12 = fa12.times(cr1).times(fa).times(nb);
+				let fcr12 = cr12.times(cr1).times(fa).times(nb);
+
+				let ffa21 = fa21.times(fa2).times(cr).times(nb);
+				let fcr21 = cr21.times(fa2).times(cr).times(nb);
+
+				let ffa22 = fa22.times(cr2).times(cr).times(nb);
+				let fcr22 = cr22.times(cr2).times(cr).times(nb);
+				
+
+				// Results
+				let f_max = c3_max_factor(fhit11,fhit12,fhit21,fhit22,fmiss11,fmiss12,fmiss21,fmiss22,ffa11,fcr11,ffa12,fcr12,ffa21,fcr21,ffa22,fcr22);
+				let popOutputTreeResult= f_max;
+				let baseOutputTreeResult = f_max.times(b);
+				let noiseOutputTreeResult = f_max.times(nb);	
+
+				let hitTreeResult = (f_max.times(b)).times(h);
+				let missTreeResult = (f_max.times(b)).times(m);
+				let falseAlarmTreeResult = (f_max.times(nb)).times(fa);
+				let corretRejectTreeResult = (f_max.times(nb)).times(cr);
+
+				let hit1TreeResult = ((f_max.times(b)).times(h)).times(h1);
+				let hit2TreeResult = ((f_max.times(b)).times(m)).times(h2);
+				let miss1TreeResult = ((f_max.times(b)).times(h)).times(m1);
+				let miss2TreeResult = ((f_max.times(b)).times(m)).times(m2);
+				let falseAlarmTreeResult1= ((f_max.times(nb)).times(fa)).times(fa1);
+				let corretRejectTreeResult1 = ((f_max.times(nb)).times(fa)).times(cr1);
+				let falseAlarmTreeResult2= ((f_max.times(nb)).times(cr)).times(fa2);
+				let corretRejectTreeResult2 = ((f_max.times(nb)).times(cr)).times(cr2);
+
+				let hit11TreeResult = (((f_max.times(b)).times(h)).times(h1)).times(h11);
+				let miss11TreeResult = (((f_max.times(b)).times(h)).times(h1)).times(m11);
+
+				let hit12TreeResult = (((f_max.times(b)).times(h)).times(m1)).times(h12);
+				let miss12TreeResult = (((f_max.times(b)).times(h)).times(m1)).times(m12);
+
+
+				let hit21TreeResult = (((f_max.times(b)).times(m)).times(h2)).times(h21);
+				let miss21TreeResult = (((f_max.times(b)).times(m)).times(h2)).times(m21);
+
+				let hit22TreeResult = (((f_max.times(b)).times(m)).times(m2)).times(h22);
+				let miss22TreeResult = (((f_max.times(b)).times(m)).times(m2)).times(m22);
+				
+
+				let falseAlarmTreeResult11= (((f_max.times(nb)).times(fa)).times(fa1)).times(fa11);
+				let corretRejectTreeResult11= (((f_max.times(nb)).times(fa)).times(fa1)).times(cr11);
+
+				let falseAlarmTreeResult12= (((f_max.times(nb)).times(fa)).times(cr1)).times(fa12);
+				let corretRejectTreeResult12= (((f_max.times(nb)).times(fa)).times(cr1)).times(cr12);
+
+				let falseAlarmTreeResult21= (((f_max.times(nb)).times(cr)).times(fa2)).times(fa21);
+				let corretRejectTreeResult21= (((f_max.times(nb)).times(cr)).times(fa2)).times(cr21);
+
+				let falseAlarmTreeResult22= (((f_max.times(nb)).times(cr)).times(cr2)).times(fa22);
+				let corretRejectTreeResult22= (((f_max.times(nb)).times(cr)).times(cr2)).times(cr22);
+
+				// let postiveTestTreeResult = hitTreeResult.plus(falseAlarmTreeResult);
+				// let negativeTestTreeResult = missTreeResult.plus(corretRejectTreeResult);
+				
+
+				// assigned values for tree output
+				popOutput.innerHTML = popOutputTreeResult.toNumber();
+				baseOutput.innerHTML = baseOutputTreeResult.toNumber();
+				noiseOutput.innerHTML = noiseOutputTreeResult.toNumber();
+
+				hit.innerHTML = hitTreeResult.toNumber();
+				miss.innerHTML = missTreeResult.toNumber();
+				falseAlarm.innerHTML = falseAlarmTreeResult.toNumber();
+				correctReject.innerHTML = corretRejectTreeResult.toNumber();
+
+				hit1.innerHTML = hit1TreeResult.toNumber();
+				hit2.innerHTML = hit2TreeResult.toNumber();
+				miss1.innerHTML = miss1TreeResult.toNumber();
+				miss2.innerHTML = miss2TreeResult.toNumber();
+				falseAlarm1.innerHTML = falseAlarmTreeResult1.toNumber();
+				correctReject1.innerHTML = corretRejectTreeResult1.toNumber();
+				falseAlarm2.innerHTML = falseAlarmTreeResult2.toNumber();
+				correctReject2.innerHTML = corretRejectTreeResult2.toNumber();
+
+				hit11.innerHTML = hit11TreeResult.toNumber();
+				hit12.innerHTML = hit12TreeResult.toNumber();
+				hit21.innerHTML = hit21TreeResult.toNumber();
+				hit22.innerHTML = hit22TreeResult.toNumber();
+				miss11.innerHTML = miss11TreeResult.toNumber();
+				miss12.innerHTML = miss12TreeResult.toNumber();
+				miss21.innerHTML = miss21TreeResult.toNumber();
+				miss22.innerHTML = miss22TreeResult.toNumber();
+
+				falseAlarm11.innerHTML = falseAlarmTreeResult11.toNumber();
+				falseAlarm12.innerHTML = falseAlarmTreeResult12.toNumber();
+				falseAlarm21.innerHTML = falseAlarmTreeResult21.toNumber();
+				falseAlarm22.innerHTML = falseAlarmTreeResult22.toNumber();
+
+				correctReject11.innerHTML = corretRejectTreeResult11.toNumber();
+				correctReject12.innerHTML = corretRejectTreeResult12.toNumber();
+				correctReject21.innerHTML = corretRejectTreeResult21.toNumber();
+				correctReject22.innerHTML = corretRejectTreeResult22.toNumber();
+
+
+
+				// assigned values for the equation
+				hitResult1_sup.innerHTML = hit11TreeResult.toNumber();
+				hitResult2_sup.innerHTML = hit12TreeResult.toNumber();
+				hitResult2_sup.innerHTML = hit21TreeResult.toNumber();
+				hitResult2_sup.innerHTML = hit22TreeResult.toNumber();
+
+				hitResult1_bottom.innerHTML = hit11TreeResult.toNumber();
+				hitResult2_bottom.innerHTML = hit12TreeResult.toNumber();
+				hitResult3_bottom.innerHTML = hit21TreeResult.toNumber();
+				hitResult4_bottom.innerHTML = hit22TreeResult.toNumber();
+
+				falseAlarmResult1.innerHTML = falseAlarmTreeResult11.toNumber();
+				falseAlarmResult2.innerHTML = falseAlarmTreeResult12.toNumber();
+				falseAlarmResult3.innerHTML = falseAlarmTreeResult21.toNumber();
+				falseAlarmResult4.innerHTML = falseAlarmTreeResult22.toNumber();
+
+
+				let up_equation = hit11TreeResult.plus(hit12TreeResult).plus(hit21TreeResult).plus(hit22TreeResult)
+				let down_equation = hit11TreeResult.plus(hit12TreeResult).plus(hit21TreeResult).plus(hit22TreeResult).plus(falseAlarmTreeResult11).plus(falseAlarmTreeResult12).plus(falseAlarmTreeResult21).plus(falseAlarmTreeResult22)
+				results.innerHTML = (up_equation).dividedBy(down_equation).toNumber().toPrecision(3);
+
+
+			} else {
+			
+				//Percentage
+
+				if (event.target.value < 0 || event.target.value > 100) {	
+				alert("Please enter percentage between 0 and 100");
+				return;
+				}
+				result = new Decimal(100 - event.target.value);
+				
+				if (event.target.className == "c3hitRate") {
+					missRate.value = result.toPrecision(4);
+				} else if (event.target.className == "c3missRate") {
+					hitRate.value = result.toPrecision(4);
+				} else if (event.target.className == "c3hitRate1") {
+					missRate1.value = result.toPrecision(4);
+				} else if (event.target.className == "c3missRate1") {
+					hitRate1.value = result.toPrecision(4);
+				} else if (event.target.className == "c3hitRate2") {
+					missRate2.value = result.toPrecision(4);
+				} else if (event.target.className == "c3missRate2") {
+					hitRate2.value = result.toPrecision(4);
+				} else if (event.target.className == "c3crRate1") {
+					faRate1.value = result.toPrecision(4);
+				} else if (event.target.className == "c3faRate1") {
+					crRate1.value = result.toPrecision(4);
+				} else if (event.target.className == "c3crRate2") {
+					faRate2.value = result.toPrecision(4);
+				} else if (event.target.className == "c3faRate2") {
+					crRate2.value = result.toPrecision(4);
+				} else if(event.target.className == "c3faRate") {
+					crRate.value = result.toPrecision(4);
+				} else if(event.target.className == "c3crRate") {
+					faRate.value = result.toPrecision(4);
+				} else if (event.target.className == "c3baseRate") {
+					nbaseRate.value = result.toPrecision(4);
+				} else if (event.target.className == "c3nbaseRate") {
+					baseRate.value = result.toPrecision(4);
+				} else if (event.target.className == "c3missRate11") {
+					hitRate11.value = result.toPrecision(4);
+				} else if (event.target.className == "c3hitRate11") {
+					missRate11.value = result.toPrecision(4);
+				} else if (event.target.className == "c3missRate12") {
+					hitRate12.value = result.toPrecision(4);
+				} else if (event.target.className == "c3hitRate12") {
+					missRate12.value = result.toPrecision(4);
+				} else if (event.target.className == "c3missRate21") {
+					hitRate21.value = result.toPrecision(4);
+				} else if (event.target.className == "c3hitRate21") {
+					missRate21.value = result.toPrecision(4);
+				} else if (event.target.className == "c3missRate22") {
+					hitRate22.value = result.toPrecision(4);
+				} else if (event.target.className == "c3hitRate22") {
+					missRate22.value = result.toPrecision(4);
+				} else if (event.target.className == "c3crRate11") {
+					faRate11.value = result.toPrecision(4);
+				} else if (event.target.className == "c3faRate11") {
+					crRate11.value = result.toPrecision(4);
+				} else if (event.target.className == "c3crRate12") {
+					faRate12.value = result.toPrecision(4);
+				} else if (event.target.className == "c3faRate12") {
+					crRate12.value = result.toPrecision(4);
+				} else if (event.target.className == "c3crRate21") {
+					faRate21.value = result.toPrecision(4);
+				} else if (event.target.className == "c3faRate21") {
+					crRate21.value = result.toPrecision(4);
+				} else if (event.target.className == "c3crRate22") {
+					faRate22.value = result.toPrecision(4);
+				} else if (event.target.className == "c3faRate22") {
+					crRate22.value = result.toPrecision(4);
+				}
+
+				let nb = new Decimal(nbaseRate.value).dividedBy(100);
+				let b = new Decimal(baseRate.value).dividedBy(100);
+
+				let h  = new Decimal(hitRate.value).dividedBy(100);
+				let m  = new Decimal(missRate.value).dividedBy(100);
+				let fa = new Decimal(faRate.value).dividedBy(100);
+				let cr = new Decimal(crRate.value).dividedBy(100);
+
+				let h1 = new Decimal(hitRate1.value).dividedBy(100);
+				let h2 = new Decimal(hitRate2.value).dividedBy(100);
+				let m1 = new Decimal(missRate1.value).dividedBy(100);
+				let m2 = new Decimal(missRate2.value).dividedBy(100);
+				let fa1 = new Decimal(faRate1.value).dividedBy(100);
+				let cr1 = new Decimal(crRate1.value).dividedBy(100);
+				let fa2 = new Decimal(faRate2.value).dividedBy(100);
+				let cr2 = new Decimal(crRate2.value).dividedBy(100);
+
+				let h11 = new Decimal(hitRate11.value).dividedBy(100);
+				let h12 = new Decimal(hitRate12.value).dividedBy(100);
+				let h21 = new Decimal(hitRate21.value).dividedBy(100);
+				let h22 = new Decimal(hitRate22.value).dividedBy(100);
+
+				let m11 = new Decimal(missRate11.value).dividedBy(100);
+				let m12 = new Decimal(missRate12.value).dividedBy(100);
+				let m21 = new Decimal(missRate21.value).dividedBy(100);
+				let m22 = new Decimal(missRate22.value).dividedBy(100);
+
+				let fa11 = new Decimal(faRate11.value).dividedBy(100);
+				let cr11 = new Decimal(crRate11.value).dividedBy(100);
+				let fa12 = new Decimal(faRate12.value).dividedBy(100);
+				let cr12 = new Decimal(crRate12.value).dividedBy(100);
+
+				let fa21 = new Decimal(faRate21.value).dividedBy(100);
+				let cr21 = new Decimal(crRate21.value).dividedBy(100);
+				let fa22 = new Decimal(faRate22.value).dividedBy(100);
+				let cr22 = new Decimal(crRate22.value).dividedBy(100);
+
+				let fhit11 = h11.times(h1).times(h).times(b);
+				let fmiss11 = m11.times(h1).times(h).times(b);
+
+				let fhit12 = h12.times(m1).times(h).times(b);
+				let fmiss12 = m12.times(m1).times(h).times(b);
+
+				let fhit21 = h21.times(h2).times(m).times(b);
+				let fmiss21 = m21.times(h2).times(m).times(b);
+
+				let fhit22 = h22.times(m2).times(m).times(b);
+				let fmiss22 = m22.times(m2).times(m).times(b);
+
+				let ffa11 = fa11.times(fa1).times(fa).times(nb);
+				let fcr11 = cr11.times(fa1).times(fa).times(nb);
+				
+				let ffa12 = fa12.times(cr1).times(fa).times(nb);
+				let fcr12 = cr12.times(cr1).times(fa).times(nb);
+
+				let ffa21 = fa21.times(fa2).times(cr).times(nb);
+				let fcr21 = cr21.times(fa2).times(cr).times(nb);
+
+				let ffa22 = fa22.times(cr2).times(cr).times(nb);
+				let fcr22 = cr22.times(cr2).times(cr).times(nb);
+
+
+				// Results
+				let f_max = c3_max_factor(fhit11,fhit12,fhit21,fhit22,fmiss11,fmiss12,fmiss21,fmiss22,ffa11,fcr11,ffa12,fcr12,ffa21,fcr21,ffa22,fcr22);
+				let popOutputTreeResult= f_max;
+				let baseOutputTreeResult = f_max.times(b);
+				let noiseOutputTreeResult = f_max.times(nb);	
+
+				let hitTreeResult = (f_max.times(b)).times(h);
+				let missTreeResult = (f_max.times(b)).times(m);
+				let falseAlarmTreeResult = (f_max.times(nb)).times(fa);
+				let corretRejectTreeResult = (f_max.times(nb)).times(cr);
+
+				let hit1TreeResult = ((f_max.times(b)).times(h)).times(h1);
+				let hit2TreeResult = ((f_max.times(b)).times(m)).times(h2);
+				let miss1TreeResult = ((f_max.times(b)).times(h)).times(m1);
+				let miss2TreeResult = ((f_max.times(b)).times(m)).times(m2);
+				let falseAlarmTreeResult1= ((f_max.times(nb)).times(fa)).times(fa1);
+				let corretRejectTreeResult1 = ((f_max.times(nb)).times(fa)).times(cr1);
+				let falseAlarmTreeResult2= ((f_max.times(nb)).times(cr)).times(fa2);
+				let corretRejectTreeResult2 = ((f_max.times(nb)).times(cr)).times(cr2);
+
+				let hit11TreeResult = (((f_max.times(b)).times(h)).times(h1)).times(h11);
+				let miss11TreeResult = (((f_max.times(b)).times(h)).times(h1)).times(m11);
+
+				let hit12TreeResult = (((f_max.times(b)).times(h)).times(m1)).times(h12);
+				let miss12TreeResult = (((f_max.times(b)).times(h)).times(m1)).times(m12);
+
+
+				let hit21TreeResult = (((f_max.times(b)).times(m)).times(h2)).times(h21);
+				let miss21TreeResult = (((f_max.times(b)).times(m)).times(h2)).times(m21);
+
+				let hit22TreeResult = (((f_max.times(b)).times(m)).times(m2)).times(h22);
+				let miss22TreeResult = (((f_max.times(b)).times(m)).times(m2)).times(m22);
+				
+
+				let falseAlarmTreeResult11= (((f_max.times(nb)).times(fa)).times(fa1)).times(fa11);
+				let corretRejectTreeResult11= (((f_max.times(nb)).times(fa)).times(fa1)).times(cr11);
+
+				let falseAlarmTreeResult12= (((f_max.times(nb)).times(fa)).times(cr1)).times(fa12);
+				let corretRejectTreeResult12= (((f_max.times(nb)).times(fa)).times(cr1)).times(cr12);
+
+				let falseAlarmTreeResult21= (((f_max.times(nb)).times(cr)).times(fa2)).times(fa21);
+				let corretRejectTreeResult21= (((f_max.times(nb)).times(cr)).times(fa2)).times(cr21);
+
+				let falseAlarmTreeResult22= (((f_max.times(nb)).times(cr)).times(cr2)).times(fa22);
+				let corretRejectTreeResult22= (((f_max.times(nb)).times(cr)).times(cr2)).times(cr22);
+
+		
+				// assigned values for tree output
+				popOutput.innerHTML = popOutputTreeResult.toNumber();
+				baseOutput.innerHTML = baseOutputTreeResult.toNumber();
+				noiseOutput.innerHTML = noiseOutputTreeResult.toNumber();
+
+				hit.innerHTML = hitTreeResult.toNumber();
+				miss.innerHTML = missTreeResult.toNumber();
+				falseAlarm.innerHTML = falseAlarmTreeResult.toNumber();
+				correctReject.innerHTML = corretRejectTreeResult.toNumber();
+
+				hit1.innerHTML = hit1TreeResult.toNumber();
+				hit2.innerHTML = hit2TreeResult.toNumber();
+				miss1.innerHTML = miss1TreeResult.toNumber();
+				miss2.innerHTML = miss2TreeResult.toNumber();
+				falseAlarm1.innerHTML = falseAlarmTreeResult1.toNumber();
+				correctReject1.innerHTML = corretRejectTreeResult1.toNumber();
+				falseAlarm2.innerHTML = falseAlarmTreeResult2.toNumber();
+				correctReject2.innerHTML = corretRejectTreeResult2.toNumber();
+
+				hit11.innerHTML = hit11TreeResult.toNumber();
+				hit12.innerHTML = hit12TreeResult.toNumber();
+				hit21.innerHTML = hit21TreeResult.toNumber();
+				hit22.innerHTML = hit22TreeResult.toNumber();
+				miss11.innerHTML = miss11TreeResult.toNumber();
+				miss12.innerHTML = miss12TreeResult.toNumber();
+				miss21.innerHTML = miss21TreeResult.toNumber();
+				miss22.innerHTML = miss22TreeResult.toNumber();
+
+				falseAlarm11.innerHTML = falseAlarmTreeResult11.toNumber();
+				falseAlarm12.innerHTML = falseAlarmTreeResult12.toNumber();
+				falseAlarm21.innerHTML = falseAlarmTreeResult21.toNumber();
+				falseAlarm22.innerHTML = falseAlarmTreeResult22.toNumber();
+
+				correctReject11.innerHTML = corretRejectTreeResult11.toNumber();
+				correctReject12.innerHTML = corretRejectTreeResult12.toNumber();
+				correctReject21.innerHTML = corretRejectTreeResult21.toNumber();
+				correctReject22.innerHTML = corretRejectTreeResult22.toNumber();
+
+
+
+				// assigned values for the equation
+				hitResult1_sup.innerHTML = hit11TreeResult.toNumber();
+				hitResult2_sup.innerHTML = hit12TreeResult.toNumber();
+				hitResult2_sup.innerHTML = hit21TreeResult.toNumber();
+				hitResult2_sup.innerHTML = hit22TreeResult.toNumber();
+
+				hitResult1_bottom.innerHTML = hit11TreeResult.toNumber();
+				hitResult2_bottom.innerHTML = hit12TreeResult.toNumber();
+				hitResult3_bottom.innerHTML = hit21TreeResult.toNumber();
+				hitResult4_bottom.innerHTML = hit22TreeResult.toNumber();
+
+				falseAlarmResult1.innerHTML = falseAlarmTreeResult11.toNumber();
+				falseAlarmResult2.innerHTML = falseAlarmTreeResult12.toNumber();
+				falseAlarmResult3.innerHTML = falseAlarmTreeResult21.toNumber();
+				falseAlarmResult4.innerHTML = falseAlarmTreeResult22.toNumber();
+
+
+				let up_equation = hit11TreeResult.plus(hit12TreeResult).plus(hit21TreeResult).plus(hit22TreeResult)
+				let down_equation = hit11TreeResult.plus(hit12TreeResult).plus(hit21TreeResult).plus(hit22TreeResult).plus(falseAlarmTreeResult11).plus(falseAlarmTreeResult12).plus(falseAlarmTreeResult21).plus(falseAlarmTreeResult22)
+				results.innerHTML = (up_equation).dividedBy(down_equation).toNumber().toPrecision(3);
+
+				
+			}
+		}
+
 	}
 }
 
@@ -1841,6 +2945,52 @@ function oneC3V_max_factor(p, q, r, s, l, m) {
     } else if (!x.times(f).equals(x.times(f).round())) {
     	continue;
     } else if (!z.times(f).equals(z.times(f).round())) {
+    	continue;
+    }
+    break;
+  }
+  return max;
+ }
+
+  function c3_max_factor(p, q, r, s, l, m, x, z, a, b, c, d, k, g, h, j) {
+  let max = new Decimal(10);
+  
+  for (var i = 1; i < 10; i++) {
+  
+    let f = new Decimal(Math.pow(10, i));
+    max = f;
+
+    if (!p.times(f).equals(p.times(f).round())) {
+      	continue;
+    } else if (!q.times(f).equals(q.times(f).round())) {
+      	continue;
+    } else if (!r.times(f).equals(r.times(f).round())) {
+      	continue;
+    } else if (!s.times(f).equals(s.times(f).round())) {
+      	continue;
+    } else if (!l.times(f).equals(l.times(f).round())) {
+    	continue;
+    } else if (!m.times(f).equals(m.times(f).round())) {
+    	continue;
+    } else if (!x.times(f).equals(x.times(f).round())) {
+    	continue;
+    } else if (!z.times(f).equals(z.times(f).round())) {
+    	continue;
+    } else if (!a.times(f).equals(a.times(f).round())) {
+    	continue;
+    } else if (!b.times(f).equals(b.times(f).round())) {
+    	continue;
+    } else if (!c.times(f).equals(c.times(f).round())) {
+    	continue;
+    } else if (!d.times(f).equals(d.times(f).round())) {
+    	continue;
+    } else if (!k.times(f).equals(k.times(f).round())) {
+    	continue;
+    } else if (!g.times(f).equals(g.times(f).round())) {
+    	continue;
+    } else if (!h.times(f).equals(h.times(f).round())) {
+    	continue;
+    } else if (!j.times(f).equals(j.times(f).round())) {
     	continue;
     }
     break;
