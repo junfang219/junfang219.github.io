@@ -36,17 +36,50 @@
 
       <ul class="nav nav-tabs">
       
-        <li><a data-toggle = "tab" href="#BasicTask">1 cue</a></li> 
-        <li><a data-toggle = "tab" href="#3valueCues">1 cue 3 values</a></li>
-        <li><a data-toggle = "tab" href="#3hypotheses">3 hypotheses</a></li>
-        <li><a data-toggle = "tab" href="#2cues">2 cues</a></li>
-        <li><a data-toggle = "tab" href="#3cues">3 cues</a></li>
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle = "dropdown" href="#" id="BT">Basic tasks <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#" id="cue1">1 cue</a></li>
+              <li><a href="#" id="c1v3">1 cue 3 values</a></li>
+              <li><a href="#" id="h3">3 hypotheses</a></li>
+              <li><a href="#" id="c2">2 cues</a></li>
+              <li><a href="#" id="c3">3 cues</a></li>
+            </ul>
+          </li>
+
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle = "dropdown" href="#" id="SC">Stolen Cash Case<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#" id="SC1">Case 1</a></li>
+            <li><a href="#" id="SC1S">Case 1 Scenarios</a></li>
+            <li><a href="#" id="SC1Q">Case 1 Questions</a></li>
+            <li><a href="#" id="SC2">Case 2</a></li>
+            <li><a href="#" id="SC2S">Case 2 Scenarios</a></li>
+            <li><a href="#" id="SC2Q">Case 2 Questions</a></li>
+            <li><a href="#" id="Ncc">Case Comparison</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle = "dropdown" href="#" id="BS">Black Site Surveillance<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#" id="navBS">Black Site Surveillance</a></li>
+            <li><a href="#" id="navevidences">List of sources</a></li>
+            <li><a href="#" id="navevidence1">Evidence 1</a></li>
+            <li><a href="#" id="navevidence2">Evidence 2</a></li>
+            <li><a href="#" id="navevidence3">Evidence 3</a></li>
+            <li><a href="#" id="navevidence4">Evidence 4</a></li>
+            <li><a href="#" id="navevidence5">Evidence 5</a></li>
+            <li><a href="#" id="navquestions">Questions</a></li>
+          </ul>
+        </li>
+
 
       </ul>
 
-      <div class="tab-content left">
+
+
+
+      <div class="dropdown-content tab-content left" style="overflow: scroll; height: 720px;">
         
-        <div id="BasicTask" class="tab-pane fade in active">
+        <div id="cue1C" class="tab-pane fade in active">
             
          <p>
            The probability of breast cancer is 1% for a woman at age 40 who participates in routine screening. If a woman has breast cancer, the probability is 80% that she will receive a positive mammography. If a woman does not have breast cancer, the probability is 10% that she will also receive a positive mammography. A woman in this age group had a positive mammography in a routine screening. <br><br>
@@ -56,7 +89,7 @@
           
         </div>
 
-        <div id="3valueCues" class="tab-pane fade">
+        <div id="c1v3C" class="tab-pane fade">
           <p>
             The probability of breast cancer is 13.8% for a woman with a dominant gene mutation. If a woman with a dominant gene mutation actually has breast cancer, the probability is:
             <br><br>
@@ -74,7 +107,7 @@
         </div>
 
       
-        <div id="3hypotheses" class="tab-pane fade">
+        <div id="h3C" class="tab-pane fade">
           <p>
             The probability of having disease A is 0.4% for a person without any symptoms. <br> 
             The probability of having disease B is 0.1% for a person without any symptoms. <br>
@@ -93,7 +126,7 @@
 
         </div>
 
-        <div id="2cues" class="tab-pane fade">
+        <div id="c2C" class="tab-pane fade">
           <p>
           The probability of breast cancer is 1% for a woman at age 40 who participates in routine screening.If a woman has breast cancer,the probability is 80% that she will have a positive mammogram. If a woman does not have breast cancer,the probability is 9.6% that she will also have a positive mammogram. If a woman has breast cancer, the probability is 95% that she will have a positive ultrasound test.If a woman does not have breast cancer,the probability is 4% that she will also have a positive ultrasound test. <br><br>
           What is the probability that she actually has breast cancer?
@@ -101,7 +134,7 @@
         </div>
 
 
-        <div id="3cues" class="tab-pane fade">
+        <div id="c3C" class="tab-pane fade">
           <p>
             The probability of having a special complaint is 2%. <br>
             If a person has the complaint, the probability is 80% that she or he will receive a positive test result in test 1. <br>
@@ -114,6 +147,372 @@
 
           </p>
 
+        </div>
+
+        <div id="Case1" class="tab-pane fade">
+            <p>
+            Imagine you are the manager of a business investigating missing petty cash. Your investigation involves collecting reports from employees. It is unclear whether the cash is missing due to an error or because it was stolen, but you initially have a strong hunch that it was not stolen (you assume only a one in 3 chance of theft, i.e. a 33% chance).
+            <br><br>
+        
+            During the course of your investigation, Robert (an employee) approaches you to provide a report that one of your other employees (Thomas) stole the cash. Dan, the supposed direct witness to this event, is on leave and cannot give his statement directly. However, you have confirmed that Dan was at work at the time the incident occurred. Instead Dan’s witness statement is being supplied to you via another employee. This employee, Robert, who was not present himself when the incident occurred, has come forward, reporting to you that Dan told him that he (Dan) witnessed Thomas stealing the cash.
+            <br><br>
+
+            To determine the probability that the cash was in fact stolen, you must take into account the chance of Dan’s and Robert’s statements being true or false. Both Dan and Robert are more likely to provide a true report than a false one. Specifically, there is a 90% chance that Dan’s report is true (hit rate), and only a 10% chance that his report will wrongly implicate Thomas (false positive rate). Robert’s report has a 60% chance of being true (hit rate) and a 40% chance of wrongly implicating Thomas (false positive rate). 
+            <br><br>
+            </p>
+        </div>
+
+        <div id="Case1S" class="tab-pane fade" style="overflow: scroll; height: 720px;">
+          <p>
+             Consider the following scenarios:
+             <br><br>
+
+              <strong>Order 1:</strong>
+
+              You receive Robert’s report of what Dan claims to have seen. Imagine how convinced Robert’s report would make you that Thomas stole the cash.
+              <br><br>
+              
+              <strong>Order 2:</strong>
+
+              Imagine that everything about Dan and Robert stays the same except that they have swapped places, so that it is now Robert who claims to have seen Thomas, and Dan who reports on Robert’s testimony. Despite swapping places, Dan’s hit rate is still 90%, and his false positive rate is 10%, while Robert’s hit rate is 60%, and his false positive rate is 40%. Again, imagine how convinced Dan’s report would make you that Thomas stole the cash.
+          </p>
+          
+        </div>
+
+        <div id="Case1Q" class="tab-pane fade" style="overflow: scroll; height: 720px;">
+          <p>
+            <strong>Question 1:</strong> Is there any difference in how convinced you (“the manager”) should be that Thomas stole the cash across these two orders?
+            <br><br>
+
+            [Please select from the following options in the study survey]
+            <br>
+            <ol>
+              <li>Order 1 provides more convincing evidence.</li>
+            
+              <li>Order 2 provides more convincing evidence.</li>
+         
+              <li>Order 1 and Order 2 are equally convincing.</li>
+            </ol>
+
+            Per company policy, you must believe that it is at least 70% likely that Thomas stole the cash to proceed with an investigation and potentially report the incident to outside authorities. Consider both of the orders presented.
+            <br><br>
+
+            <strong>Question 2:</strong> Should you (“the manager”) be sufficiently convinced (>70%) by either Order 1 or Order 2?
+            <br><br>
+
+            [Please select from the following options in the study survey]
+            <br>
+            
+            <ol>
+              <li>I would be sufficiently convinced by Order 1.</li>
+            
+              <li>I would be sufficiently convinced by Order 2.</li>
+            
+              <li>I would be sufficiently convinced in both cases.</li>
+           
+              <li>I would not be sufficiently convinced in either case.</li>
+            </ol>
+
+           
+            <strong>Question 3:</strong> Please provide an explanation to the above two answers, using numerical calculations or diagrams if appropriate.
+            <br><br>
+
+            You should indicate, for both Order 1 and Order 2, how convinced you are that Thomas stole the cash, whether you are sufficiently convinced (greater than 70%) that Thomas stole the cash (and thus recommend investigation), and you should discuss how swapping the witnesses may impact your convictions. Better scores are likely to be obtained from a complete and well-reasoned explanation.
+          </p>
+        </div>
+
+        <div id="Case2" class="tab-pane fade" style="overflow: scroll; height: 600px;">
+          <p>
+            Imagine an alternative scenario with the same basic events as before. Instead of Dan and Robert, two different employees, Anne and Brenda, make claims that the cash was stolen by your employee Thomas.
+            <br><br>
+            Again, during the course of your investigation, you receive a report that one of your employees (Thomas) stole the cash. Anne, the supposed direct witness, is on leave and cannot give this statement directly. However, you have confirmed that Anne was at work at the time the incident occurred. Instead this information is being supplied to you via another employee, Brenda, who was not at work at the time the incident occurred. Brenda has come forward, reporting to you Anne’s statement that she (Anne) saw Thomas steal the cash.
+            <br><br>
+            To determine the probability that the cash was in fact stolen, you must take into account the chance of Anne’s and Brenda’s statements being true or false. In this version of the problem, both Anne and Brenda are very reliable in the sense that they are 10 times more likely to pass on truthful information (hit rate) than to pass on false information, whether intentionally or inadvertently,  that wrongly implicates Thomas (false positive rate). To illustrate, Anne is 10 times more likely to correctly report that a theft occurred, than to falsely report that a theft occurred.
+            <br><br>
+            However, based on your previous interactions with Anne and Brenda you also know that both might hesitate to say anything that could get a colleague in trouble, even when that colleague has done something wrong.
+
+          </p>
+
+        </div>
+
+
+        <div id="Case2Q" class="tab-pane fade" style="overflow: scroll; height: 720px;">
+          <p>
+            <strong>Question 4:</strong> Is there any difference in how convinced you (“the manager”) should be that Thomas stole the cash across these two orders?
+            <br><br>
+            [Please select from the following options in the study survey]
+            <br><br>
+            
+            <ol>
+              <li>Order 1 provides more convincing evidence.</li>
+              
+              <li>Order 2 provides more convincing evidence.</li>
+              
+              <li>Order 1 and Order 2 are equally convincing.</li>
+            </ol>
+
+     
+
+            Per company policy, you must believe that it is at least 70% likely that Thomas stole the cash to proceed with an investigation and potentially report the incident to outside authorities. Consider both of the orders presented.
+            <br><br>
+
+            <strong>Question 5:</strong> Should you (“the manager”) be sufficiently convinced (>70%) by either Order 1 or Order 2?
+            <br><br>
+            [Please select from the following options in the study survey]
+            <br><br>
+            <ol>
+              <li>I would be sufficiently convinced by Order 1.</li>
+              <li>I would be sufficiently convinced by Order 2.</li>
+              <li>I would be sufficiently convinced in both cases.</li>
+              <li>I would not be sufficiently convinced in either case.</li>
+            </ol>
+            
+
+            <strong>Question 6:</strong> Please provide an explanation to the above two answers, using numerical calculations or diagrams if appropriate.
+            <br><br>
+            You should indicate, for both Order 1 and Order 2, how convinced you are that Thomas stole the cash, whether you are sufficiently convinced (greater than 70%) that Thomas stole the cash (and thus recommend investigation), and you should discuss how swapping the witnesses may impact your convictions. Better scores are likely to be obtained from a complete and well-reasoned explanation.
+
+          </p>
+        </div>
+
+        <div id="Case2S" class="tab-pane fade" style="overflow: scroll; height: 720px;">
+          <p>
+            Consider the following scenarios:
+            <br><br>
+            <strong>Order 1:</strong>
+
+            Anne (who claims to have directly observed Thomas) would correctly report evidence of wrongdoing 90% of the time whereas Brenda (who reports Anne’s testimony) would correctly report evidence of wrongdoing only 10% of the time. On the remaining occasions, they would stay silent or mis-report.
+            You receive Brenda’s report of what Anne claims to have seen. Imagine how convinced Brenda’s report would make you that Thomas stole the cash.
+            <br><br>
+
+            <strong>Order 2:</strong>
+
+            Imagine that everything about Anne and Brenda stays the same except that they have swapped places, so that it is Brenda who claims to have seen Thomas, and Anne who reports on Brenda’s testimony.  Again, imagine how convinced Anne’s report would make you that Thomas stole the cash.
+
+          </p>
+        </div>
+
+        <div id="CaseComparison" class="tab-pane fade" style="overflow: scroll; height: 720px;">
+          <p>
+            <strong>Case Comparison Question</strong>
+            <br><br>
+            Consider the two cases you have just been presented:
+            <br>
+            <ol>
+              <li>Witness statements from (1) Dan via Robert and (2) Robert via Dan.</li>
+              <li>Witness statements from (1) Anne via Brenda and (2) Brenda via Anne.</li>
+            </ol> 
+            <strong>Question 7:</strong> In which of the two cases do you think order made the most difference to the probability of Thomas’s theft?
+            <br><br>
+
+            [Please select from the following options in the study survey]
+            <ol>
+              <li>Case 1: Dan and Robert.</li>
+              <li>Case 2: Anne and Brenda.</li> 
+              <li>No difference between the two cases.</li> 
+            </ol>
+
+          </p>
+          
+        </div>
+
+
+        <div id="BScase" class="tab-pane fade" style="overflow: scroll; height: 720px;">
+            
+                <em><u>Please note:</u> In this problem, there are two fictional countries: Ul’Sanda and Rinia. These two countries are not at war, but each is known to carefully monitor the other.</em>
+                <br><br>
+            
+                <h4><u>Situation:</u></h4>
+                You and your Ul’Sandan investigative team have been tasked with assessing whether a temporary Ul’Sandan Black Site (unacknowledged military facility) was observed by foreign surveillance.
+                <br><br>
+                The Black Site was located in the middle of a small island off the coast of Ul’Sanda, not visible from the sea. The island is small, remote, and unpopulated; it can safely be assumed that any potential surveillance of the island was airborne.
+                <br><br>
+                Crucially, the Black Site team had lookouts stationed at it throughout the day. One of the lookouts reported seeing (and then photographing) some thin, wispy clouds which looked like potential contrails from an aircraft. This raised alarms due to the possibility of a surveillance aircraft having flown overhead. Apart from this, there were no other lookout observations indicating that an aircraft of any sort overflew the island. Of course, there is the possibility that the lookouts missed another aircraft flying over the site.
+                <br><br>
+                The site was located on the island for approximately 24 hours, before being moved elsewhere. It is your job to determine the probability that the site was overflown by aerial reconnaissance during that time.
+                <br><br>
+                There are a number of possible candidates that may have flown over the island over the period of 24 hours. The two leading candidates, based on the location of the island, and known historical flight paths, are:
+                <br><br>
+              <ol>
+                <li><u>Rinian Spy Plane:</u> These unmanned aircraft have been known to fly over theareas close to the Ul’Sandan mainland. When the site was moved onto theisland, Ul’Sandan intelligence - based on evidence available at the time(including known flight paths) - concluded that there was a 10% probabilitythat a Rinian spy plane would fly over the island during that 24-hour period. Inthe intelligence community, a 10% probability is taken to mean that an assessed event is highly improbable.</li>
+                <br><br>
+                <li><u>Ul’Sandan Drone:</u> Operated by the Ul’Sandan Navy and Air Force, these remote operated aircraft have long-range capabilities, and have been known to follow flight paths that take them over the island. When the site was moved onto the island, Ul’Sandan intelligence - based on evidence available at the time (including known flight paths) - concluded that there was a 5% probability that a Ul’Sandan Drone would fly over the island during that 24-hour period. In the intelligence community, a 5% probability is taken to mean that an assessed event is remote.              
+                </li>
+              </ol>
+            
+            
+          
+        </div>
+
+        <div id="BSQuestions" href="#Questions"class="tab-pane fade">
+          <p>
+            <h4>Questions:</h4>
+            For your answers, assume the facts to be as stated in the problem.
+            <br><br>
+            <ol>
+              <li>What do you believe is the probability of a Rinian spy plane having overflown the Black Site, referring to all relevant evidence?</li>
+              <br>
+              <li>What do you believe is the probability of a Ul’Sandan drone having overflown the Black Site, referring to all relevant evidence?</li>
+              <br>
+              <li>Which of these two scenarios (Rinian spy plane or Ul’Sandan drone flying over the island) is more likely?</li>
+              <br>
+              <li>Does the report need to recommend notifying counter-intelligence agencies immediately (i.e. is the  probability of the Black Site having being overflown by a Rinian spy plane over 50%, having considered the evidence)?</li>
+
+              <br>
+              Please provide your reasoning for all responses, referring to the evidence in each case.
+            </ol>
+
+          </p>
+        </div>
+
+      
+        <div id="evidencesC" class="tab-pane fade">
+          <p>
+            <h4><u>List of evidence sources:</u></h4>
+            You are tasked with evaluating the impact of reports from the following sources:
+            <ul>
+              <li>Foreign Intelligence Intercepts of Rinian Spy Plane activity</li>
+              <li>Ul’Sandan Department of Defence report on Ul’Sandan Drone activit</li>
+              <li>Domestic Contrail Expert on Rinian spy planes</li>
+              <li>Domestic Contrail Expert on Ul’Sandan Drones</li>
+              <li>Radar Station (Technical Report)</li>
+            </ul>
+            
+            <br><br>
+
+            <h4><u>Critical purpose of investigation:</u></h4>
+
+            There is a pertinent purpose for your investigation: Crucially, if – having evaluated the evidence available to you – you believe the probability of a Rinian spy plane having flown over the island during the 24-hours that the Black site was on the island surpasses 50% (even-odds) <em>by any amount</em>, then <u>you are required to recommend notifying counter-intelligence agencies immediately.</u> If you do not think this probability exceeds 50%, immediate notification is not required and you can postpone communicating your judgment - one way or the other - for up to 48 hours on the possibility that more information may come available.
+
+
+          </p>
+
+        </div>
+
+        <div id="evidence1" class="tab-pane fade">
+            <h4>Rinian Spy Plane Evidence</h4>
+            <em><u>Evidence 1:</u></em>
+            <p>
+              <em>Foreign Intelligence Intercepts</em>
+              <br><br>
+              Translated intercepts of Rinian intelligence activities. These are translated, assessed, and summarised   by experts on Rinian intelligence and counterintelligence. Due to the possibility of mistranslations, misinterpretations, and the possible sowing of false information, the following statistics on how to  consider the uncertainty surrounding reports have been compiled for your use:
+              <br><br>
+              <u>Report Reliability Statistics:</u>
+              <br>
+              <em>False Positive Rate (reporting that activity occurred, when in fact none took place):10% </em>
+              <br>
+              <em>False Negative Rate (reporting that activity did not occur, when in fact it did take place): 15%</em>
+
+              <br><br>
+              <u>Report Summary:</u>
+              <br>
+              The report states that, based on intercepted Rinian intelligence transmissions, a Rinian spy plane flew   over the island while the Black Site was present.
+
+            </p>
+        </div>
+
+        <div id="evidence2" class="tab-pane fade">
+          <h4>Rinian Spy Plane Evidence</h4>
+            <em><u>Evidence 2:</u></em>
+            <p>
+              <em>Domestic Contrail Expert on Rinian Spy Planes</em>
+              <br><br>
+              A member of your team is an expert on the contrails of Rinian spy planes, and has experience  with a  large number of prior incidents, so you show the expert the image taken of the potential contrails.
+              <br><br>
+              Your teammate’s history of reliability and accuracy reveals, however, that his assessments are not  perfect. In particular, verification statistics indicate that this expert is overly bold; frequently  proclaiming that suspicious cloud formations /contrails are the contrails of Rinian spy planes when   they in fact are not (although he sometimes makes the opposite mistake). Checking the expert’s  verified performance statistics you find:
+
+              <br><br>
+              <u>Expert Reliability Statistics:</u>
+              <br>
+              <em>False Positive Rate (classifying suspicious image as a Rinian spy plane contrail, when in fact it is not): 40% </em>
+              <br>
+              <em>False Negative Rate (classifying suspicious image as not a Rinian spy plane contrail, when in fact it is): 20%</em>
+
+              <br><br>
+              <u>Report Summary:</u>
+              <br>
+              The expert reports that, based on his assessment of the image, a Rinian spy plane was not flying over   the island at the time the images were captured.
+
+            </p>
+        </div>
+
+        <div id="evidence3" class="tab-pane fade">
+          <h4>Ul’Sandan Drone Evidence</h4>
+            <em><u>Evidence 3:</u></em>
+            <p>
+              <em>Department of Defense Report</em>
+              <br><br>
+              As an Ul’Sandan official, you have access to Ul’Sandan military logs regarding possible flight paths of Ul’Sandan aircraft – including Ul’Sandan drones. These reports can generally be considered to be highly reliable, and the report reliability statistics  are taken to be the following:
+
+              <br><br>
+              <u>Report Reliability Statistics:</u>
+              <br>
+              <em>False Positive Rate (reporting that a certain flight path was followed when in fact it was not): 5%</em>
+              <br>
+              <em>False Negative Rate (reporting that a certain flight path was not followed when in fact it was the path taken): 5%</em>
+
+              <br><br>
+              <u>Report Summary:</u>
+              <br>
+              The report states that, based on an assessment of Defence Department logs, a Ul’Sandan  drone flew over the island while the Black Site was present.
+
+            </p>
+        </div>
+
+        <div id="evidence4" class="tab-pane fade">
+          <h4>Ul’Sandan Drone Evidence</h4>
+            <em><u>Evidence 4:</u></em>
+            <p>
+              <em>Domestic Contrail Expert on Ul’Sandan Drones</em>
+              <br><br>
+              Contrails of Ul’Sandan drones are quite different from contrails of Rinian spy planes. A member of your team is an expert on the contrails of Ul’Sandan drones, and has experience with a large number of prior incidents, so you show the expert the image taken of the potential contrails.
+
+              <br><br>
+              Your teammate’s history of reliability and accuracy reveals, however, that her assessments are not perfect. In particular, verification statistics indicate that this expert is overly cautious; frequently proclaiming that suspicious cloud formations / contrails are not the contrails of Ul’Sandan Drones when they in fact are (although she sometimes makes the opposite mistake). Checking the expert’s verified performance statistics you find:
+
+              <br><br>
+              <u>Expert Reliability Statistics:</u>
+              <br>
+              <em>False Positive Rate (classifying suspicious image as an Ul’Sandan drone contrail, when in fact it is not): 20%</em>
+              <br>
+              <em>False Negative Rate (classifying suspicious image as not an Ul’Sandan drone contrail, when in fact it is): 30%</em>
+
+              <br><br>
+              <u>Report Summary:</u>
+              <br>
+              The expert reports that, based on her assessment of the image, a Ul’Sandan drone was not flying over the island at the time the images were captured.
+
+            </p>
+        </div>
+
+        <div id="evidence5" class="tab-pane fade">
+          <h4>Technical Report Evidence</h4>
+            <em><u>Evidence 5:</u></em>
+            <p>
+              <em>Radar Station automated logs</em>
+              <br><br>
+              An old radar listening station is located on the island, covering the area of sky above the island’s landmass.
+
+              <br><br>
+              These stations were automated, and were designed to look for particular radar signatures, providing a simple daily report log that indicated positive if anything meeting its target signature characteristics had been detected in the last 24 hours(and negative if nothing had).
+
+              <br><br>
+
+              <u>Automated Report Log Reliability:</u>
+              <br>
+               Even now, the automated report logs are considered highly reliable, in that they have very low chances of false positives (0.5%) if no such signatures were present. There is however, an issue with the report logs: Although the radar station was originally designed to look for signatures corresponding to the typical size and altitudes of Rinian spy planes, in more modern times, two types of plane are known to fit these criteria: Rinian spy planes and Ul’Sandan drones. As such, the engineers who maintain the station provide you with the statistics they have regarding typical detection probabilities for each of these two cases:
+
+              <br><br>
+
+              Ul-Sandan drones have typically triggered positive reports 95% of the time they have been known to fly within the range of the radar, while modern Rinian spy planes have typically triggered positive reports 90% of the time that they are known to be within the area covered by the radar.
+
+              <br><br>
+
+              <u>Automated Report Log:</u>
+              <br>
+              The report comes back as positive for the 24-hour period when the Black Site was present.
+
+            </p>
         </div>
 
 
@@ -188,7 +587,7 @@
                       h2
                     </div>
 
-                    <img src="../pic/arrow11.png", style="width: 200px;height: 30px; margin-left:180px; display: block;">
+                    <img src="../pic/arrow11.png", style="width: 215px;height: 30px; margin-left:170px; display: block;">
 
 
                 
@@ -302,6 +701,7 @@
                 </table> -->
             
               </div>
+            </div>
           
           </div>
           
@@ -1066,6 +1466,7 @@
   <script src ="../js/treeScripts_generalExamples.js"></script>
   <script src='../decimal.js-10.0.1/decimal.min.js'></script>
   <script src="../js/demo_general.js"></script>
+  <script src="../js/nav_general.js"></script>
   
 
  
