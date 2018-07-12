@@ -32,11 +32,11 @@
 
   <div class="row">
 
-    <div class="col-sm-6">
+    <div class="col-sm-5">
 
       <ul class="nav nav-tabs">
       
-        <li><a data-toggle = "tab" href="#BasicTask">Basic Task</a></li> 
+        <li><a data-toggle = "tab" href="#BasicTask">1 cue</a></li> 
         <li><a data-toggle = "tab" href="#3valueCues">1 cue 3 values</a></li>
         <li><a data-toggle = "tab" href="#3hypotheses">3 hypotheses</a></li>
         <li><a data-toggle = "tab" href="#2cues">2 cues</a></li>
@@ -124,10 +124,10 @@
 
   
 
-    <div class="col-sm-6">
+    <div class="col-sm-7">
 
         <ul class="nav nav-tabs">
-          <li class="active"><a data-toggle = "tab" href="#E1Tree" id="E1tab">Basic Task</a></li>
+          <li class="active"><a data-toggle = "tab" href="#E1Tree" id="E1tab">1 cue</a></li>
           <li><a data-toggle = "tab" href="#E2Tree" id="E2tab">1 cue 3 values</a></li>
           <li><a data-toggle = "tab" href="#E3Tree" id="E3tab">3 hypotheses</a></li>
           <li><a data-toggle = "tab" href="#E4Tree" id="E4tab">2 cues</a></li>
@@ -142,14 +142,29 @@
               <div class="main">
                 
                 <div class="hypothesis">
-                  <form >
-                  Your hypothesis: <input type="text" name="hypohtesis" value="Has cancer"><br>
-                  Alternative hypothesis: <input type="text" name="alternativeHypo" value="No cancer"><br>
-                 
-                  </form>
-                  <hr>
+                  
+                  Your hypothesis: <input class="h1Input" type="text" name="hypohtesis" value="h1"><br>
+                  Alternative hypothesis: <input class="h2Input" type="text" name="alternativeHypo" value="h2">
+                
                 </div>
 
+                <div class="popSize">
+                
+                  <label for="maxvalue">Choose population size</label>
+
+                  <select class="maxvalue" style="width:200px;">
+                   <option value="100">100</option>
+                   <option selected value="1000">1000</option>
+                   <option value="10,000">10,000</option>
+                   <option value="100,000">100,000</option>
+                   <option value="1,000,000">1,000,000</option>
+                  </select>
+
+                </div>
+
+                <hr>
+
+                
 
                 <div class="tree">
 
@@ -163,7 +178,19 @@
 
                     <div style="font-size: 15px;margin-left: 250px;">Hypotheses</div>
 
-                    <img src="../pic/arrow4.png", style="width: 200px; margin-left:190px; display: block;">
+                    <img src="../pic/arrow10.png", style="width: 70px;height: 30px; margin-left:240px; display: block;">
+
+                    <div class="h1Output">
+                      h1
+                    </div>
+
+                    <div class="h2Output">
+                      h2
+                    </div>
+
+                    <img src="../pic/arrow11.png", style="width: 200px;height: 30px; margin-left:180px; display: block;">
+
+
                 
 
                     <input type="number" class="baseRate" value="0.5" step="0.1" min="0" max="1">
@@ -222,8 +249,10 @@
                     <div class="results"> 0.5</div>
                   
                   </div>
+
+                   Suggested population size: <div class="sugPop">1000</div> <br>
                
-                </div>
+                
             
 <!-- 
                 <table class="table">
@@ -964,6 +993,7 @@
                       </div>
                       <span> = </span>
                     <div class="results"> 0.5</div>
+
                   
                   </div>
                

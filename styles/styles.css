@@ -33,6 +33,34 @@
 
 }
 
+.h1Output {
+	display: inline-flex;
+	font-size: 18px;
+	padding: 0px;
+	color: orange;
+	margin-left: 210px;
+	width: 100px;
+}
+
+.h2Output {
+	display: inline-flex;
+	font-size: 18px;
+	padding: 0px;
+	color: orange;
+	margin-left: 0px;
+	width: 300px;
+}
+
+#maxvalue {
+	width: 200px;
+
+}
+
+label {
+	font-weight: 0px;
+	margin-left: 10px;
+}
+
 .main{
 	/*display: flex;*/
 	align-items: flex-start;
@@ -79,7 +107,7 @@
 .baseRate{
 	width: 70px;
 	margin-left: 80px;
-	display: inline-block;
+	display: inline-flex;
 	font-size: 15px;
 }
 
@@ -213,4 +241,10 @@ td,th {
 	/*padding: 10px;*/
 }
 
+.results {
+	margin-bottom: 50px;
+}
 
+.sugPop {
+	display: inline;
+}
