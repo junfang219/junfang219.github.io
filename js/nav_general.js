@@ -17,7 +17,7 @@ let cue2Content = document.querySelector("#c2C");
 let cue3Content = document.querySelector("#c3C");
 
 cue1.addEventListener("click", function() {
-	BT.innerHTML = "1 cue";
+	BT.innerHTML = "Basic Task";
 	content.innerHTML = cue1Content.innerHTML;
 	BT.style.cssText = "border:1px solid lightgrey";
 	SC.style.cssText = "border:none";
@@ -85,7 +85,7 @@ let c2qContent = document.querySelector("#Case2Q");
 let ccContent = document.querySelector("#CaseComparison");
 
 case1.addEventListener("click", function() {
-	SC.innerHTML = "Case 1";
+	SC.innerHTML = "Stolen Cash Case";
 	content.innerHTML = c1Content.innerHTML;
 	SC.style.cssText = "border:1px solid lightgrey";
 	BT.style.cssText = "border:none";
