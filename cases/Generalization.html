@@ -650,56 +650,6 @@
                   </div>
 
                    Suggested population size: <div class="sugPop">1000</div> <br>
-               
-                
-            
-<!-- 
-                <table class="table">
-
-                    <tr>
-                      <th>Frequency</th>
-                      <th>True positive</th>
-                      <th>True negative</th>
-                      <th>Total</th>
-                    </tr>
-
-                  <tr>
-                    <td></td>
-                    <td>hit</td>
-                    <td>false alarm</td>
-                    <td>All positive</td>
-                  </tr>
-
-                    <tr class="row1">
-                      <td>Positive test</td>
-                      <td class="row11"><div class="hitTableResult">250</div></td>
-                      <td class="row12"><div class="faTableResult">250</div></td>
-                      <td class="row13"><div class="marginalPositiveResult">500</div></td>
-                    </tr>
-                
-                  <tr>
-                    <td></td>
-                    <td>miss</td>
-                    <td>correct reject</td>
-                    <td>All negative</td>
-                  </tr>
-
-                    <tr class="row2">
-                      <td>Negative test</td>
-                      <td class="row21"><div class="missTableResult">250</div></td>
-                      <td class="row22"><div class="crTableResult"> 250</div></td>
-                      <td class="row23"><div class="marginalNegativeResult">500</div></td>
-                    </tr>
-
-                    <tr class="row3">
-                      <td>Total</td>
-                      <td class="baseTableResult">500</td>
-                      <td class="noiseTableResult">500</td>
-                      <td class="freTableTotal">1000</td>
-                    </tr>
-
-                </table> -->
-            
               </div>
             </div>
           
@@ -711,15 +661,28 @@
           
               <div class="main">
 
-                <div class="hypothesis">
-                  <form >
-                  Your hypothesis: <input type="text" name="hypohtesis" value="Has cancer"><br>
-                  Alternative hypothesis: <input type="text" name="alternativeHypo" value="No cancer"><br>
-                 
-                  </form>
-                  <hr>
+                  <div class="hypothesis">
+                  
+                  Your hypothesis: <input class="h1Input" type="text" name="hypohtesis" value="h1"><br>
+                  Alternative hypothesis: <input class="h2Input" type="text" name="alternativeHypo" value="h2">
+                
                 </div>
 
+                <div class="popSize">
+                
+                  <label for="maxvalue">Choose population size</label>
+
+                  <select class="maxvalue" style="width:200px;">
+                   <option value="100">100</option>
+                   <option selected value="1000">1000</option>
+                   <option value="10,000">10,000</option>
+                   <option value="100,000">100,000</option>
+                   <option value="1,000,000">1,000,000</option>
+                  </select>
+
+                </div>
+
+                <hr>
                 <div class="tree">
 
                     <button class="btn probability active1">Probability</button>
@@ -731,7 +694,17 @@
 
                     <div style="font-size: 15px;margin-left: 300px;">Hypotheses</div>
 
-                    <img src="../pic/arrow4.png", style="width: 250px; margin-left:200px; display: block;">
+                    <img src="../pic/arrow10.png", style="width: 90px;height: 30px; margin-left:290px; display: block;">
+
+                    <div class="h1Output" style="margin-left: 260px;">
+                      h1
+                    </div>
+
+                    <div class="h2Output" style="margin-left: 20px;">
+                      h2
+                    </div>
+
+                    <img src="../pic/arrow11.png", style="width: 265px;height: 30px; margin-left:210px; display: block;">
                 
 
                     <input type="number" class="oneC3VbaseRate" value="0.5" step="0.1" min="0" max="1">
@@ -798,56 +771,9 @@
                     <div class="results"> 0.5</div>
                   
                   </div>
+                  Suggested population size: <div class="sugPop">1000</div> <br>
                
                 </div>
-            
-
-                 <!-- <table class="table">
-
-                    <tr>
-                      <th>Frequency</th>
-                      <th>True positive</th>
-                      <th>True negative</th>
-                      <th>Total</th>
-                    </tr>
-
-                  <tr>
-                    <td></td>
-                    <td>hit</td>
-                    <td>false alarm</td>
-                    <td>All positive</td>
-                  </tr>
-
-                    <tr class="row1">
-                      <td>Positive test</td>
-                      <td class="row11"><div class="hitTableResult">250</div></td>
-                      <td class="row12"><div class="faTableResult">250</div></td>
-                      <td class="row13"><div class="marginalPositiveResult">500</div></td>
-                    </tr>
-                
-                  <tr>
-                    <td></td>
-                    <td>miss</td>
-                    <td>correct reject</td>
-                    <td>All negative</td>
-                  </tr>
-
-                    <tr class="row2">
-                      <td>Negative test</td>
-                      <td class="row21"><div class="missTableResult">250</div></td>
-                      <td class="row22"><div class="crTableResult"> 250</div></td>
-                      <td class="row23"><div class="marginalNegativeResult">500</div></td>
-                    </tr>
-
-                    <tr class="row3">
-                      <td>Total</td>
-                      <td class="baseTableResult">500</td>
-                      <td class="noiseTableResult">500</td>
-                      <td class="freTableTotal">1000</td>
-                    </tr>
-
-                </table> -->
-            
             
               </div>
           </div>
@@ -863,8 +789,24 @@
                   Hypothesis 3: <input type="text" name="hypothesis3" value="No disease"><br>
                  
                   </form>
-                  <hr>
+
                 </div>
+
+                <div class="popSize">
+                
+                  <label for="maxvalue">Choose population size</label>
+
+                  <select class="maxvalue" style="width:200px;">
+                   <option value="100">100</option>
+                   <option selected value="1000">1000</option>
+                   <option value="10,000">10,000</option>
+                   <option value="100,000">100,000</option>
+                   <option value="1,000,000">1,000,000</option>
+                  </select>
+
+                </div>
+
+                <hr>
 
                 <div class="tree">
 
@@ -877,8 +819,21 @@
 
                     <div style="font-size: 15px;margin-left: 300px;">Hypotheses</div>
 
-                    <img src="../pic/arrow6.png", style="width: 300px; margin-left:180px; display: block;">
-                
+                    <img src="../pic/arrow12.png", style="width: 90px;height: 30px; margin-left:290px; display: block;">
+
+                    <div class="h1Output" style="margin-left: 260px;width: 50px;">
+                      h1
+                    </div>
+
+                    <div class="h2Output" style="margin-left: 10px;" >
+                      h2
+                    </div>
+
+                     <div class="h3Output" style="margin-left: 10px;">
+                      h3
+                    </div>
+
+                    <img src="../pic/arrow13.png", style="width: 275px;height: 30px; margin-left:205px; display: block;">
 
                     <input type="number" class="h3baseRate1" value="0.33" step="0.1" min="0" max="1">
                
@@ -950,6 +905,7 @@
                     <div class="results"> 0.33</div>
      
                   </div>
+                   Suggested population size: <div class="sugPop">1000</div> <br>
      
                 </div>
             
@@ -964,12 +920,26 @@
 
                 <div class="hypothesis">
                   <form >
-                  Hypothesis 1: <input type="text" name="hypohtesis1" value="Cancer"><br>
-                  Hypothesis 2: <input type="text" name="hypothesis2" value="No cancer"><br>
+                  Hypothesis 1: <input type="text" name="hypohtesis1" value="h1"><br>
+                  Hypothesis 2: <input type="text" name="hypothesis2" value="h2">
                   </form>
-                  <hr>
+                  
                 </div>
-             
+
+                  <div class="popSize">
+                
+                  <label for="maxvalue">Choose population size</label>
+
+                  <select class="maxvalue" style="width:200px;">
+                   <option value="100">100</option>
+                   <option selected value="1000">1000</option>
+                   <option value="10,000">10,000</option>
+                   <option value="100,000">100,000</option>
+                   <option value="1,000,000">1,000,000</option>
+                  </select>
+
+                </div>
+                <hr>
 
                 <div class="tree">
 
@@ -980,10 +950,19 @@
                   
                     <div class="c2pop_number">800</div>
 
-                    <div style="font-size: 15px;margin-left:350px;">Hypothesis</div>
+                    <div style="font-size: 15px;margin-left:320px;">Hypothesis</div>
 
-                    <img src="../pic/arrow4.png", style="width: 230px; margin-left:250px; display: block;">
-                
+                    <img src="../pic/arrow10.png", style="width: 90px;height: 30px; margin-left:300px; display: block;">
+
+                    <div class="h1Output" style="margin-left: 280px;">
+                      h1
+                    </div>
+
+                    <div class="h2Output" style="margin-left: 20px;">
+                      h2
+                    </div>
+
+                    <img src="../pic/arrow11.png", style="width: 260px;height: 30px; margin-left:220px; display: block;">
 
                     <input type="number" class="c2baseRate" value="0.5" step="0.1" min="0" max="1">
                
@@ -1086,6 +1065,7 @@
                     <div class="results"> 0.5</div>
                   
                   </div>
+                   Suggested population size: <div class="sugPop">1000</div> <br>
                
                 </div>
             
@@ -1099,11 +1079,26 @@
 
                 <div class="hypothesis">
                   <form >
-                  Hypothesis 1: <input type="text" name="hypohtesis1" value="Complaint"><br>
-                  Hypothesis 2: <input type="text" name="hypothesis2" value="No complaint"><br>
+                  Hypothesis 1: <input type="text" name="hypohtesis1" value="h1"><br>
+                  Hypothesis 2: <input type="text" name="hypothesis2" value="h2">
                   </form>
-                  <hr>
+                  
                 </div>
+
+                <div class="popSize">
+                
+                  <label for="maxvalue">Choose population size</label>
+
+                  <select class="maxvalue" style="width:200px;">
+                   <option value="100">100</option>
+                   <option selected value="1000">1000</option>
+                   <option value="10,000">10,000</option>
+                   <option value="100,000">100,000</option>
+                   <option value="1,000,000">1,000,000</option>
+                  </select>
+
+                </div>
+                <hr>
              
 
                 <div class="tree">
@@ -1115,9 +1110,19 @@
                   
                     <div class="c3pop_number">800</div>
 
-                    <div style="font-size: 15px;margin-left:350px;">Hypothesis</div>
+                    <div style="font-size: 15px;margin-left:320px;">Hypothesis</div>
 
-                    <img src="../pic/arrow4.png", style="width: 230px; margin-left:250px; display: block;">
+                    <img src="../pic/arrow10.png", style="width: 90px;height: 30px; margin-left:300px; display: block;">
+
+                    <div class="h1Output" style="margin-left: 280px;">
+                      h1
+                    </div>
+
+                    <div class="h2Output" style="margin-left: 20px;">
+                      h2
+                    </div>
+
+                    <img src="../pic/arrow11.png", style="width: 260px;height: 30px; margin-left:220px; display: block;">
                 
 
                     <input type="number" class="c3baseRate" value="0.5" step="0.1" min="0" max="1">
@@ -1309,6 +1314,8 @@
                     <div class="results"> 0.5</div>
                   
                   </div>
+
+                   Suggested population size: <div class="sugPop">1000</div> <br>
                
                 </div>
             

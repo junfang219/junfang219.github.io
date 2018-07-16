@@ -47,8 +47,17 @@
 	font-size: 18px;
 	padding: 0px;
 	color: orange;
+	margin-left: 10px;
+	width: 80px;
+}
+
+.h3Output {
+	display: inline-flex;
+	font-size: 18px;
+	padding: 0px;
+	color: orange;
 	margin-left: 0px;
-	width: 300px;
+	width: 100px;
 }
 
 #maxvalue {
@@ -242,7 +251,7 @@ td,th {
 }
 
 .results {
-	margin-bottom: 50px;
+	margin-bottom: 40px;
 }
 
 .sugPop {

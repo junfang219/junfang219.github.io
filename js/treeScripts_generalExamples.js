@@ -556,17 +556,26 @@ let selectTree = function() {
 		let main = tree.firstElementChild;
 
 		// Declare input
+		let h1Input;
+		let h2Input;
+
+		let popSize;
+		let popSinput;
+
 		let baseRate;
 		let nbaseRate;
 		let hitRate;
 		let missRate;
 		let faRate;
 		let crRate;
+
 		let unclearRate1
 		let unclearRate2
 
 		// Declare tree output
 		let popOutput;
+		let h1Output;
+		let h2Output;
 		let baseOutput;
 		let noiseOutput;
 
@@ -574,8 +583,10 @@ let selectTree = function() {
 		let miss;
 		let falseAlarm;
 		let correctReject;
-		let unclear1
-		let unclear2
+		let unclear1;
+		let unclear2;
+
+		let sugPop;
 
 		// Probability div output
 		let results;
@@ -594,7 +605,19 @@ let selectTree = function() {
 		// Get input and output from DOM
 		for (let i = 0; i < main.children.length; i++) {
 			let currChild = main.children[i];
-			if (currChild.className == "tree") {
+
+			if (currChild.className == "hypothesis") {
+				let hypoDiv = currChild;
+
+				h1Input = hypoDiv.firstElementChild;
+				h2Input = hypoDiv.lastElementChild;
+			}
+			else if (currChild.className == "popSize") {
+				let popDiv = currChild;
+
+				popSize = popDiv.lastElementChild;
+			}
+			else if (currChild.className == "tree") {
 				treeDiv = currChild;
 				for (let j = 0; j < treeDiv.children.length; j++) {	
 					
@@ -607,6 +630,12 @@ let selectTree = function() {
 					}
 					else if (childClass == "oneC3Vpop_number") {
 						popOutput = treeDiv.children[j];
+					}
+					else if (childClass == "h1Output") {
+						h1Output = treeDiv.children[j];
+					}
+					else if (childClass == "h2Output") {
+						h2Output = treeDiv.children[j];	
 					}
 					else if (childClass == "oneC3VbaseRate") {
 						baseRate = treeDiv.children[j];	
@@ -698,7 +727,10 @@ let selectTree = function() {
 							
 						}
 					}
-					
+					else if (childClass == "sugPop") {
+							sugPop = treeDiv.children[j];
+							
+					}
 				}
 			}	
 	    } 
@@ -737,6 +769,7 @@ let selectTree = function() {
 			 hitResult_sup.innerHTML = 100;
 			 hitResult_bottom.innerHTML = 100;
 			 falseAlarmResult.innerHTML = 100;
+			 sugPop.innerHTML = 1000;
 			 
 		}
 	  		
@@ -774,6 +807,104 @@ let selectTree = function() {
 			 probPercToggle(e);
 			 OutputInitialize();
 
+	  	});
+
+	  	popSinput = popSize.value;
+
+	  	popSize.addEventListener("change", function() {
+	  		popSinput = popSize.value;
+	  		popOutput.innerHTML = popSinput;
+	  		popSinputNum = parseFloat(popSinput.replace(/,/g, ''));
+			let ps = new Decimal(popSinputNum);
+
+				if (isProb) {
+				let nb = new Decimal(nbaseRate.value);
+				let h = new Decimal(hitRate.value);
+				let b = new Decimal(baseRate.value);
+				let m = new Decimal(missRate.value);
+				let fa = new Decimal(faRate.value);
+				let cr = new Decimal(crRate.value);
+				let uc1 = new Decimal(unclearRate1.value);
+				let uc2 = new Decimal(unclearRate2.value);
+
+
+				let lp = ps;
+				let lb = ps.times(b);
+				let lnb = lp.minus(lb);
+
+				let lhit = ps.times(b).times(h);
+				let lunclear1 = ps.times(b).times(uc1)
+				let lmiss = lb.minus(lhit.plus(lunclear1));
+				
+				let lfa = ps.times(nb).times(fa);
+				let lunclear2 = ps.times(nb).times(uc2);
+				let lcr = lnb.minus(lfa.plus(lunclear2));
+
+				popOutput.innerHTML = popSinput;
+				baseOutput.innerHTML = lb.toFixed(0);
+				noiseOutput.innerHTML = lnb.toFixed(0);
+
+				hit.innerHTML = lhit.toFixed(0);
+				unclear1.innerHTML = lunclear1.toFixed(0);
+				miss.innerHTML = lmiss.toFixed(0);
+				falseAlarm.innerHTML = lfa.toFixed(0);
+				unclear2.innerHTML = lunclear2.toFixed(0);
+				correctReject.innerHTML = lcr.toFixed(0);
+
+				hitResult_sup.innerHTML = lhit.toFixed(0);
+				hitResult_bottom.innerHTML = lhit.toFixed(0);
+				falseAlarmResult.innerHTML = lfa.toFixed(0);
+				results.innerHTML = (parseInt(lhit.toFixed(0)) / (parseInt(lhit.toFixed(0)) + parseInt((lfa).toFixed(0)))).toFixed(4);
+				//results.innerHTML = ps.times(b).times(h).dividedBy(ps.times(b).times(h).plus(ps.times(nb).times(fa))).toNumber().toPrecision(3);
+				//sugPop.innerHTML = 1000;
+				}
+				else {
+					let nb = new Decimal(nbaseRate.value).dividedBy(100);
+					let h = new Decimal(hitRate.value).dividedBy(100);
+					let b = new Decimal(baseRate.value).dividedBy(100);
+					let m = new Decimal(missRate.value).dividedBy(100);
+					let fa = new Decimal(faRate.value).dividedBy(100);
+					let cr = new Decimal(crRate.value).dividedBy(100);
+					let uc1 = new Decimal(unclearRate1.value).dividedBy(100);
+					let uc2 = new Decimal(unclearRate2.value).dividedBy(100);
+
+					let lp = ps;
+					let lb = ps.times(b);
+					let lnb = lp.minus(lb);
+
+					let lhit = ps.times(b).times(h);
+					let lunclear1 = ps.times(b).times(uc1)
+					let lmiss = lb.minus(lhit).minus(lunclear1);
+					
+					let lfa = ps.times(nb).times(fa);
+					let lunclear2 = ps.times(nb).times(uc2);
+					let lcr = lnb.minus(lfa).minus(lunclear2);
+
+					popOutput.innerHTML = popSinput;
+					baseOutput.innerHTML = lb.toFixed(0);
+					noiseOutput.innerHTML = lnb.toFixed(0);
+
+					hit.innerHTML = lhit.toFixed(0);
+					unclear1.innerHTML = lunclear1.toFixed(0);
+					miss.innerHTML = lmiss.toFixed(0);
+					falseAlarm.innerHTML = lfa.toFixed(0);
+					unclear2.innerHTML = lunclear2.toFixed(0);
+					correctReject.innerHTML = lcr.toFixed(0);
+
+					hitResult_sup.innerHTML = lhit.toFixed(0);
+					hitResult_bottom.innerHTML = lhit.toFixed(0);
+					falseAlarmResult.innerHTML = lfa.toFixed(0);
+					results.innerHTML = (parseInt(lhit.toFixed(0)) / (parseInt(lhit.toFixed(0)) + parseInt((lfa).toFixed(0)))).toFixed(4);
+
+				}
+	  	});
+
+	  	h1Input.addEventListener("change", function(){
+	  		h1Output.innerHTML = h1Input.value;
+	  	});
+
+		h2Input.addEventListener("change", function(){
+	  		h2Output.innerHTML = h2Input.value;
 	  	});
 
 	    baseRate.addEventListener("change", changeEventHandler);
@@ -824,37 +955,69 @@ let selectTree = function() {
 
 				// Results
 				let f_max = oneC3V_max_factor(fhit,fuc1,fmiss,ffa,fuc2,fcr);
-				let popOutputTreeResult= f_max;
-				let baseOutputTreeResult = f_max.times(b);
-				let noiseOutputTreeResult = f_max.times(nb);		
+				// let popOutputTreeResult= f_max;
+				// let baseOutputTreeResult = f_max.times(b);
+				// let noiseOutputTreeResult = f_max.times(nb);		
 
-				let hitTreeResult = (f_max.times(b)).times(h);
-				let missTreeResult = (f_max.times(b)).times(m);
-				let falseAlarmTreeResult= (f_max.times(nb)).times(fa);
-				let corretRejectTreeResult = (f_max.times(nb)).times(cr);
-				// let postiveTestTreeResult = hitTreeResult.plus(falseAlarmTreeResult);
-				// let negativeTestTreeResult = missTreeResult.plus(corretRejectTreeResult);
-				let unclear1TreeResult = (f_max.times(b)).times(uc1);
-				let unclear2TreeResult = (f_max.times(nb)).times(uc2);
+				// let hitTreeResult = (f_max.times(b)).times(h);
+				// let missTreeResult = (f_max.times(b)).times(m);
+				// let falseAlarmTreeResult= (f_max.times(nb)).times(fa);
+				// let corretRejectTreeResult = (f_max.times(nb)).times(cr);
+				// // let postiveTestTreeResult = hitTreeResult.plus(falseAlarmTreeResult);
+				// // let negativeTestTreeResult = missTreeResult.plus(corretRejectTreeResult);
+				// let unclear1TreeResult = (f_max.times(b)).times(uc1);
+				// let unclear2TreeResult = (f_max.times(nb)).times(uc2);
 
-				// assigned values for tree output
-				popOutput.innerHTML = popOutputTreeResult.toNumber();
-				baseOutput.innerHTML = baseOutputTreeResult.toNumber();
-				noiseOutput.innerHTML = noiseOutputTreeResult.toNumber();
+				// // assigned values for tree output
+				// popOutput.innerHTML = popOutputTreeResult.toNumber();
+				// baseOutput.innerHTML = baseOutputTreeResult.toNumber();
+				// noiseOutput.innerHTML = noiseOutputTreeResult.toNumber();
 
-				hit.innerHTML = hitTreeResult.toNumber();
-				miss.innerHTML = missTreeResult.toNumber();
-				falseAlarm.innerHTML = falseAlarmTreeResult.toNumber();
-				correctReject.innerHTML = corretRejectTreeResult.toNumber();
-				unclear1.innerHTML = unclear1TreeResult.toNumber();
-				unclear2.innerHTML = unclear2TreeResult.toNumber();
+				// hit.innerHTML = hitTreeResult.toNumber();
+				// miss.innerHTML = missTreeResult.toNumber();
+				// falseAlarm.innerHTML = falseAlarmTreeResult.toNumber();
+				// correctReject.innerHTML = corretRejectTreeResult.toNumber();
+				// unclear1.innerHTML = unclear1TreeResult.toNumber();
+				// unclear2.innerHTML = unclear2TreeResult.toNumber();
+
+				popSinputNum = parseFloat(popSinput.replace(/,/g, ''));
+				let ps = new Decimal(popSinputNum);
+				let lp = ps;
+				let lb = ps.times(b);
+				let lnb = lp.minus(lb);
+
+				let lhit = ps.times(b).times(h);
+				let lunclear1 = ps.times(b).times(uc1)
+				let lmiss = lb.minus(lhit.plus(lunclear1));
+				
+				let lfa = ps.times(nb).times(fa);
+				let lunclear2 = ps.times(nb).times(uc2);
+				let lcr = lnb.minus(lfa.plus(lunclear2));
+
+				popOutput.innerHTML = popSinput;
+				baseOutput.innerHTML = lb.toFixed(0);
+				noiseOutput.innerHTML = lnb.toFixed(0);
+
+				hit.innerHTML = lhit.toFixed(0);
+				miss.innerHTML = lmiss.toFixed(0);
+				unclear1.innerHTML = lunclear1.toFixed(0);
+				falseAlarm.innerHTML = lfa.toFixed(0);
+				unclear2.innerHTML = lunclear2.toFixed(0);
+				correctReject.innerHTML = lcr.toFixed(0);
+
+				hitResult_sup.innerHTML = lhit.toFixed(0);
+				hitResult_bottom.innerHTML = lhit.toFixed(0);
+				falseAlarmResult.innerHTML = lfa.toFixed(0);
+
+				results.innerHTML = (parseInt(lhit.toFixed(0)) / (parseInt(lhit.toFixed(0)) + parseInt((lfa).toFixed(0)))).toFixed(4);
+				sugPop.innerHTML = f_max.toNumber();
 
 
 				// assigned values for the equation
-				hitResult_sup.innerHTML = hitTreeResult.toNumber();
-				hitResult_bottom.innerHTML = hitTreeResult.toNumber();
-				falseAlarmResult.innerHTML = falseAlarmTreeResult.toNumber();
-				results.innerHTML = hitTreeResult.dividedBy(hitTreeResult.plus(falseAlarmTreeResult)).toNumber().toPrecision(3);
+				// hitResult_sup.innerHTML = hitTreeResult.toNumber();
+				// hitResult_bottom.innerHTML = hitTreeResult.toNumber();
+				// falseAlarmResult.innerHTML = falseAlarmTreeResult.toNumber();
+				// results.innerHTML = hitTreeResult.dividedBy(hitTreeResult.plus(falseAlarmTreeResult)).toNumber().toPrecision(3);
 
 
 			} else {
@@ -888,42 +1051,79 @@ let selectTree = function() {
 				let fcr = cr.times(nb);
 				let fuc1 = uc1.times(b);
 				let fuc2 = uc2.times(nb);
+				
+				popSinputNum = parseFloat(popSinput.replace(/,/g, ''));
+				let ps = new Decimal(popSinputNum);
+				let lp = ps;
+				let lb = ps.times(b);
+				let lnb = lp.minus(lb);
+
+				let lhit = ps.times(b).times(h);
+				let lunclear1 = ps.times(b).times(uc1)
+				let lmiss = lb.minus(lhit.plus(lunclear1));
+				
+				let lfa = ps.times(nb).times(fa);
+				let lunclear2 = ps.times(nb).times(uc2);
+				let lcr = lnb.minus(lfa.plus(lunclear2));
 
 				// Results
 				let f_max = oneC3V_max_factor(fhit,fuc1,fmiss,ffa,fuc2,fcr);
-				let popOutputTreeResult= f_max;
-				let baseOutputTreeResult = f_max.times(b);
-				let noiseOutputTreeResult = f_max.times(nb);
+				// let popOutputTreeResult= f_max;
+				// let baseOutputTreeResult = f_max.times(b);
+				// let noiseOutputTreeResult = f_max.times(nb);
 
-				let hitTreeResult = (f_max.times(b)).times(h);
-				let missTreeResult = (f_max.times(b)).times(m);
-				let falseAlarmTreeResult= (f_max.times(nb)).times(fa);
-				let corretRejectTreeResult = (f_max.times(nb)).times(cr);
-				// let postiveTestTreeResult = hitTreeResult.plus(falseAlarmTreeResult);
-				// let negativeTestTreeResult = missTreeResult.plus(corretRejectTreeResult);
-				let unclear1TreeResult = (f_max.times(b)).times(uc1);
-				let unclear2TreeResult = (f_max.times(nb)).times(uc2);
+				// let hitTreeResult = (f_max.times(b)).times(h);
+				// let missTreeResult = (f_max.times(b)).times(m);
+				// let falseAlarmTreeResult= (f_max.times(nb)).times(fa);
+				// let corretRejectTreeResult = (f_max.times(nb)).times(cr);
+				// // let postiveTestTreeResult = hitTreeResult.plus(falseAlarmTreeResult);
+				// // let negativeTestTreeResult = missTreeResult.plus(corretRejectTreeResult);
+				// let unclear1TreeResult = (f_max.times(b)).times(uc1);
+				// let unclear2TreeResult = (f_max.times(nb)).times(uc2);
 
 				// Output for tree
-				popOutput.innerHTML = popOutputTreeResult.toNumber();
-				baseOutput.innerHTML = baseOutputTreeResult.toNumber();
-				noiseOutput.innerHTML = noiseOutputTreeResult.toNumber();
 
-				hit.innerHTML = hitTreeResult.toNumber();
-				miss.innerHTML = missTreeResult.toNumber();
-				falseAlarm.innerHTML = falseAlarmTreeResult.toNumber();
-				correctReject.innerHTML = corretRejectTreeResult.toNumber();
-				unclear1.innerHTML = unclear1TreeResult.toNumber();
-				unclear2.innerHTML = unclear2TreeResult.toNumber();
+				// popOutput.innerHTML = popOutputTreeResult.toNumber();
+				// baseOutput.innerHTML = baseOutputTreeResult.toNumber();
+				// noiseOutput.innerHTML = noiseOutputTreeResult.toNumber();
+
+				// hit.innerHTML = hitTreeResult.toNumber();
+				// miss.innerHTML = missTreeResult.toNumber();
+				// falseAlarm.innerHTML = falseAlarmTreeResult.toNumber();
+				// correctReject.innerHTML = corretRejectTreeResult.toNumber();
+				// unclear1.innerHTML = unclear1TreeResult.toNumber();
+				// unclear2.innerHTML = unclear2TreeResult.toNumber();
 
 
 				// assigned values for the equation
-				hitResult_sup.innerHTML = hitTreeResult.toNumber();
-				hitResult_bottom.innerHTML = hitTreeResult.toNumber();
-				falseAlarmResult.innerHTML = falseAlarmTreeResult.toNumber();
-				let oneHundred = new Decimal(100);
-				results.innerHTML = hitTreeResult.dividedBy(hitTreeResult.plus(falseAlarmTreeResult)).times(oneHundred).toNumber().toPrecision(3)+"%";
+				// hitResult_sup.innerHTML = hitTreeResult.toNumber();
+				// hitResult_bottom.innerHTML = hitTreeResult.toNumber();
+				// falseAlarmResult.innerHTML = falseAlarmTreeResult.toNumber();
+				// let oneHundred = new Decimal(100);
+				// results.innerHTML = hitTreeResult.dividedBy(hitTreeResult.plus(falseAlarmTreeResult)).times(oneHundred).toNumber().toPrecision(3)+"%";
 				
+				popOutput.innerHTML = popSinput;
+				baseOutput.innerHTML = lb.toFixed(0);
+				noiseOutput.innerHTML = lnb.toFixed(0);
+
+				hit.innerHTML = lhit.toFixed(0);
+				miss.innerHTML = lmiss.toFixed(0);
+				unclear1.innerHTML = lunclear1.toFixed(0);
+				falseAlarm.innerHTML = lfa.toFixed(0);
+				unclear2.innerHTML = lunclear2.toFixed(0);
+				correctReject.innerHTML = lcr.toFixed(0);
+
+				hitResult_sup.innerHTML = lhit.toFixed(0);
+				hitResult_bottom.innerHTML = lhit.toFixed(0);
+				falseAlarmResult.innerHTML = lfa.toFixed(0);
+
+				results.innerHTML = (parseInt(lhit.toFixed(0)) / (parseInt(lhit.toFixed(0)) + parseInt((lfa).toFixed(0)))).toFixed(4);
+				sugPop.innerHTML = f_max.toNumber();
+				// // assigned values for the equation
+				// hitResult_sup.innerHTML = hitTreeResult.toNumber();
+				// hitResult_bottom.innerHTML = hitTreeResult.toNumber();
+				// falseAlarmResult.innerHTML = falseAlarmTreeResult.toNumber();
+				// results.innerHTML = hitTreeResult.dividedBy(hitTreeResult.plus(falseAlarmTreeResult)).toNumber().toPrecision(3);
 
 			}
 		}
@@ -932,6 +1132,13 @@ let selectTree = function() {
 		let main = tree.firstElementChild;
 
 		// Declare input
+		let h1Input;
+		let h2Input;
+		let h3Input;
+
+		let popSize;
+		let popSinput;
+
 		let baseRate1;
 		let baseRate2;
 		let nbaseRate;
@@ -945,6 +1152,10 @@ let selectTree = function() {
 
 		// Declare tree output
 		let popOutput;
+		let h1Output;
+		let h2Output;
+		let h3Output;
+
 		let baseOutput1;
 		let baseOutput2;
 		let noiseOutput;
@@ -965,6 +1176,8 @@ let selectTree = function() {
 		let hitResult_bottom2;
 		let falseAlarmResult;
 
+		let sugPop;
+
 		//Probability & Percentage btn
 		let probability;
 		let percentage;
@@ -976,7 +1189,22 @@ let selectTree = function() {
 		// Get input and output from DOM
 		for (let i = 0; i < main.children.length; i++) {
 			let currChild = main.children[i];
-			if (currChild.className == "tree") {
+
+			if (currChild.className == "hypothesis") {
+				let hypoDiv = currChild;
+
+				h1Input = hypoDiv.firstElementChild.firstElementChild;
+			
+				h2Input = hypoDiv.firstElementChild.firstElementChild.nextSibling.nextSibling.nextSibling;
+
+				h3Input = hypoDiv.firstElementChild.firstElementChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling;
+
+			}
+			else if (currChild.className == "popSize") {
+				let popDiv = currChild;
+				popSize = popDiv.lastElementChild;
+			}
+			else if (currChild.className == "tree") {
 				treeDiv = currChild;
 				for (let j = 0; j < treeDiv.children.length; j++) {	
 					
@@ -989,6 +1217,16 @@ let selectTree = function() {
 					}
 					else if (childClass == "h3pop_number") {
 						popOutput = treeDiv.children[j];
+					}
+					else if (childClass == "h1Output") {
+						h1Output = treeDiv.children[j];
+					}
+					else if (childClass == "h2Output") {
+						h2Output = treeDiv.children[j];	
+					}
+					else if (childClass == "h3Output") {
+						h3Output = treeDiv.children[j];
+						
 					}
 					else if (childClass == "h3baseRate1") {
 						baseRate1 = treeDiv.children[j];	
@@ -1091,6 +1329,10 @@ let selectTree = function() {
 							
 						}
 					}
+					else if (childClass == "sugPop") {
+							sugPop = treeDiv.children[j];
+							
+						}
 					
 				}
 			}	
@@ -1133,6 +1375,7 @@ let selectTree = function() {
 			 hitResult_bottom1.innerHTML = 150;
 			 hitResult_bottom2.innerHTML = 150;
 			 falseAlarmResult.innerHTML = 150;
+			 sugPop.innerHTML = 1000;
 			 
 		}
 	  		
@@ -1175,6 +1418,118 @@ let selectTree = function() {
 
 	  	});
 
+
+	  	popSinput = popSize.value;
+
+	  	popSize.addEventListener("change", function() {
+	  		popSinput = popSize.value;
+	  		popOutput.innerHTML = popSinput;
+	  		popSinputNum = parseFloat(popSinput.replace(/,/g, ''));
+			let ps = new Decimal(popSinputNum);
+
+				if (isProb) {
+
+				let nb = new Decimal(nbaseRate.value);
+				let b1 = new Decimal(baseRate1.value);
+				let b2 = new Decimal(baseRate2.value);
+				let h1 = new Decimal(hitRate1.value);
+				let h2 = new Decimal(hitRate2.value);
+				let m1 = new Decimal(missRate1.value);
+				let m2 = new Decimal(missRate2.value);
+				let fa = new Decimal(faRate.value);
+				let cr = new Decimal(crRate.value);
+
+
+				let lp = ps;
+				let lb1 = ps.times(b1);
+				let lb2 = ps.times(b2)
+				let lnb = lp.minus(lb1).minus(lb2);
+
+				let lhit1 = ps.times(b1).times(h1);
+				let lmiss1 = lb1.minus(lhit1);
+				let lhit2 = ps.times(b2).times(h2);
+				let lmiss2 = lb2.minus(lhit2);
+				let lfa = ps.times(nb).times(fa);
+				let lcr = lnb.minus(lfa);
+				
+
+				popOutput.innerHTML = popSinput;
+				baseOutput1.innerHTML = lb1.toFixed(0);
+				baseOutput2.innerHTML = lb2.toFixed(0);
+				noiseOutput.innerHTML = lnb.toFixed(0);
+
+				hit1.innerHTML = lhit1.toFixed(0);
+				miss1.innerHTML = lmiss1.toFixed(0);
+				hit2.innerHTML = lhit2.toFixed(0);
+				miss2.innerHTML = lmiss2.toFixed(0);
+				falseAlarm.innerHTML = lfa.toFixed(0);
+				correctReject.innerHTML = lcr.toFixed(0);
+
+				hitResult_sup.innerHTML = lhit1.toFixed(0);
+				hitResult_bottom1.innerHTML = lhit1.toFixed(0);
+				hitResult_bottom2.innerHTML = lhit2.toFixed(0);
+				falseAlarmResult.innerHTML = lfa.toFixed(0);
+				results.innerHTML = (parseInt(lhit1.toFixed(0)) / (parseInt(lhit2.toFixed(0)) + parseInt((lfa).toFixed(0)))).toFixed(4);
+				//results.innerHTML = ps.times(b).times(h).dividedBy(ps.times(b).times(h).plus(ps.times(nb).times(fa))).toNumber().toPrecision(3);
+				//sugPop.innerHTML = 1000;
+				}
+				else {
+
+					let nb = new Decimal(nbaseRate.value).dividedBy(100);
+					let b1 = new Decimal(baseRate1.value).dividedBy(100);
+					let b2 = new Decimal(baseRate2.value).dividedBy(100);
+					let h1 = new Decimal(hitRate1.value).dividedBy(100);
+					let h2 = new Decimal(hitRate2.value).dividedBy(100);
+					let m1 = new Decimal(missRate1.value).dividedBy(100);
+					let m2 = new Decimal(missRate2.value).dividedBy(100);
+					let fa = new Decimal(faRate.value).dividedBy(100);
+					let cr = new Decimal(crRate.value).dividedBy(100);
+
+					let lp = ps;
+					let lb1 = ps.times(b1);
+					let lb2 = ps.times(b2)
+					let lnb = lp.minus(lb1).minus(lb2);
+
+					let lhit1 = ps.times(b1).times(h1);
+					let lmiss1 = lb1.minus(lhit1);
+					let lhit2 = ps.times(b2).times(h2);
+					let lmiss2 = lb2.minus(lhit2);
+					let lfa = ps.times(nb).times(fa);
+					let lcr = lnb.minus(lfa);
+					
+
+					popOutput.innerHTML = popSinput;
+					baseOutput1.innerHTML = lb1.toFixed(0);
+					baseOutput2.innerHTML = lb2.toFixed(0);
+					noiseOutput.innerHTML = lnb.toFixed(0);
+
+					hit1.innerHTML = lhit1.toFixed(0);
+					miss1.innerHTML = lmiss1.toFixed(0);
+					hit2.innerHTML = lhit2.toFixed(0);
+					miss2.innerHTML = lmiss2.toFixed(0);
+					falseAlarm.innerHTML = lfa.toFixed(0);
+					correctReject.innerHTML = lcr.toFixed(0);
+
+					hitResult_sup.innerHTML = lhit1.toFixed(0);
+					hitResult_bottom1.innerHTML = lhit1.toFixed(0);
+					hitResult_bottom2.innerHTML = lhit2.toFixed(0);
+					falseAlarmResult.innerHTML = lfa.toFixed(0);
+					results.innerHTML = (parseInt(lhit1.toFixed(0)) / (parseInt(lhit2.toFixed(0)) + parseInt((lfa).toFixed(0)))).toFixed(4);
+				}
+	  	});
+
+	  	h1Input.addEventListener("change", function(){
+	  		h1Output.innerHTML = h1Input.value;
+	  	});
+
+		h2Input.addEventListener("change", function(){
+	  		h2Output.innerHTML = h2Input.value;
+	  	});
+
+	  	h3Input.addEventListener("change", function(){
+	  		h3Output.innerHTML = h3Input.value;
+	  	});
+
 	    baseRate1.addEventListener("change", changeEventHandler);
 	    baseRate2.addEventListener("change", changeEventHandler);
 		nbaseRate.addEventListener("change", changeEventHandler);
@@ -1212,6 +1567,8 @@ let selectTree = function() {
 					faRate.value = result.toPrecision(4);
 				} else if (event.target.className == "h3faRate") {
 					crRate.value = result.toPrecision(4);
+				} else if (event.target.className == "h3baseRate2") {
+					nbaseRate.value = result.minus(baseRate1.value);
 				}
 
 				let nb = new Decimal(nbaseRate.value);
@@ -1234,41 +1591,42 @@ let selectTree = function() {
 
 				// Results
 				let f_max = oneC3V_max_factor(fhit1,fhit2,fmiss1,fmiss2,ffa,fcr);
-				let popOutputTreeResult= f_max;
-				let baseOutput1TreeResult = f_max.times(b1);
-				let baseOutput2TreeResult = f_max.times(b2);
-				let noiseOutputTreeResult = f_max.times(nb);		
-
-				let hit1TreeResult = (f_max.times(b1)).times(h1);
-				let hit2TreeResult = (f_max.times(b2)).times(h2);
-				let miss1TreeResult = (f_max.times(b1)).times(m1);
-				let miss2TreeResult = (f_max.times(b2)).times(m2);
-				let falseAlarmTreeResult= (f_max.times(nb)).times(fa);
-				let corretRejectTreeResult = (f_max.times(nb)).times(cr);
+			
 				// let postiveTestTreeResult = hitTreeResult.plus(falseAlarmTreeResult);
 				// let negativeTestTreeResult = missTreeResult.plus(corretRejectTreeResult);
+				popSinputNum = parseFloat(popSinput.replace(/,/g, ''));
+				let ps = new Decimal(popSinputNum);
+				let lp = ps;
+				let lb1 = ps.times(b1);
+				let lb2 = ps.times(b2)
+				let lnb = lp.minus(lb1).minus(lb2);
+
+				let lhit1 = ps.times(b1).times(h1);
+				let lmiss1 = lb1.minus(lhit1);
+				let lhit2 = ps.times(b2).times(h2);
+				let lmiss2 = lb2.minus(lhit2);
+				let lfa = ps.times(nb).times(fa);
+				let lcr = lnb.minus(lfa);
 				
 
-				// assigned values for tree output
-				popOutput.innerHTML = popOutputTreeResult.toNumber();
-				baseOutput1.innerHTML = baseOutput1TreeResult.toNumber();
-				baseOutput2.innerHTML = baseOutput2TreeResult.toNumber();
-				noiseOutput.innerHTML = noiseOutputTreeResult.toNumber();
+				popOutput.innerHTML = popSinput;
+				baseOutput1.innerHTML = lb1.toFixed(0);
+				baseOutput2.innerHTML = lb2.toFixed(0);
+				noiseOutput.innerHTML = lnb.toFixed(0);
 
-				hit1.innerHTML = hit1TreeResult.toNumber();
-				hit2.innerHTML = hit2TreeResult.toNumber();
-				miss1.innerHTML = miss1TreeResult.toNumber();
-				miss2.innerHTML = miss2TreeResult.toNumber();
-				falseAlarm.innerHTML = falseAlarmTreeResult.toNumber();
-				correctReject.innerHTML = corretRejectTreeResult.toNumber();
-				
-				// assigned values for the equation
-				hitResult_sup.innerHTML = hit1TreeResult.toNumber();
-				hitResult_bottom1.innerHTML = hit1TreeResult.toNumber();
-				hitResult_bottom2.innerHTML = hit2TreeResult.toNumber();
-				falseAlarmResult.innerHTML = falseAlarmTreeResult.toNumber();
-				results.innerHTML = hit1TreeResult.dividedBy(hit2TreeResult.plus(hit1TreeResult.plus(falseAlarmTreeResult))).toNumber().toPrecision(3);
+				hit1.innerHTML = lhit1.toFixed(0);
+				miss1.innerHTML = lmiss1.toFixed(0);
+				hit2.innerHTML = lhit2.toFixed(0);
+				miss2.innerHTML = lmiss2.toFixed(0);
+				falseAlarm.innerHTML = lfa.toFixed(0);
+				correctReject.innerHTML = lcr.toFixed(0);
 
+				hitResult_sup.innerHTML = lhit1.toFixed(0);
+				hitResult_bottom1.innerHTML = lhit1.toFixed(0);
+				hitResult_bottom2.innerHTML = lhit2.toFixed(0);
+				falseAlarmResult.innerHTML = lfa.toFixed(0);
+				results.innerHTML = (parseInt(lhit1.toFixed(0)) / (parseInt(lhit2.toFixed(0)) + parseInt((lfa).toFixed(0)))).toFixed(4);
+				sugPop.innerHTML = f_max.toNumber();
 
 			} else {
 			
@@ -1292,6 +1650,8 @@ let selectTree = function() {
 					faRate.value = result.toPrecision(4);
 				} else if (event.target.className == "h3faRate") {
 					crRate.value = result.toPrecision(4);
+				} else if (event.target.className == "h3baseRate2") {
+					nbaseRate.value = result.minus(baseRate1.value);
 				}
 
 				
@@ -1314,42 +1674,42 @@ let selectTree = function() {
 
 				// Results
 				let f_max = oneC3V_max_factor(fhit1,fhit2,fmiss1,fmiss2,ffa,fcr);
-				let popOutputTreeResult= f_max;
-				let baseOutput1TreeResult = f_max.times(b1);
-				let baseOutput2TreeResult = f_max.times(b2);
-				let noiseOutputTreeResult = f_max.times(nb);		
-
-				let hit1TreeResult = (f_max.times(b1)).times(h1);
-				let hit2TreeResult = (f_max.times(b2)).times(h2);
-				let miss1TreeResult = (f_max.times(b1)).times(m1);
-				let miss2TreeResult = (f_max.times(b2)).times(m2);
-				let falseAlarmTreeResult= (f_max.times(nb)).times(fa);
-				let corretRejectTreeResult = (f_max.times(nb)).times(cr);
+				
 				// let postiveTestTreeResult = hitTreeResult.plus(falseAlarmTreeResult);
 				// let negativeTestTreeResult = missTreeResult.plus(corretRejectTreeResult);
+				popSinputNum = parseFloat(popSinput.replace(/,/g, ''));
+				let ps = new Decimal(popSinputNum);
+				let lp = ps;
+				let lb1 = ps.times(b1);
+				let lb2 = ps.times(b2)
+				let lnb = lp.minus(lb1).minus(lb2);
+
+				let lhit1 = ps.times(b1).times(h1);
+				let lmiss1 = lb1.minus(lhit1);
+				let lhit2 = ps.times(b2).times(h2);
+				let lmiss2 = lb2.minus(lhit2);
+				let lfa = ps.times(nb).times(fa);
+				let lcr = lnb.minus(lfa);
 				
 
-				// assigned values for tree output
-				popOutput.innerHTML = popOutputTreeResult.toNumber();
-				baseOutput1.innerHTML = baseOutput1TreeResult.toNumber();
-				baseOutput2.innerHTML = baseOutput2TreeResult.toNumber();
-				noiseOutput.innerHTML = noiseOutputTreeResult.toNumber();
+				popOutput.innerHTML = popSinput;
+				baseOutput1.innerHTML = lb1.toFixed(0);
+				baseOutput2.innerHTML = lb2.toFixed(0);
+				noiseOutput.innerHTML = lnb.toFixed(0);
 
-				hit1.innerHTML = hit1TreeResult.toNumber();
-				hit2.innerHTML = hit2TreeResult.toNumber();
-				miss1.innerHTML = miss1TreeResult.toNumber();
-				miss2.innerHTML = miss2TreeResult.toNumber();
-				falseAlarm.innerHTML = falseAlarmTreeResult.toNumber();
-				correctReject.innerHTML = corretRejectTreeResult.toNumber();
-				
-				// assigned values for the equation
-				hitResult_sup.innerHTML = hit1TreeResult.toNumber();
-				hitResult_bottom1.innerHTML = hit1TreeResult.toNumber();
-				hitResult_bottom2.innerHTML = hit2TreeResult.toNumber();
-				falseAlarmResult.innerHTML = falseAlarmTreeResult.toNumber();
-				results.innerHTML = hit1TreeResult.dividedBy(hit2TreeResult.plus(hit1TreeResult.plus(falseAlarmTreeResult))).toNumber().toPrecision(3);
+				hit1.innerHTML = lhit1.toFixed(0);
+				miss1.innerHTML = lmiss1.toFixed(0);
+				hit2.innerHTML = lhit2.toFixed(0);
+				miss2.innerHTML = lmiss2.toFixed(0);
+				falseAlarm.innerHTML = lfa.toFixed(0);
+				correctReject.innerHTML = lcr.toFixed(0);
 
-
+				hitResult_sup.innerHTML = lhit1.toFixed(0);
+				hitResult_bottom1.innerHTML = lhit1.toFixed(0);
+				hitResult_bottom2.innerHTML = lhit2.toFixed(0);
+				falseAlarmResult.innerHTML = lfa.toFixed(0);
+				results.innerHTML = (parseInt(lhit1.toFixed(0)) / (parseInt(lhit2.toFixed(0)) + parseInt((lfa).toFixed(0)))).toFixed(4);
+				sugPop.innerHTML = f_max.toNumber();
 			}
 		}
 
@@ -1357,6 +1717,12 @@ let selectTree = function() {
 		let main = tree.firstElementChild;
 
 		// Declare input
+		let h1Input;
+		let h2Input;
+
+		let popSize;
+		let popSinput;
+
 		let baseRate;
 		let nbaseRate;
 		let hitRate;
@@ -1377,6 +1743,8 @@ let selectTree = function() {
 		let popOutput;
 		let baseOutput;
 		let noiseOutput;
+		let h1Output;
+		let h2Output;
 
 		let hit;
 		let miss;
@@ -1390,6 +1758,8 @@ let selectTree = function() {
 		let correctReject1;
 		let falseAlarm2;
 		let correctReject2;
+
+		let sugPop;
 		
 
 		// Probability div output
@@ -1412,7 +1782,20 @@ let selectTree = function() {
 		// Get input and output from DOM
 		for (let i = 0; i < main.children.length; i++) {
 			let currChild = main.children[i];
-			if (currChild.className == "tree") {
+
+			if (currChild.className == "hypothesis") {
+				let hypoDiv = currChild;
+				
+				h1Input = hypoDiv.firstElementChild.firstElementChild;
+
+				h2Input = hypoDiv.lastElementChild.lastElementChild;
+
+			} 
+			else if (currChild.className == "popSize") {
+				let popDiv = currChild;
+				popSize = popDiv.lastElementChild;
+			}
+			else if (currChild.className == "tree") {
 				treeDiv = currChild;
 				for (let j = 0; j < treeDiv.children.length; j++) {	
 					
@@ -1425,6 +1808,12 @@ let selectTree = function() {
 					}
 					else if (childClass == "c2pop_number") {
 						popOutput = treeDiv.children[j];
+					}
+					else if (childClass == "h1Output") {
+						h1Output = treeDiv.children[j];
+					}
+					else if (childClass == "h2Output") {
+						h2Output = treeDiv.children[j];
 					}
 					else if (childClass == "c2baseRate") {
 						baseRate = treeDiv.children[j];	
@@ -1581,6 +1970,10 @@ let selectTree = function() {
 							
 						}
 					}
+					else if (childClass == "sugPop") {
+							sugPop = treeDiv.children[j];
+							
+						}
 					
 				}
 			}	
@@ -1631,6 +2024,8 @@ let selectTree = function() {
 			 hitResult2_bottom.innerHTML = 100;
 			 falseAlarmResult1.innerHTML = 100;
 			 falseAlarmResult2.innerHTML = 100;
+
+			 sugPop.innerHTML = 1000;
 			 
 		}
 	  		
@@ -1688,6 +2083,157 @@ let selectTree = function() {
 
 	  	});
 
+	  	popSinput = popSize.value;
+
+	  	popSize.addEventListener("change", function() {
+	  		popSinput = popSize.value;
+	  		popOutput.innerHTML = popSinput;
+	  		popSinputNum = parseFloat(popSinput.replace(/,/g, ''));
+			let ps = new Decimal(popSinputNum);
+
+				if (isProb) {
+				let nb = new Decimal(nbaseRate.value);
+				let h = new Decimal(hitRate.value);
+				let b = new Decimal(baseRate.value);
+				let m = new Decimal(missRate.value);
+				let fa = new Decimal(faRate.value);
+				let cr = new Decimal(crRate.value);
+
+				let h1 = new Decimal(hitRate1.value);
+				let h2 = new Decimal(hitRate2.value);
+				let m1 = new Decimal(missRate1.value);
+				let m2 = new Decimal(missRate2.value);
+				let fa1 = new Decimal(faRate1.value);
+				let cr1 = new Decimal(crRate1.value);
+				let fa2 = new Decimal(faRate2.value);
+				let cr2 = new Decimal(crRate2.value);
+
+
+				let lp = ps;
+				let lb = ps.times(b);
+				let lnb = lp.minus(lb);
+
+				let lhit = ps.times(b).times(h);
+				let lmiss = lb.minus(lhit);
+				let lfa = ps.times(lnb).times(fa);
+				let lcr = ps.times(lnb).times(cr);
+
+				let lhit1 = ps.times(b).times(h).times(h1);
+				let lmiss1 = lhit.minus(lhit1);
+
+				let lhit2 = ps.times(b).times(m).times(h2);
+				let lmiss2 = lmiss.minus(lhit2);
+
+				let lfa1 = ps.times(nb).times(fa).times(fa1);
+				let lcr1 = lnb.minus(lfa1);
+
+				let lfa2 = ps.times(nb).times(fa).times(fa2);
+				let lcr2 = lnb.minus(lfa2);
+
+				popOutput.innerHTML = popSinput;
+				baseOutput.innerHTML = lb.toFixed(0);
+				noiseOutput.innerHTML = lnb.toFixed(0);
+
+				hit.innerHTML = lhit.toFixed(0);
+				miss.innerHTML = lmiss.toFixed(0);
+				falseAlarm.innerHTML = lfa.toFixed(0);
+				correctReject.innerHTML = lcr.toFixed(0);
+
+				hit1.innerHTML = lhit1.toFixed(0);
+				miss1.innerHTML = lmiss1.toFixed(0);
+				hit2.innerHTML = lhit2.toFixed(0);
+				miss2.innerHTML = lmiss2.toFixed(0);
+
+				falseAlarm1.innerHTML = lfa1.toFixed(0);
+				correctReject1.innerHTML = lcr1.toFixed(0);
+				falseAlarm2.innerHTML = lfa2.toFixed(0);
+				correctReject2.innerHTML = lcr2.toFixed(0);
+
+				hitResult1_sup.innerHTML = lhit1.toFixed(0);
+				hitResult2_sup.innerHTML = lhit2.toFixed(0);
+				hitResult1_bottom.innerHTML = lhit1.toFixed(0);
+				hitResult2_bottom.innerHTML = lhit2.toFixed(0);
+				falseAlarmResult1.innerHTML = lfa1.toFixed(0);
+				falseAlarmResult2.innerHTML = lfa2.toFixed(0);
+				results.innerHTML = (parseInt(lhit1.plus(lhit2).toFixed(0)) / (parseInt(lhit1.plus(lhit2).toFixed(0)) + parseInt((lfa1).plus(lfa2).toFixed(0)))).toFixed(4);
+				//results.innerHTML = ps.times(b).times(h).dividedBy(ps.times(b).times(h).plus(ps.times(nb).times(fa))).toNumber().toPrecision(3);
+				//sugPop.innerHTML = 1000;
+				}
+				else {
+					let nb = new Decimal(nbaseRate.value).dividedBy(100);
+					let h = new Decimal(hitRate.value).dividedBy(100);
+					let b = new Decimal(baseRate.value).dividedBy(100);
+					let m = new Decimal(missRate.value).dividedBy(100);
+					let fa = new Decimal(faRate.value).dividedBy(100);
+					let cr = new Decimal(crRate.value).dividedBy(100);
+
+					let h1 = new Decimal(hitRate1.value).dividedBy(100);
+					let h2 = new Decimal(hitRate2.value).dividedBy(100);
+					let m1 = new Decimal(missRate1.value).dividedBy(100);
+					let m2 = new Decimal(missRate2.value).dividedBy(100);
+					let fa1 = new Decimal(faRate1.value).dividedBy(100);
+					let cr1 = new Decimal(crRate1.value).dividedBy(100);
+					let fa2 = new Decimal(faRate2.value).dividedBy(100);
+					let cr2 = new Decimal(crRate2.value).dividedBy(100);
+
+					let lp = ps;
+					let lb = ps.times(b);
+					let lnb = lp.minus(lb);
+
+					let lhit = ps.times(b).times(h);
+					let lmiss = lb.minus(lhit);
+					let lfa = ps.times(lnb).times(fa);
+					let lcr = ps.times(lnb).times(cr);
+
+					let lhit1 = ps.times(b).times(h).times(h1);
+					let lmiss1 = lhit.minus(lhit1);
+
+					let lhit2 = ps.times(b).times(m).times(h2);
+					let lmiss2 = lmiss.minus(lhit2);
+
+					let lfa1 = ps.times(nb).times(fa).times(fa1);
+					let lcr1 = lnb.minus(lfa1);
+
+					let lfa2 = ps.times(nb).times(fa).times(fa2);
+					let lcr2 = lnb.minus(lfa2);
+
+					popOutput.innerHTML = popSinput;
+					baseOutput.innerHTML = lb.toFixed(0);
+					noiseOutput.innerHTML = lnb.toFixed(0);
+
+					hit.innerHTML = lhit.toFixed(0);
+					miss.innerHTML = lmiss.toFixed(0);
+					falseAlarm.innerHTML = lfa.toFixed(0);
+					correctReject.innerHTML = lcr.toFixed(0);
+
+					hit1.innerHTML = lhit1.toFixed(0);
+					miss1.innerHTML = lmiss1.toFixed(0);
+					hit2.innerHTML = lhit2.toFixed(0);
+					miss2.innerHTML = lmiss2.toFixed(0);
+
+					falseAlarm1.innerHTML = lfa1.toFixed(0);
+					correctReject1.innerHTML = lcr1.toFixed(0);
+					falseAlarm2.innerHTML = lfa2.toFixed(0);
+					correctReject2.innerHTML = lcr2.toFixed(0);
+
+					hitResult1_sup.innerHTML = lhit1.toFixed(0);
+					hitResult2_sup.innerHTML = lhit2.toFixed(0);
+					hitResult1_bottom.innerHTML = lhit1.toFixed(0);
+					hitResult2_bottom.innerHTML = lhit2.toFixed(0);
+					falseAlarmResult1.innerHTML = lfa1.toFixed(0);
+					falseAlarmResult2.innerHTML = lfa2.toFixed(0);
+					results.innerHTML = (parseInt(lhit1.plus(lhit2).toFixed(0)) / (parseInt(lhit1.plus(lhit2).toFixed(0)) + parseInt((lfa1).plus(lfa2).toFixed(0)))).toFixed(4);
+				}
+	  	});
+
+	  	h1Input.addEventListener("change", function(){
+	  		h1Output.innerHTML = h1Input.value;
+	  	});
+
+		h2Input.addEventListener("change", function(){
+	  		h2Output.innerHTML = h2Input.value;
+	  	});
+
 	    baseRate.addEventListener("change", changeEventHandler);
 		nbaseRate.addEventListener("change", changeEventHandler);
 		
@@ -1704,11 +2250,16 @@ let selectTree = function() {
 		crRate1.addEventListener("change", changeEventHandler);
 		faRate2.addEventListener("change", changeEventHandler);
 		crRate2.addEventListener("change", changeEventHandler);
+
+
 		
 
 		function changeEventHandler(event) {
 			let one, targetValue, result;
-
+			popSinput = popSize.value;
+	  		popOutput.innerHTML = popSinput;
+	  		popSinputNum = parseFloat(popSinput.replace(/,/g, ''));
+			let ps = new Decimal(popSinputNum);
 			// probability
 			if (isProb) {
 				if (event.target.value < 0 || event.target.value > 1) {	
@@ -1779,56 +2330,59 @@ let selectTree = function() {
 
 				// Results
 				let f_max = c2_max_factor(fhit1,fhit2,fmiss1,fmiss2,ffa1,fcr1,ffa2,fcr2);
-				let popOutputTreeResult= f_max;
-				let baseOutputTreeResult = f_max.times(b);
-				let noiseOutputTreeResult = f_max.times(nb);	
-
-				let hitTreeResult = (f_max.times(b)).times(h);
-				let missTreeResult = (f_max.times(b)).times(m);
-				let falseAlarmTreeResult = (f_max.times(nb)).times(fa);
-				let corretRejectTreeResult = (f_max.times(nb)).times(cr);
-
-				let hit1TreeResult = ((f_max.times(b)).times(h)).times(h1);
-				let hit2TreeResult = ((f_max.times(b)).times(m)).times(h2);
-				let miss1TreeResult = ((f_max.times(b)).times(h)).times(m1);
-				let miss2TreeResult = ((f_max.times(b)).times(m)).times(m2);
-				let falseAlarmTreeResult1= ((f_max.times(nb)).times(fa)).times(fa1);
-				let corretRejectTreeResult1 = ((f_max.times(nb)).times(fa)).times(cr1);
-				let falseAlarmTreeResult2= ((f_max.times(nb)).times(cr)).times(fa2);
-				let corretRejectTreeResult2 = ((f_max.times(nb)).times(cr)).times(cr2);
+				
 
 				// let postiveTestTreeResult = hitTreeResult.plus(falseAlarmTreeResult);
 				// let negativeTestTreeResult = missTreeResult.plus(corretRejectTreeResult);
-				
+				let lp = ps;
+				let lb = ps.times(b);
+				let lnb = lp.minus(lb);
 
-				// assigned values for tree output
-				popOutput.innerHTML = popOutputTreeResult.toNumber();
-				baseOutput.innerHTML = baseOutputTreeResult.toNumber();
-				noiseOutput.innerHTML = noiseOutputTreeResult.toNumber();
+				let lhit = ps.times(b).times(h);
+				let lmiss = lb.minus(lhit);
+				let lfa = ps.times(lnb).times(fa);
+				let lcr = ps.times(lnb).times(cr);
 
-				hit.innerHTML = hitTreeResult.toNumber();
-				miss.innerHTML = missTreeResult.toNumber();
-				falseAlarm.innerHTML = falseAlarmTreeResult.toNumber();
-				correctReject.innerHTML = corretRejectTreeResult.toNumber();
+				let lhit1 = ps.times(b).times(h).times(h1);
+				let lmiss1 = lhit.minus(lhit1);
 
-				hit1.innerHTML = hit1TreeResult.toNumber();
-				hit2.innerHTML = hit2TreeResult.toNumber();
-				miss1.innerHTML = miss1TreeResult.toNumber();
-				miss2.innerHTML = miss2TreeResult.toNumber();
-				falseAlarm1.innerHTML = falseAlarmTreeResult1.toNumber();
-				correctReject1.innerHTML = corretRejectTreeResult1.toNumber();
-				falseAlarm2.innerHTML = falseAlarmTreeResult2.toNumber();
-				correctReject2.innerHTML = corretRejectTreeResult2.toNumber();
+				let lhit2 = ps.times(b).times(m).times(h2);
+				let lmiss2 = lmiss.minus(lhit2);
 
-				// assigned values for the equation
-				hitResult1_sup.innerHTML = hit1TreeResult.toNumber();
-				hitResult2_sup.innerHTML = hit2TreeResult.toNumber();
-				hitResult1_bottom.innerHTML = hit1TreeResult.toNumber();
-				hitResult2_bottom.innerHTML = hit2TreeResult.toNumber();
-				falseAlarmResult1.innerHTML = falseAlarmTreeResult1.toNumber();
-				falseAlarmResult2.innerHTML = falseAlarmTreeResult2.toNumber();
-				results.innerHTML = (hit1TreeResult.plus(hit2TreeResult)).dividedBy(hit2TreeResult.plus(hit1TreeResult.plus(falseAlarmTreeResult1.plus(falseAlarmTreeResult2)))).toNumber().toPrecision(3);
+				let lfa1 = ps.times(nb).times(fa).times(fa1);
+				let lcr1 = lnb.minus(lfa1);
 
+				let lfa2 = ps.times(nb).times(fa).times(fa2);
+				let lcr2 = lnb.minus(lfa2);
+
+				popOutput.innerHTML = popSinput;
+				baseOutput.innerHTML = lb.toFixed(0);
+				noiseOutput.innerHTML = lnb.toFixed(0);
+
+				hit.innerHTML = lhit.toFixed(0);
+				miss.innerHTML = lmiss.toFixed(0);
+				falseAlarm.innerHTML = lfa.toFixed(0);
+				correctReject.innerHTML = lcr.toFixed(0);
+
+				hit1.innerHTML = lhit1.toFixed(0);
+				miss1.innerHTML = lmiss1.toFixed(0);
+				hit2.innerHTML = lhit2.toFixed(0);
+				miss2.innerHTML = lmiss2.toFixed(0);
+
+				falseAlarm1.innerHTML = lfa1.toFixed(0);
+				correctReject1.innerHTML = lcr1.toFixed(0);
+				falseAlarm2.innerHTML = lfa2.toFixed(0);
+				correctReject2.innerHTML = lcr2.toFixed(0);
+
+				hitResult1_sup.innerHTML = lhit1.toFixed(0);
+				hitResult2_sup.innerHTML = lhit2.toFixed(0);
+				hitResult1_bottom.innerHTML = lhit1.toFixed(0);
+				hitResult2_bottom.innerHTML = lhit2.toFixed(0);
+				falseAlarmResult1.innerHTML = lfa1.toFixed(0);
+				falseAlarmResult2.innerHTML = lfa2.toFixed(0);
+				results.innerHTML = (parseInt(lhit1.plus(lhit2).toFixed(0)) / (parseInt(lhit1.plus(lhit2).toFixed(0)) + parseInt((lfa1).plus(lfa2).toFixed(0)))).toFixed(4);
+
+				sugPop.innerHTML = f_max;
 
 			} else {
 			
@@ -1901,54 +2455,56 @@ let selectTree = function() {
 
 				// Results
 				let f_max = c2_max_factor(fhit1,fhit2,fmiss1,fmiss2,ffa1,fcr1,ffa2,fcr2);
-				let popOutputTreeResult= f_max;
-				let baseOutputTreeResult = f_max.times(b);
-				let noiseOutputTreeResult = f_max.times(nb);	
-
-				let hitTreeResult = (f_max.times(b)).times(h);
-				let missTreeResult = (f_max.times(b)).times(m);
-				let falseAlarmTreeResult = (f_max.times(nb)).times(fa);
-				let corretRejectTreeResult = (f_max.times(nb)).times(cr);
-
-				let hit1TreeResult = ((f_max.times(b)).times(h)).times(h1);
-				let hit2TreeResult = ((f_max.times(b)).times(m)).times(h2);
-				let miss1TreeResult = ((f_max.times(b)).times(h)).times(m1);
-				let miss2TreeResult = ((f_max.times(b)).times(m)).times(m2);
-				let falseAlarmTreeResult1= ((f_max.times(nb)).times(fa)).times(fa1);
-				let corretRejectTreeResult1 = ((f_max.times(nb)).times(fa)).times(cr1);
-				let falseAlarmTreeResult2= ((f_max.times(nb)).times(cr)).times(fa2);
-				let corretRejectTreeResult2 = ((f_max.times(nb)).times(cr)).times(cr2);
-				// let postiveTestTreeResult = hitTreeResult.plus(falseAlarmTreeResult);
-				// let negativeTestTreeResult = missTreeResult.plus(corretRejectTreeResult);
 				
+				let lp = ps;
+				let lb = ps.times(b);
+				let lnb = lp.minus(lb);
 
-				// assigned values for tree output
-				popOutput.innerHTML = popOutputTreeResult.toNumber();
-				baseOutput.innerHTML = baseOutputTreeResult.toNumber();
-				noiseOutput.innerHTML = noiseOutputTreeResult.toNumber();
+				let lhit = ps.times(b).times(h);
+				let lmiss = lb.minus(lhit);
+				let lfa = ps.times(lnb).times(fa);
+				let lcr = ps.times(lnb).times(cr);
 
-				hit.innerHTML = hitTreeResult.toNumber();
-				miss.innerHTML = missTreeResult.toNumber();
-				falseAlarm.innerHTML = falseAlarmTreeResult.toNumber();
-				correctReject.innerHTML = corretRejectTreeResult.toNumber();
+				let lhit1 = ps.times(b).times(h).times(h1);
+				let lmiss1 = lhit.minus(lhit1);
 
-				hit1.innerHTML = hit1TreeResult.toNumber();
-				hit2.innerHTML = hit2TreeResult.toNumber();
-				miss1.innerHTML = miss1TreeResult.toNumber();
-				miss2.innerHTML = miss2TreeResult.toNumber();
-				falseAlarm1.innerHTML = falseAlarmTreeResult1.toNumber();
-				correctReject1.innerHTML = corretRejectTreeResult1.toNumber();
-				falseAlarm2.innerHTML = falseAlarmTreeResult2.toNumber();
-				correctReject2.innerHTML = corretRejectTreeResult2.toNumber();
+				let lhit2 = ps.times(b).times(m).times(h2);
+				let lmiss2 = lmiss.minus(lhit2);
 
-				// assigned values for the equation
-				hitResult1_sup.innerHTML = hit1TreeResult.toNumber();
-				hitResult2_sup.innerHTML = hit2TreeResult.toNumber();
-				hitResult1_bottom.innerHTML = hit1TreeResult.toNumber();
-				hitResult2_bottom.innerHTML = hit2TreeResult.toNumber();
-				falseAlarmResult1.innerHTML = falseAlarmTreeResult1.toNumber();
-				falseAlarmResult2.innerHTML = falseAlarmTreeResult2.toNumber();
-				results.innerHTML = (hit1TreeResult.plus(hit2TreeResult)).dividedBy(hit2TreeResult.plus(hit1TreeResult.plus(falseAlarmTreeResult1.plus(falseAlarmTreeResult2)))).toNumber().toPrecision(3);
+				let lfa1 = ps.times(nb).times(fa).times(fa1);
+				let lcr1 = lnb.minus(lfa1);
+
+				let lfa2 = ps.times(nb).times(fa).times(fa2);
+				let lcr2 = lnb.minus(lfa2);
+
+				popOutput.innerHTML = popSinput;
+				baseOutput.innerHTML = lb.toFixed(0);
+				noiseOutput.innerHTML = lnb.toFixed(0);
+
+				hit.innerHTML = lhit.toFixed(0);
+				miss.innerHTML = lmiss.toFixed(0);
+				falseAlarm.innerHTML = lfa.toFixed(0);
+				correctReject.innerHTML = lcr.toFixed(0);
+
+				hit1.innerHTML = lhit1.toFixed(0);
+				miss1.innerHTML = lmiss1.toFixed(0);
+				hit2.innerHTML = lhit2.toFixed(0);
+				miss2.innerHTML = lmiss2.toFixed(0);
+
+				falseAlarm1.innerHTML = lfa1.toFixed(0);
+				correctReject1.innerHTML = lcr1.toFixed(0);
+				falseAlarm2.innerHTML = lfa2.toFixed(0);
+				correctReject2.innerHTML = lcr2.toFixed(0);
+
+				hitResult1_sup.innerHTML = lhit1.toFixed(0);
+				hitResult2_sup.innerHTML = lhit2.toFixed(0);
+				hitResult1_bottom.innerHTML = lhit1.toFixed(0);
+				hitResult2_bottom.innerHTML = lhit2.toFixed(0);
+				falseAlarmResult1.innerHTML = lfa1.toFixed(0);
+				falseAlarmResult2.innerHTML = lfa2.toFixed(0);
+				results.innerHTML = (parseInt(lhit1.plus(lhit2).toFixed(0)) / (parseInt(lhit1.plus(lhit2).toFixed(0)) + parseInt((lfa1).plus(lfa2).toFixed(0)))).toFixed(4);
+
+				sugPop.innerHTML = f_max;
 			}
 		}
 
@@ -1956,6 +2512,12 @@ let selectTree = function() {
 		let main = tree.firstElementChild;
 
 		// Declare input
+		let h1Input;
+		let h2Input;
+
+		let popSize;
+		let popSinput;
+
 		let baseRate;
 		let nbaseRate;
 		let hitRate;
@@ -1989,12 +2551,16 @@ let selectTree = function() {
 		let crRate21;
 		let faRate22;
 		let crRate22;
-		
 
+		let sugPop;
+		
 		// Declare tree output
 		let popOutput;
 		let baseOutput;
 		let noiseOutput;
+
+		let h1Output;
+		let h2Output;
 
 		let hit;
 		let miss;
@@ -2056,7 +2622,18 @@ let selectTree = function() {
 		// Get input and output from DOM
 		for (let i = 0; i < main.children.length; i++) {
 			let currChild = main.children[i];
-			if (currChild.className == "tree") {
+			if (currChild.className == "hypothesis") {
+				let hypoDiv = currChild;
+				
+				h1Input = hypoDiv.firstElementChild.firstElementChild;
+				h2Input = hypoDiv.lastElementChild.lastElementChild;
+
+			} 
+			else if (currChild.className == "popSize") {
+				let popDiv = currChild;
+				popSize = popDiv.lastElementChild;
+			}
+			else if (currChild.className == "tree") {
 				treeDiv = currChild;
 				for (let j = 0; j < treeDiv.children.length; j++) {	
 					
@@ -2069,6 +2646,14 @@ let selectTree = function() {
 					}
 					else if (childClass == "c3pop_number") {
 						popOutput = treeDiv.children[j];
+					}
+					else if (childClass == "h1Output") {
+						h1Output = treeDiv.children[j];
+						
+					}
+					else if (childClass == "h2Output") {
+						h2Output = treeDiv.children[j];
+						
 					}
 					else if (childClass == "c3baseRate") {
 						baseRate = treeDiv.children[j];	
@@ -2349,6 +2934,10 @@ let selectTree = function() {
 							
 						}
 					}
+					else if (childClass == "sugPop") {
+							sugPop = treeDiv.children[j];
+							
+						}
 					
 				}
 			}	
@@ -2427,6 +3016,7 @@ let selectTree = function() {
 			 falseAlarmResult3.innerHTML = 50;
 			 falseAlarmResult4.innerHTML = 50;
 			 
+			 sugPop.innerHTML = 1000;
 		}
 	  		
 	  	probability.addEventListener("click", function(e) {
@@ -2521,6 +3111,286 @@ let selectTree = function() {
 			 probPercToggle(e);
 			 OutputInitialize();
 
+	  	});
+
+	  	popSinput = popSize.value;
+
+	  	popSize.addEventListener("change", function() {
+	  		popSinput = popSize.value;
+	  		popOutput.innerHTML = popSinput;
+	  		popSinputNum = parseFloat(popSinput.replace(/,/g, ''));
+			let ps = new Decimal(popSinputNum);
+
+				if (isProb) {
+			
+				let nb = new Decimal(nbaseRate.value);
+				let b = new Decimal(baseRate.value);
+
+				let h  = new Decimal(hitRate.value);
+				let m  = new Decimal(missRate.value);
+				let fa = new Decimal(faRate.value);
+				let cr = new Decimal(crRate.value);
+
+				let h1 = new Decimal(hitRate1.value);
+				let h2 = new Decimal(hitRate2.value);
+				let m1 = new Decimal(missRate1.value);
+				let m2 = new Decimal(missRate2.value);
+				let fa1 = new Decimal(faRate1.value);
+				let cr1 = new Decimal(crRate1.value);
+				let fa2 = new Decimal(faRate2.value);
+				let cr2 = new Decimal(crRate2.value);
+
+				let h11 = new Decimal(hitRate11.value);
+				let h12 = new Decimal(hitRate12.value);
+				let h21 = new Decimal(hitRate21.value);
+				let h22 = new Decimal(hitRate22.value);
+
+				let m11 = new Decimal(missRate11.value);
+				let m12 = new Decimal(missRate12.value);
+				let m21 = new Decimal(missRate21.value);
+				let m22 = new Decimal(missRate22.value);
+
+				let fa11 = new Decimal(faRate11.value);
+				let cr11 = new Decimal(crRate11.value);
+				let fa12 = new Decimal(faRate12.value);
+				let cr12 = new Decimal(crRate12.value);
+
+				let fa21 = new Decimal(faRate21.value);
+				let cr21 = new Decimal(crRate21.value);
+				let fa22 = new Decimal(faRate22.value);
+				let cr22 = new Decimal(crRate22.value);
+
+
+				let lp = ps;
+				let lb = ps.times(b);
+				let lnb = lp.minus(lb);
+
+				let lhit = ps.times(b).times(h);
+				let lmiss = lb.minus(lhit);
+				let lfa = ps.times(nb).times(fa);
+				let lcr = lnb.minus(lfa);
+
+				let lhit1 = ps.times(b).times(h).times(h1);
+				let lmiss1 = lhit.minus(lhit1);
+
+				let lhit2 = ps.times(b).times(m).times(h2);
+				let lmiss2 = lmiss.minus(lhit2);
+
+				let lfa1 = ps.times(nb).times(fa).times(fa1);
+				let lcr1 = lnb.minus(lfa1);
+
+				let lfa2 = ps.times(nb).times(fa).times(fa2);
+				let lcr2 = lnb.minus(lfa2);
+
+				let lhit11 = ps.times(b).times(h).times(h1).times(h11);
+				let lmiss11 = lhit1.minus(lhit11);
+
+				let lhit12 = ps.times(b).times(h).times(h1).times(h12);
+				let lmiss12 = lmiss1.minus(lhit12);
+
+				let lhit21 = ps.times(b).times(m).times(h2).times(h21);
+				let lmiss21 = lhit2.minus(lhit21);
+
+				let lhit22 = ps.times(b).times(m).times(h2).times(h22);
+				let lmiss22 = lmiss2.minus(lhit22);
+
+				let lfa11 = ps.times(nb).times(fa).times(fa1).times(fa11);
+				let lcr11 = lfa1.minus(lfa11);
+
+				let lfa12 = ps.times(nb).times(fa).times(fa1).times(fa12);
+				let lcr12 = lcr1.minus(lfa12);
+
+				let lfa21 = ps.times(nb).times(cr).times(fa2).times(fa21);
+				let lcr21 = lfa2.minus(lfa21);
+
+				let lfa22 = ps.times(nb).times(cr).times(fa2).times(fa22);
+				let lcr22 = lcr2.minus(lfa22);
+
+				popOutput.innerHTML = popSinput;
+				baseOutput.innerHTML = lb.toFixed(0);
+				noiseOutput.innerHTML = lnb.toFixed(0);
+
+				hit.innerHTML = lhit.toFixed(0);
+				miss.innerHTML = lmiss.toFixed(0);
+				falseAlarm.innerHTML = lfa.toFixed(0);
+				correctReject.innerHTML = lcr.toFixed(0);
+
+				hit1.innerHTML = lhit1.toFixed(0);
+				hit2.innerHTML = lhit2.toFixed(0);
+				miss1.innerHTML = lmiss1.toFixed(0);
+				miss2.innerHTML = lmiss2.toFixed(0);
+				falseAlarm1.innerHTML = lfa1.toFixed(0);
+				correctReject1.innerHTML = lcr1.toFixed(0);
+				falseAlarm2.innerHTML = lfa2.toFixed(0);
+				correctReject2.innerHTML = lcr2.toFixed(0);
+
+				hit11.innerHTML = lhit11.toFixed(0);
+				hit12.innerHTML = lhit12.toFixed(0);
+				hit21.innerHTML = lhit21.toFixed(0);
+				hit22.innerHTML = lhit22.toFixed(0);
+				miss11.innerHTML = lmiss11.toFixed(0);
+				miss12.innerHTML = lmiss12.toFixed(0);
+				miss21.innerHTML = lmiss21.toFixed(0);
+				miss22.innerHTML = lmiss22.toFixed(0);
+
+				falseAlarm11.innerHTML = lfa11.toFixed(0);
+				falseAlarm12.innerHTML = lfa12.toFixed(0);
+				falseAlarm21.innerHTML = lfa21.toFixed(0);
+				falseAlarm22.innerHTML = lfa22.toFixed(0);
+
+				correctReject11.innerHTML = lcr11.toFixed(0);
+				correctReject12.innerHTML = lcr12.toFixed(0);
+				correctReject21.innerHTML = lcr21.toFixed(0);
+				correctReject22.innerHTML = lcr22.toFixed(0);
+
+				hitResult_sup.innerHTML = lhit.toFixed(0);
+				hitResult_bottom.innerHTML = lhit.toFixed(0);
+				falseAlarmResult.innerHTML = lfa.toFixed(0);
+
+				let up_equation = lhit11.plus(lhit12).plus(lhit21).plus(lhit22);
+				let down_equation = lhit11.plus(lhit12).plus(lhit21).plus(lhit22).plus(lfa11).plus(lfa12).plus(lfa21).plus(lfa22);
+				results.innerHTML = (parseInt(up_equation.toFixed(0))).dividedBy(parseInt(down_equation.toFixed(0)).toFixed(4));
+				//results.innerHTML = (parseInt(lhit.toFixed(0)) / (parseInt(lhit.toFixed(0)) + parseInt((lfa).toFixed(0)))).toFixed(4);
+				//results.innerHTML = ps.times(b).times(h).dividedBy(ps.times(b).times(h).plus(ps.times(nb).times(fa))).toNumber().toPrecision(3);
+				}
+				else {
+					
+					let nb = new Decimal(nbaseRate.value).dividedBy(100);
+					let b = new Decimal(baseRate.value).dividedBy(100);
+
+					let h  = new Decimal(hitRate.value).dividedBy(100);
+					let m  = new Decimal(missRate.value).dividedBy(100);
+					let fa = new Decimal(faRate.value).dividedBy(100);
+					let cr = new Decimal(crRate.value).dividedBy(100);
+
+					let h1 = new Decimal(hitRate1.value).dividedBy(100);
+					let h2 = new Decimal(hitRate2.value).dividedBy(100);
+					let m1 = new Decimal(missRate1.value).dividedBy(100);
+					let m2 = new Decimal(missRate2.value).dividedBy(100);
+					let fa1 = new Decimal(faRate1.value).dividedBy(100);
+					let cr1 = new Decimal(crRate1.value).dividedBy(100);
+					let fa2 = new Decimal(faRate2.value).dividedBy(100);
+					let cr2 = new Decimal(crRate2.value).dividedBy(100);
+
+					let h11 = new Decimal(hitRate11.value).dividedBy(100);
+					let h12 = new Decimal(hitRate12.value).dividedBy(100);
+					let h21 = new Decimal(hitRate21.value).dividedBy(100);
+					let h22 = new Decimal(hitRate22.value).dividedBy(100);
+
+					let m11 = new Decimal(missRate11.value).dividedBy(100);
+					let m12 = new Decimal(missRate12.value).dividedBy(100);
+					let m21 = new Decimal(missRate21.value).dividedBy(100);
+					let m22 = new Decimal(missRate22.value).dividedBy(100);
+
+					let fa11 = new Decimal(faRate11.value).dividedBy(100);
+					let cr11 = new Decimal(crRate11.value).dividedBy(100);
+					let fa12 = new Decimal(faRate12.value).dividedBy(100);
+					let cr12 = new Decimal(crRate12.value).dividedBy(100);
+
+					let fa21 = new Decimal(faRate21.value).dividedBy(100);
+					let cr21 = new Decimal(crRate21.value).dividedBy(100);
+					let fa22 = new Decimal(faRate22.value).dividedBy(100);
+					let cr22 = new Decimal(crRate22.value).dividedBy(100);
+
+			
+					let lp = ps;
+					let lb = ps.times(b);
+					let lnb = lp.minus(lb);
+
+					let lhit = ps.times(b).times(h);
+					let lmiss = lb.minus(lhit);
+					let lfa = ps.times(nb).times(fa);
+					let lcr = lnb.minus(lfa);
+
+					let lhit1 = ps.times(b).times(h).times(h1);
+					let lmiss1 = lhit.minus(lhit1);
+
+					let lhit2 = ps.times(b).times(m).times(h2);
+					let lmiss2 = lmiss.minus(lhit2);
+
+					let lfa1 = ps.times(nb).times(fa).times(fa1);
+					let lcr1 = lnb.minus(lfa1);
+
+					let lfa2 = ps.times(nb).times(fa).times(fa2);
+					let lcr2 = lnb.minus(lfa2);
+
+					let lhit11 = ps.times(b).times(h).times(h1).times(h11);
+					let lmiss11 = lhit1.minus(lhit11);
+
+					let lhit12 = ps.times(b).times(h).times(h1).times(h12);
+					let lmiss12 = lmiss1.minus(lhit12);
+
+					let lhit21 = ps.times(b).times(m).times(h2).times(h21);
+					let lmiss21 = lhit2.minus(lhit21);
+
+					let lhit22 = ps.times(b).times(m).times(h2).times(h22);
+					let lmiss22 = lmiss2.minus(lhit22);
+
+					let lfa11 = ps.times(nb).times(fa).times(fa1).times(fa11);
+					let lcr11 = lfa1.minus(lfa11);
+
+					let lfa12 = ps.times(nb).times(fa).times(fa1).times(fa12);
+					let lcr12 = lcr1.minus(lfa12);
+
+					let lfa21 = ps.times(nb).times(cr).times(fa2).times(fa21);
+					let lcr21 = lfa2.minus(lfa21);
+
+					let lfa22 = ps.times(nb).times(cr).times(fa2).times(fa22);
+					let lcr22 = lcr2.minus(lfa22);
+
+					popOutput.innerHTML = popSinput;
+					baseOutput.innerHTML = lb.toFixed(0);
+					noiseOutput.innerHTML = lnb.toFixed(0);
+
+					hit.innerHTML = lhit.toFixed(0);
+					miss.innerHTML = lmiss.toFixed(0);
+					falseAlarm.innerHTML = lfa.toFixed(0);
+					correctReject.innerHTML = lcr.toFixed(0);
+
+					hit1.innerHTML = lhit1.toFixed(0);
+					hit2.innerHTML = lhit2.toFixed(0);
+					miss1.innerHTML = lmiss1.toFixed(0);
+					miss2.innerHTML = lmiss2.toFixed(0);
+					falseAlarm1.innerHTML = lfa1.toFixed(0);
+					correctReject1.innerHTML = lcr1.toFixed(0);
+					falseAlarm2.innerHTML = lfa2.toFixed(0);
+					correctReject2.innerHTML = lcr2.toFixed(0);
+
+					hit11.innerHTML = lhit11.toFixed(0);
+					hit12.innerHTML = lhit12.toFixed(0);
+					hit21.innerHTML = lhit21.toFixed(0);
+					hit22.innerHTML = lhit22.toFixed(0);
+					miss11.innerHTML = lmiss11.toFixed(0);
+					miss12.innerHTML = lmiss12.toFixed(0);
+					miss21.innerHTML = lmiss21.toFixed(0);
+					miss22.innerHTML = lmiss22.toFixed(0);
+
+					falseAlarm11.innerHTML = lfa11.toFixed(0);
+					falseAlarm12.innerHTML = lfa12.toFixed(0);
+					falseAlarm21.innerHTML = lfa21.toFixed(0);
+					falseAlarm22.innerHTML = lfa22.toFixed(0);
+
+					correctReject11.innerHTML = lcr11.toFixed(0);
+					correctReject12.innerHTML = lcr12.toFixed(0);
+					correctReject21.innerHTML = lcr21.toFixed(0);
+					correctReject22.innerHTML = lcr22.toFixed(0);
+
+					hitResult_sup.innerHTML = lhit.toFixed(0);
+					hitResult_bottom.innerHTML = lhit.toFixed(0);
+					falseAlarmResult.innerHTML = lfa.toFixed(0);
+
+					let up_equation = lhit11.plus(lhit12).plus(lhit21).plus(lhit22);
+					let down_equation = lhit11.plus(lhit12).plus(lhit21).plus(lhit22).plus(lfa11).plus(lfa12).plus(lfa21).plus(lfa22);
+					results.innerHTML = (parseInt(up_equation.toFixed(0))).dividedBy(parseInt(down_equation.toFixed(0)).toFixed(4));
+				}
+	  	});
+
+	  	h1Input.addEventListener("change", function(){
+	  		h1Output.innerHTML = h1Input.value;
+	  	});
+
+		h2Input.addEventListener("change", function(){
+	  		h2Output.innerHTML = h2Input.value;
 	  	});
 
 	    baseRate.addEventListener("change", changeEventHandler);
@@ -2699,114 +3569,106 @@ let selectTree = function() {
 
 				// Results
 				let f_max = c3_max_factor(fhit11,fhit12,fhit21,fhit22,fmiss11,fmiss12,fmiss21,fmiss22,ffa11,fcr11,ffa12,fcr12,ffa21,fcr21,ffa22,fcr22);
-				let popOutputTreeResult= f_max;
-				let baseOutputTreeResult = f_max.times(b);
-				let noiseOutputTreeResult = f_max.times(nb);	
+				
+				popSinput = popSize.value;
+	  			popOutput.innerHTML = popSinput;
+	  			popSinputNum = parseFloat(popSinput.replace(/,/g, ''));
+				let ps = new Decimal(popSinputNum);
 
-				let hitTreeResult = (f_max.times(b)).times(h);
-				let missTreeResult = (f_max.times(b)).times(m);
-				let falseAlarmTreeResult = (f_max.times(nb)).times(fa);
-				let corretRejectTreeResult = (f_max.times(nb)).times(cr);
+				let lp = ps;
+				let lb = ps.times(b);
+				let lnb = lp.minus(lb);
 
-				let hit1TreeResult = ((f_max.times(b)).times(h)).times(h1);
-				let hit2TreeResult = ((f_max.times(b)).times(m)).times(h2);
-				let miss1TreeResult = ((f_max.times(b)).times(h)).times(m1);
-				let miss2TreeResult = ((f_max.times(b)).times(m)).times(m2);
-				let falseAlarmTreeResult1= ((f_max.times(nb)).times(fa)).times(fa1);
-				let corretRejectTreeResult1 = ((f_max.times(nb)).times(fa)).times(cr1);
-				let falseAlarmTreeResult2= ((f_max.times(nb)).times(cr)).times(fa2);
-				let corretRejectTreeResult2 = ((f_max.times(nb)).times(cr)).times(cr2);
+				let lhit = ps.times(b).times(h);
+				let lmiss = lb.minus(lhit);
+				let lfa = ps.times(nb).times(fa);
+				let lcr = lnb.minus(lfa);
 
-				let hit11TreeResult = (((f_max.times(b)).times(h)).times(h1)).times(h11);
-				let miss11TreeResult = (((f_max.times(b)).times(h)).times(h1)).times(m11);
+				let lhit1 = ps.times(b).times(h).times(h1);
+				let lmiss1 = lhit.minus(lhit1);
 
-				let hit12TreeResult = (((f_max.times(b)).times(h)).times(m1)).times(h12);
-				let miss12TreeResult = (((f_max.times(b)).times(h)).times(m1)).times(m12);
+				let lhit2 = ps.times(b).times(m).times(h2);
+				let lmiss2 = lmiss.minus(lhit2);
 
+				let lfa1 = ps.times(nb).times(fa).times(fa1);
+				let lcr1 = lnb.minus(lfa1);
 
-				let hit21TreeResult = (((f_max.times(b)).times(m)).times(h2)).times(h21);
-				let miss21TreeResult = (((f_max.times(b)).times(m)).times(h2)).times(m21);
+				let lfa2 = ps.times(nb).times(fa).times(fa2);
+				let lcr2 = lnb.minus(lfa2);
 
-				let hit22TreeResult = (((f_max.times(b)).times(m)).times(m2)).times(h22);
-				let miss22TreeResult = (((f_max.times(b)).times(m)).times(m2)).times(m22);
+				let lhit11 = ps.times(b).times(h).times(h1).times(h11);
+				let lmiss11 = lhit1.minus(lhit11);
+
+				let lhit12 = ps.times(b).times(h).times(h1).times(h12);
+				let lmiss12 = lmiss1.minus(lhit12);
+
+				let lhit21 = ps.times(b).times(m).times(h2).times(h21);
+				let lmiss21 = lhit2.minus(lhit21);
+
+				let lhit22 = ps.times(b).times(m).times(h2).times(h22);
+				let lmiss22 = lmiss2.minus(lhit22);
+
+				let lfa11 = ps.times(nb).times(fa).times(fa1).times(fa11);
+				let lcr11 = lfa1.minus(lfa11);
+
+				let lfa12 = ps.times(nb).times(fa).times(fa1).times(fa12);
+				let lcr12 = lcr1.minus(lfa12);
+
+				let lfa21 = ps.times(nb).times(cr).times(fa2).times(fa21);
+				let lcr21 = lfa2.minus(lfa21);
+
+				let lfa22 = ps.times(nb).times(cr).times(fa2).times(fa22);
+				let lcr22 = lcr2.minus(lfa22);
+
+				popOutput.innerHTML = popSinput;
+				baseOutput.innerHTML = lb.toFixed(0);
+				noiseOutput.innerHTML = lnb.toFixed(0);
+
+				hit.innerHTML = lhit.toFixed(0);
+				miss.innerHTML = lmiss.toFixed(0);
+				falseAlarm.innerHTML = lfa.toFixed(0);
+				correctReject.innerHTML = lcr.toFixed(0);
+
+				hit1.innerHTML = lhit1.toFixed(0);
+				hit2.innerHTML = lhit2.toFixed(0);
+				miss1.innerHTML = lmiss1.toFixed(0);
+				miss2.innerHTML = lmiss2.toFixed(0);
+				falseAlarm1.innerHTML = lfa1.toFixed(0);
+				correctReject1.innerHTML = lcr1.toFixed(0);
+				falseAlarm2.innerHTML = lfa2.toFixed(0);
+				correctReject2.innerHTML = lcr2.toFixed(0);
+
+				hit11.innerHTML = lhit11.toFixed(0);
+				hit12.innerHTML = lhit12.toFixed(0);
+				hit21.innerHTML = lhit21.toFixed(0);
+				hit22.innerHTML = lhit22.toFixed(0);
+				miss11.innerHTML = lmiss11.toFixed(0);
+				miss12.innerHTML = lmiss12.toFixed(0);
+				miss21.innerHTML = lmiss21.toFixed(0);
+				miss22.innerHTML = lmiss22.toFixed(0);
+
+				falseAlarm11.innerHTML = lfa11.toFixed(0);
+				falseAlarm12.innerHTML = lfa12.toFixed(0);
+				falseAlarm21.innerHTML = lfa21.toFixed(0);
+				falseAlarm22.innerHTML = lfa22.toFixed(0);
+
+				correctReject11.innerHTML = lcr11.toFixed(0);
+				correctReject12.innerHTML = lcr12.toFixed(0);
+				correctReject21.innerHTML = lcr21.toFixed(0);
+				correctReject22.innerHTML = lcr22.toFixed(0);
+
 				
 
-				let falseAlarmTreeResult11= (((f_max.times(nb)).times(fa)).times(fa1)).times(fa11);
-				let corretRejectTreeResult11= (((f_max.times(nb)).times(fa)).times(fa1)).times(cr11);
-
-				let falseAlarmTreeResult12= (((f_max.times(nb)).times(fa)).times(cr1)).times(fa12);
-				let corretRejectTreeResult12= (((f_max.times(nb)).times(fa)).times(cr1)).times(cr12);
-
-				let falseAlarmTreeResult21= (((f_max.times(nb)).times(cr)).times(fa2)).times(fa21);
-				let corretRejectTreeResult21= (((f_max.times(nb)).times(cr)).times(fa2)).times(cr21);
-
-				let falseAlarmTreeResult22= (((f_max.times(nb)).times(cr)).times(cr2)).times(fa22);
-				let corretRejectTreeResult22= (((f_max.times(nb)).times(cr)).times(cr2)).times(cr22);
+				let up_equation = lhit11.plus(lhit12).plus(lhit21).plus(lhit22);
+				let down_equation = lhit11.plus(lhit12).plus(lhit21).plus(lhit22).plus(lfa11).plus(lfa12).plus(lfa21).plus(lfa22);
+				results.innerHTML = (parseInt(up_equation.toFixed(0))).dividedBy(parseInt(down_equation.toFixed(0)).toFixed(4));
 
 				// let postiveTestTreeResult = hitTreeResult.plus(falseAlarmTreeResult);
 				// let negativeTestTreeResult = missTreeResult.plus(corretRejectTreeResult);
 				
-
+				sugPop.innerHTML = f_max.toNumber();
 				// assigned values for tree output
-				popOutput.innerHTML = popOutputTreeResult.toNumber();
-				baseOutput.innerHTML = baseOutputTreeResult.toNumber();
-				noiseOutput.innerHTML = noiseOutputTreeResult.toNumber();
-
-				hit.innerHTML = hitTreeResult.toNumber();
-				miss.innerHTML = missTreeResult.toNumber();
-				falseAlarm.innerHTML = falseAlarmTreeResult.toNumber();
-				correctReject.innerHTML = corretRejectTreeResult.toNumber();
-
-				hit1.innerHTML = hit1TreeResult.toNumber();
-				hit2.innerHTML = hit2TreeResult.toNumber();
-				miss1.innerHTML = miss1TreeResult.toNumber();
-				miss2.innerHTML = miss2TreeResult.toNumber();
-				falseAlarm1.innerHTML = falseAlarmTreeResult1.toNumber();
-				correctReject1.innerHTML = corretRejectTreeResult1.toNumber();
-				falseAlarm2.innerHTML = falseAlarmTreeResult2.toNumber();
-				correctReject2.innerHTML = corretRejectTreeResult2.toNumber();
-
-				hit11.innerHTML = hit11TreeResult.toNumber();
-				hit12.innerHTML = hit12TreeResult.toNumber();
-				hit21.innerHTML = hit21TreeResult.toNumber();
-				hit22.innerHTML = hit22TreeResult.toNumber();
-				miss11.innerHTML = miss11TreeResult.toNumber();
-				miss12.innerHTML = miss12TreeResult.toNumber();
-				miss21.innerHTML = miss21TreeResult.toNumber();
-				miss22.innerHTML = miss22TreeResult.toNumber();
-
-				falseAlarm11.innerHTML = falseAlarmTreeResult11.toNumber();
-				falseAlarm12.innerHTML = falseAlarmTreeResult12.toNumber();
-				falseAlarm21.innerHTML = falseAlarmTreeResult21.toNumber();
-				falseAlarm22.innerHTML = falseAlarmTreeResult22.toNumber();
-
-				correctReject11.innerHTML = corretRejectTreeResult11.toNumber();
-				correctReject12.innerHTML = corretRejectTreeResult12.toNumber();
-				correctReject21.innerHTML = corretRejectTreeResult21.toNumber();
-				correctReject22.innerHTML = corretRejectTreeResult22.toNumber();
-
-
-
-				// assigned values for the equation
-				hitResult1_sup.innerHTML = hit11TreeResult.toNumber();
-				hitResult2_sup.innerHTML = hit12TreeResult.toNumber();
-				hitResult2_sup.innerHTML = hit21TreeResult.toNumber();
-				hitResult2_sup.innerHTML = hit22TreeResult.toNumber();
-
-				hitResult1_bottom.innerHTML = hit11TreeResult.toNumber();
-				hitResult2_bottom.innerHTML = hit12TreeResult.toNumber();
-				hitResult3_bottom.innerHTML = hit21TreeResult.toNumber();
-				hitResult4_bottom.innerHTML = hit22TreeResult.toNumber();
-
-				falseAlarmResult1.innerHTML = falseAlarmTreeResult11.toNumber();
-				falseAlarmResult2.innerHTML = falseAlarmTreeResult12.toNumber();
-				falseAlarmResult3.innerHTML = falseAlarmTreeResult21.toNumber();
-				falseAlarmResult4.innerHTML = falseAlarmTreeResult22.toNumber();
-
-
-				let up_equation = hit11TreeResult.plus(hit12TreeResult).plus(hit21TreeResult).plus(hit22TreeResult)
-				let down_equation = hit11TreeResult.plus(hit12TreeResult).plus(hit21TreeResult).plus(hit22TreeResult).plus(falseAlarmTreeResult11).plus(falseAlarmTreeResult12).plus(falseAlarmTreeResult21).plus(falseAlarmTreeResult22)
-				results.innerHTML = (up_equation).dividedBy(down_equation).toNumber().toPrecision(3);
+				
 
 
 			} else {
@@ -2945,113 +3807,102 @@ let selectTree = function() {
 
 				// Results
 				let f_max = c3_max_factor(fhit11,fhit12,fhit21,fhit22,fmiss11,fmiss12,fmiss21,fmiss22,ffa11,fcr11,ffa12,fcr12,ffa21,fcr21,ffa22,fcr22);
-				let popOutputTreeResult= f_max;
-				let baseOutputTreeResult = f_max.times(b);
-				let noiseOutputTreeResult = f_max.times(nb);	
-
-				let hitTreeResult = (f_max.times(b)).times(h);
-				let missTreeResult = (f_max.times(b)).times(m);
-				let falseAlarmTreeResult = (f_max.times(nb)).times(fa);
-				let corretRejectTreeResult = (f_max.times(nb)).times(cr);
-
-				let hit1TreeResult = ((f_max.times(b)).times(h)).times(h1);
-				let hit2TreeResult = ((f_max.times(b)).times(m)).times(h2);
-				let miss1TreeResult = ((f_max.times(b)).times(h)).times(m1);
-				let miss2TreeResult = ((f_max.times(b)).times(m)).times(m2);
-				let falseAlarmTreeResult1= ((f_max.times(nb)).times(fa)).times(fa1);
-				let corretRejectTreeResult1 = ((f_max.times(nb)).times(fa)).times(cr1);
-				let falseAlarmTreeResult2= ((f_max.times(nb)).times(cr)).times(fa2);
-				let corretRejectTreeResult2 = ((f_max.times(nb)).times(cr)).times(cr2);
-
-				let hit11TreeResult = (((f_max.times(b)).times(h)).times(h1)).times(h11);
-				let miss11TreeResult = (((f_max.times(b)).times(h)).times(h1)).times(m11);
-
-				let hit12TreeResult = (((f_max.times(b)).times(h)).times(m1)).times(h12);
-				let miss12TreeResult = (((f_max.times(b)).times(h)).times(m1)).times(m12);
-
-
-				let hit21TreeResult = (((f_max.times(b)).times(m)).times(h2)).times(h21);
-				let miss21TreeResult = (((f_max.times(b)).times(m)).times(h2)).times(m21);
-
-				let hit22TreeResult = (((f_max.times(b)).times(m)).times(m2)).times(h22);
-				let miss22TreeResult = (((f_max.times(b)).times(m)).times(m2)).times(m22);
 				
+				popSinput = popSize.value;
+	  			popOutput.innerHTML = popSinput;
+	  			popSinputNum = parseFloat(popSinput.replace(/,/g, ''));
+				let ps = new Decimal(popSinputNum);
 
-				let falseAlarmTreeResult11= (((f_max.times(nb)).times(fa)).times(fa1)).times(fa11);
-				let corretRejectTreeResult11= (((f_max.times(nb)).times(fa)).times(fa1)).times(cr11);
+				let lp = ps;
+				let lb = ps.times(b);
+				let lnb = lp.minus(lb);
 
-				let falseAlarmTreeResult12= (((f_max.times(nb)).times(fa)).times(cr1)).times(fa12);
-				let corretRejectTreeResult12= (((f_max.times(nb)).times(fa)).times(cr1)).times(cr12);
+				let lhit = ps.times(b).times(h);
+				let lmiss = lb.minus(lhit);
+				let lfa = ps.times(nb).times(fa);
+				let lcr = lnb.minus(lfa);
 
-				let falseAlarmTreeResult21= (((f_max.times(nb)).times(cr)).times(fa2)).times(fa21);
-				let corretRejectTreeResult21= (((f_max.times(nb)).times(cr)).times(fa2)).times(cr21);
+				let lhit1 = ps.times(b).times(h).times(h1);
+				let lmiss1 = lhit.minus(lhit1);
 
-				let falseAlarmTreeResult22= (((f_max.times(nb)).times(cr)).times(cr2)).times(fa22);
-				let corretRejectTreeResult22= (((f_max.times(nb)).times(cr)).times(cr2)).times(cr22);
+				let lhit2 = ps.times(b).times(m).times(h2);
+				let lmiss2 = lmiss.minus(lhit2);
 
-		
-				// assigned values for tree output
-				popOutput.innerHTML = popOutputTreeResult.toNumber();
-				baseOutput.innerHTML = baseOutputTreeResult.toNumber();
-				noiseOutput.innerHTML = noiseOutputTreeResult.toNumber();
+				let lfa1 = ps.times(nb).times(fa).times(fa1);
+				let lcr1 = lnb.minus(lfa1);
 
-				hit.innerHTML = hitTreeResult.toNumber();
-				miss.innerHTML = missTreeResult.toNumber();
-				falseAlarm.innerHTML = falseAlarmTreeResult.toNumber();
-				correctReject.innerHTML = corretRejectTreeResult.toNumber();
+				let lfa2 = ps.times(nb).times(fa).times(fa2);
+				let lcr2 = lnb.minus(lfa2);
 
-				hit1.innerHTML = hit1TreeResult.toNumber();
-				hit2.innerHTML = hit2TreeResult.toNumber();
-				miss1.innerHTML = miss1TreeResult.toNumber();
-				miss2.innerHTML = miss2TreeResult.toNumber();
-				falseAlarm1.innerHTML = falseAlarmTreeResult1.toNumber();
-				correctReject1.innerHTML = corretRejectTreeResult1.toNumber();
-				falseAlarm2.innerHTML = falseAlarmTreeResult2.toNumber();
-				correctReject2.innerHTML = corretRejectTreeResult2.toNumber();
+				let lhit11 = ps.times(b).times(h).times(h1).times(h11);
+				let lmiss11 = lhit1.minus(lhit11);
 
-				hit11.innerHTML = hit11TreeResult.toNumber();
-				hit12.innerHTML = hit12TreeResult.toNumber();
-				hit21.innerHTML = hit21TreeResult.toNumber();
-				hit22.innerHTML = hit22TreeResult.toNumber();
-				miss11.innerHTML = miss11TreeResult.toNumber();
-				miss12.innerHTML = miss12TreeResult.toNumber();
-				miss21.innerHTML = miss21TreeResult.toNumber();
-				miss22.innerHTML = miss22TreeResult.toNumber();
+				let lhit12 = ps.times(b).times(h).times(h1).times(h12);
+				let lmiss12 = lmiss1.minus(lhit12);
 
-				falseAlarm11.innerHTML = falseAlarmTreeResult11.toNumber();
-				falseAlarm12.innerHTML = falseAlarmTreeResult12.toNumber();
-				falseAlarm21.innerHTML = falseAlarmTreeResult21.toNumber();
-				falseAlarm22.innerHTML = falseAlarmTreeResult22.toNumber();
+				let lhit21 = ps.times(b).times(m).times(h2).times(h21);
+				let lmiss21 = lhit2.minus(lhit21);
 
-				correctReject11.innerHTML = corretRejectTreeResult11.toNumber();
-				correctReject12.innerHTML = corretRejectTreeResult12.toNumber();
-				correctReject21.innerHTML = corretRejectTreeResult21.toNumber();
-				correctReject22.innerHTML = corretRejectTreeResult22.toNumber();
+				let lhit22 = ps.times(b).times(m).times(h2).times(h22);
+				let lmiss22 = lmiss2.minus(lhit22);
 
+				let lfa11 = ps.times(nb).times(fa).times(fa1).times(fa11);
+				let lcr11 = lfa1.minus(lfa11);
 
+				let lfa12 = ps.times(nb).times(fa).times(fa1).times(fa12);
+				let lcr12 = lcr1.minus(lfa12);
 
-				// assigned values for the equation
-				hitResult1_sup.innerHTML = hit11TreeResult.toNumber();
-				hitResult2_sup.innerHTML = hit12TreeResult.toNumber();
-				hitResult2_sup.innerHTML = hit21TreeResult.toNumber();
-				hitResult2_sup.innerHTML = hit22TreeResult.toNumber();
+				let lfa21 = ps.times(nb).times(cr).times(fa2).times(fa21);
+				let lcr21 = lfa2.minus(lfa21);
 
-				hitResult1_bottom.innerHTML = hit11TreeResult.toNumber();
-				hitResult2_bottom.innerHTML = hit12TreeResult.toNumber();
-				hitResult3_bottom.innerHTML = hit21TreeResult.toNumber();
-				hitResult4_bottom.innerHTML = hit22TreeResult.toNumber();
+				let lfa22 = ps.times(nb).times(cr).times(fa2).times(fa22);
+				let lcr22 = lcr2.minus(lfa22);
 
-				falseAlarmResult1.innerHTML = falseAlarmTreeResult11.toNumber();
-				falseAlarmResult2.innerHTML = falseAlarmTreeResult12.toNumber();
-				falseAlarmResult3.innerHTML = falseAlarmTreeResult21.toNumber();
-				falseAlarmResult4.innerHTML = falseAlarmTreeResult22.toNumber();
+				popOutput.innerHTML = popSinput;
+				baseOutput.innerHTML = lb.toFixed(0);
+				noiseOutput.innerHTML = lnb.toFixed(0);
 
+				hit.innerHTML = lhit.toFixed(0);
+				miss.innerHTML = lmiss.toFixed(0);
+				falseAlarm.innerHTML = lfa.toFixed(0);
+				correctReject.innerHTML = lcr.toFixed(0);
 
-				let up_equation = hit11TreeResult.plus(hit12TreeResult).plus(hit21TreeResult).plus(hit22TreeResult)
-				let down_equation = hit11TreeResult.plus(hit12TreeResult).plus(hit21TreeResult).plus(hit22TreeResult).plus(falseAlarmTreeResult11).plus(falseAlarmTreeResult12).plus(falseAlarmTreeResult21).plus(falseAlarmTreeResult22)
-				results.innerHTML = (up_equation).dividedBy(down_equation).toNumber().toPrecision(3);
+				hit1.innerHTML = lhit1.toFixed(0);
+				hit2.innerHTML = lhit2.toFixed(0);
+				miss1.innerHTML = lmiss1.toFixed(0);
+				miss2.innerHTML = lmiss2.toFixed(0);
+				falseAlarm1.innerHTML = lfa1.toFixed(0);
+				correctReject1.innerHTML = lcr1.toFixed(0);
+				falseAlarm2.innerHTML = lfa2.toFixed(0);
+				correctReject2.innerHTML = lcr2.toFixed(0);
 
-				
+				hit11.innerHTML = lhit11.toFixed(0);
+				hit12.innerHTML = lhit12.toFixed(0);
+				hit21.innerHTML = lhit21.toFixed(0);
+				hit22.innerHTML = lhit22.toFixed(0);
+				miss11.innerHTML = lmiss11.toFixed(0);
+				miss12.innerHTML = lmiss12.toFixed(0);
+				miss21.innerHTML = lmiss21.toFixed(0);
+				miss22.innerHTML = lmiss22.toFixed(0);
+
+				falseAlarm11.innerHTML = lfa11.toFixed(0);
+				falseAlarm12.innerHTML = lfa12.toFixed(0);
+				falseAlarm21.innerHTML = lfa21.toFixed(0);
+				falseAlarm22.innerHTML = lfa22.toFixed(0);
+
+				correctReject11.innerHTML = lcr11.toFixed(0);
+				correctReject12.innerHTML = lcr12.toFixed(0);
+				correctReject21.innerHTML = lcr21.toFixed(0);
+				correctReject22.innerHTML = lcr22.toFixed(0);
+
+				hitResult_sup.innerHTML = lhit.toFixed(0);
+				hitResult_bottom.innerHTML = lhit.toFixed(0);
+				falseAlarmResult.innerHTML = lfa.toFixed(0);
+
+				let up_equation = lhit11.plus(lhit12).plus(lhit21).plus(lhit22);
+				let down_equation = lhit11.plus(lhit12).plus(lhit21).plus(lhit22).plus(lfa11).plus(lfa12).plus(lfa21).plus(lfa22);
+				results.innerHTML = (parseInt(up_equation.toFixed(0))).dividedBy(parseInt(down_equation.toFixed(0)).toFixed(4));
+				sugPop.innerHTML = f_max.toNumber();
 			}
 		}
 

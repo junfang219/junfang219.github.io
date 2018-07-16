@@ -1,4 +1,7 @@
 
+body {
+	padding:40px;
+}
 .hypothesis {
 	padding:10px;
 }
@@ -310,12 +313,12 @@
 
 /*two cues*/
 .c2pop {
-	margin-left: 350px;
+	margin-left: 320px;
 	font-size: 15px;
 }
 
 .c2pop_number {
-	margin-left: 350px;
+	margin-left: 320px;
 	font-size: 15px;
 	color: #0000CD;
 }
@@ -560,12 +563,12 @@
 
 /*three cues*/
 .c3pop {
-	margin-left: 350px;
+	margin-left: 320px;
 	font-size: 15px;
 }
 
 .c3pop_number {
-	margin-left: 350px;
+	margin-left: 320px;
 	font-size: 15px;
 	color: #0000CD;
 }
