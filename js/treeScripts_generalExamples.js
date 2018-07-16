@@ -3243,13 +3243,24 @@ let selectTree = function() {
 				correctReject21.innerHTML = lcr21.toFixed(0);
 				correctReject22.innerHTML = lcr22.toFixed(0);
 
-				hitResult_sup.innerHTML = lhit.toFixed(0);
-				hitResult_bottom.innerHTML = lhit.toFixed(0);
-				falseAlarmResult.innerHTML = lfa.toFixed(0);
+				hitResult1_sup.innerHTML = lhit11.toFixed(0);
+				hitResult2_sup.innerHTML = lhit12.toFixed(0);
+				hitResult2_sup.innerHTML = lhit21.toFixed(0);
+				hitResult2_sup.innerHTML = lhit22.toFixed(0);
 
-				let up_equation = lhit11.plus(lhit12).plus(lhit21).plus(lhit22);
-				let down_equation = lhit11.plus(lhit12).plus(lhit21).plus(lhit22).plus(lfa11).plus(lfa12).plus(lfa21).plus(lfa22);
-				results.innerHTML = (parseInt(up_equation.toFixed(0))).dividedBy(parseInt(down_equation.toFixed(0)).toFixed(4));
+				hitResult1_bottom.innerHTML = lhit11.toFixed(0);
+				hitResult2_bottom.innerHTML = lhit12.toFixed(0);
+				hitResult3_bottom.innerHTML = lhit21.toFixed(0);
+				hitResult4_bottom.innerHTML = lhit22.toFixed(0);
+
+				falseAlarmResult1.innerHTML = lfa11.toFixed(0);
+				falseAlarmResult2.innerHTML = lfa12.toFixed(0);
+				falseAlarmResult3.innerHTML = lfa21.toFixed(0);
+				falseAlarmResult4.innerHTML = lfa22.toFixed(0);
+
+				let up_equation = lhit11.plus(lhit12).plus(lhit21).plus(lhit22).toFixed(0);
+				let down_equation = lhit11.plus(lhit12).plus(lhit21).plus(lhit22).plus(lfa11).plus(lfa12).plus(lfa21).plus(lfa22.toFixed(0));
+				results.innerHTML = ((parseInt(up_equation)) / (parseInt(down_equation))).toFixed(4);
 				//results.innerHTML = (parseInt(lhit.toFixed(0)) / (parseInt(lhit.toFixed(0)) + parseInt((lfa).toFixed(0)))).toFixed(4);
 				//results.innerHTML = ps.times(b).times(h).dividedBy(ps.times(b).times(h).plus(ps.times(nb).times(fa))).toNumber().toPrecision(3);
 				}
@@ -3375,13 +3386,24 @@ let selectTree = function() {
 					correctReject21.innerHTML = lcr21.toFixed(0);
 					correctReject22.innerHTML = lcr22.toFixed(0);
 
-					hitResult_sup.innerHTML = lhit.toFixed(0);
-					hitResult_bottom.innerHTML = lhit.toFixed(0);
-					falseAlarmResult.innerHTML = lfa.toFixed(0);
+					hitResult1_sup.innerHTML = lhit11.toFixed(0);
+					hitResult2_sup.innerHTML = lhit12.toFixed(0);
+					hitResult2_sup.innerHTML = lhit21.toFixed(0);
+					hitResult2_sup.innerHTML = lhit22.toFixed(0);
 
-					let up_equation = lhit11.plus(lhit12).plus(lhit21).plus(lhit22);
-					let down_equation = lhit11.plus(lhit12).plus(lhit21).plus(lhit22).plus(lfa11).plus(lfa12).plus(lfa21).plus(lfa22);
-					results.innerHTML = (parseInt(up_equation.toFixed(0))).dividedBy(parseInt(down_equation.toFixed(0)).toFixed(4));
+					hitResult1_bottom.innerHTML = lhit11.toFixed(0);
+					hitResult2_bottom.innerHTML = lhit12.toFixed(0);
+					hitResult3_bottom.innerHTML = lhit21.toFixed(0);
+					hitResult4_bottom.innerHTML = lhit22.toFixed(0);
+
+					falseAlarmResult1.innerHTML = lfa11.toFixed(0);
+					falseAlarmResult2.innerHTML = lfa12.toFixed(0);
+					falseAlarmResult3.innerHTML = lfa21.toFixed(0);
+					falseAlarmResult4.innerHTML = lfa22.toFixed(0);
+
+					let up_equation = lhit11.plus(lhit12).plus(lhit21).plus(lhit22).toFixed(0);
+					let down_equation = lhit11.plus(lhit12).plus(lhit21).plus(lhit22).plus(lfa11).plus(lfa12).plus(lfa21).plus(lfa22).toFixed(0);
+					results.innerHTML = ((parseInt(up_equation)) / (parseInt(down_equation))).toFixed(4);
 				}
 	  	});
 
@@ -3657,12 +3679,26 @@ let selectTree = function() {
 				correctReject21.innerHTML = lcr21.toFixed(0);
 				correctReject22.innerHTML = lcr22.toFixed(0);
 
+				hitResult1_sup.innerHTML = lhit11.toFixed(0);
+				hitResult2_sup.innerHTML = lhit12.toFixed(0);
+				hitResult2_sup.innerHTML = lhit21.toFixed(0);
+				hitResult2_sup.innerHTML = lhit22.toFixed(0);
+
+				hitResult1_bottom.innerHTML = lhit11.toFixed(0);
+				hitResult2_bottom.innerHTML = lhit12.toFixed(0);
+				hitResult3_bottom.innerHTML = lhit21.toFixed(0);
+				hitResult4_bottom.innerHTML = lhit22.toFixed(0);
+
+				falseAlarmResult1.innerHTML = lfa11.toFixed(0);
+				falseAlarmResult2.innerHTML = lfa12.toFixed(0);
+				falseAlarmResult3.innerHTML = lfa21.toFixed(0);
+				falseAlarmResult4.innerHTML = lfa22.toFixed(0);
+
 				
 
-				let up_equation = lhit11.plus(lhit12).plus(lhit21).plus(lhit22);
-				let down_equation = lhit11.plus(lhit12).plus(lhit21).plus(lhit22).plus(lfa11).plus(lfa12).plus(lfa21).plus(lfa22);
-				results.innerHTML = (parseInt(up_equation.toFixed(0))).dividedBy(parseInt(down_equation.toFixed(0)).toFixed(4));
-
+				let up_equation = lhit11.plus(lhit12).plus(lhit21).plus(lhit22).toFixed(0);
+				let down_equation = lhit11.plus(lhit12).plus(lhit21).plus(lhit22).plus(lfa11).plus(lfa12).plus(lfa21).plus(lfa22).toFixed(0);
+				results.innerHTML = ((parseInt(up_equation)) / (parseInt(down_equation))).toFixed(4);
 				// let postiveTestTreeResult = hitTreeResult.plus(falseAlarmTreeResult);
 				// let negativeTestTreeResult = missTreeResult.plus(corretRejectTreeResult);
 				
@@ -3895,13 +3931,24 @@ let selectTree = function() {
 				correctReject21.innerHTML = lcr21.toFixed(0);
 				correctReject22.innerHTML = lcr22.toFixed(0);
 
-				hitResult_sup.innerHTML = lhit.toFixed(0);
-				hitResult_bottom.innerHTML = lhit.toFixed(0);
-				falseAlarmResult.innerHTML = lfa.toFixed(0);
+				hitResult1_sup.innerHTML = lhit11.toFixed(0);
+				hitResult2_sup.innerHTML = lhit12.toFixed(0);
+				hitResult2_sup.innerHTML = lhit21.toFixed(0);
+				hitResult2_sup.innerHTML = lhit22.toFixed(0);
 
-				let up_equation = lhit11.plus(lhit12).plus(lhit21).plus(lhit22);
-				let down_equation = lhit11.plus(lhit12).plus(lhit21).plus(lhit22).plus(lfa11).plus(lfa12).plus(lfa21).plus(lfa22);
-				results.innerHTML = (parseInt(up_equation.toFixed(0))).dividedBy(parseInt(down_equation.toFixed(0)).toFixed(4));
+				hitResult1_bottom.innerHTML = lhit11.toFixed(0);
+				hitResult2_bottom.innerHTML = lhit12.toFixed(0);
+				hitResult3_bottom.innerHTML = lhit21.toFixed(0);
+				hitResult4_bottom.innerHTML = lhit22.toFixed(0);
+
+				falseAlarmResult1.innerHTML = lfa11.toFixed(0);
+				falseAlarmResult2.innerHTML = lfa12.toFixed(0);
+				falseAlarmResult3.innerHTML = lfa21.toFixed(0);
+				falseAlarmResult4.innerHTML = lfa22.toFixed(0);
+
+				let up_equation = lhit11.plus(lhit12).plus(lhit21).plus(lhit22).toFixed(0);
+				let down_equation = lhit11.plus(lhit12).plus(lhit21).plus(lhit22).plus(lfa11).plus(lfa12).plus(lfa21).plus(lfa22).toFixed(0);
+				results.innerHTML = ((parseInt(up_equation)) / (parseInt(down_equation))).toFixed(4);
 				sugPop.innerHTML = f_max.toNumber();
 			}
 		}
