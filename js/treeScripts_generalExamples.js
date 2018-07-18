@@ -325,7 +325,7 @@ let selectTree = function() {
 					hitResult_sup.innerHTML = lhit.toFixed(0);
 					hitResult_bottom.innerHTML = lhit.toFixed(0);
 					falseAlarmResult.innerHTML = lfa.toFixed(0);
-					results.innerHTML = (parseInt(lhit.toFixed(0)) / (parseInt(lhit.toFixed(0)) + parseInt((lfa).toFixed(0)))).toFixed(4);
+					results.innerHTML = ((parseInt(lhit.toFixed(0)) / (parseInt(lhit.toFixed(0)) + parseInt((lfa).toFixed(0))))*100).toFixed(2) + "%";
 
 				}
 	  	});
@@ -547,7 +547,8 @@ let selectTree = function() {
 				hitResult_bottom.innerHTML = lhit.toFixed(0);
 				falseAlarmResult.innerHTML = lfa.toFixed(0);
 
-				results.innerHTML = (parseInt(lhit.toFixed(0)) / (parseInt(lhit.toFixed(0)) + parseInt((lfa).toFixed(0)))).toFixed(4);
+				//results.innerHTML = (parseInt(lhit.toFixed(0)) / (parseInt(lhit.toFixed(0)) + parseInt((lfa).toFixed(0)))).toFixed(4);
+				results.innerHTML = ((parseInt(lhit.toFixed(0)) / (parseInt(lhit.toFixed(0)) + parseInt((lfa).toFixed(0))))*100).toFixed(2) + "%";
 				sugPop.innerHTML = f_max.toNumber();
 
 			}
@@ -894,8 +895,7 @@ let selectTree = function() {
 					hitResult_sup.innerHTML = lhit.toFixed(0);
 					hitResult_bottom.innerHTML = lhit.toFixed(0);
 					falseAlarmResult.innerHTML = lfa.toFixed(0);
-					results.innerHTML = (parseInt(lhit.toFixed(0)) / (parseInt(lhit.toFixed(0)) + parseInt((lfa).toFixed(0)))).toFixed(4);
-
+					results.innerHTML = ((parseInt(lhit.toFixed(0)) / (parseInt(lhit.toFixed(0)) + parseInt((lfa).toFixed(0))))*100).toFixed(2) + "%";
 				}
 	  	});
 
@@ -1116,8 +1116,8 @@ let selectTree = function() {
 				hitResult_sup.innerHTML = lhit.toFixed(0);
 				hitResult_bottom.innerHTML = lhit.toFixed(0);
 				falseAlarmResult.innerHTML = lfa.toFixed(0);
-
-				results.innerHTML = (parseInt(lhit.toFixed(0)) / (parseInt(lhit.toFixed(0)) + parseInt((lfa).toFixed(0)))).toFixed(4);
+				
+				results.innerHTML = ((parseInt(lhit.toFixed(0)) / (parseInt(lhit.toFixed(0)) + parseInt((lfa).toFixed(0))))*100).toFixed(2) + "%";
 				sugPop.innerHTML = f_max.toNumber();
 				// // assigned values for the equation
 				// hitResult_sup.innerHTML = hitTreeResult.toNumber();
@@ -1169,8 +1169,8 @@ let selectTree = function() {
 		
 
 		// Probability div output
-		let results1;
-		let results2;
+		let results;
+	
 		let hitResult_sup;
 		let hitResult_bottom1;
 		let hitResult_bottom2;
@@ -1469,7 +1469,7 @@ let selectTree = function() {
 				hitResult_bottom1.innerHTML = lhit1.toFixed(0);
 				hitResult_bottom2.innerHTML = lhit2.toFixed(0);
 				falseAlarmResult.innerHTML = lfa.toFixed(0);
-				results.innerHTML = (parseInt(lhit1.toFixed(0)) / (parseInt(lhit2.toFixed(0)) + parseInt((lfa).toFixed(0)))).toFixed(4);
+				results.innerHTML = (parseInt(lhit1.toFixed(0)) / (parseInt(lhit1.toFixed(0)) + parseInt(lhit2.toFixed(0)) + parseInt(lfa.toFixed(0)))).toFixed(4);
 				//results.innerHTML = ps.times(b).times(h).dividedBy(ps.times(b).times(h).plus(ps.times(nb).times(fa))).toNumber().toPrecision(3);
 				//sugPop.innerHTML = 1000;
 				}
@@ -1514,7 +1514,7 @@ let selectTree = function() {
 					hitResult_bottom1.innerHTML = lhit1.toFixed(0);
 					hitResult_bottom2.innerHTML = lhit2.toFixed(0);
 					falseAlarmResult.innerHTML = lfa.toFixed(0);
-					results.innerHTML = (parseInt(lhit1.toFixed(0)) / (parseInt(lhit2.toFixed(0)) + parseInt((lfa).toFixed(0)))).toFixed(4);
+					results.innerHTML = 100*(parseInt(lhit1.toFixed(0)) / (parseInt(lhit1.toFixed(0)) + parseInt(lhit2.toFixed(0)) + parseInt(lfa.toFixed(0)))).toFixed(4);				
 				}
 	  	});
 
@@ -1625,7 +1625,7 @@ let selectTree = function() {
 				hitResult_bottom1.innerHTML = lhit1.toFixed(0);
 				hitResult_bottom2.innerHTML = lhit2.toFixed(0);
 				falseAlarmResult.innerHTML = lfa.toFixed(0);
-				results.innerHTML = (parseInt(lhit1.toFixed(0)) / (parseInt(lhit2.toFixed(0)) + parseInt((lfa).toFixed(0)))).toFixed(4);
+				results.innerHTML = (parseInt(lhit1.toFixed(0)) / (parseInt(lhit1.toFixed(0)) + parseInt(lhit2.toFixed(0)) + parseInt(lfa.toFixed(0)))).toFixed(4);
 				sugPop.innerHTML = f_max.toNumber();
 
 			} else {
@@ -1708,7 +1708,7 @@ let selectTree = function() {
 				hitResult_bottom1.innerHTML = lhit1.toFixed(0);
 				hitResult_bottom2.innerHTML = lhit2.toFixed(0);
 				falseAlarmResult.innerHTML = lfa.toFixed(0);
-				results.innerHTML = (parseInt(lhit1.toFixed(0)) / (parseInt(lhit2.toFixed(0)) + parseInt((lfa).toFixed(0)))).toFixed(4);
+				results.innerHTML = 100*(parseInt(lhit1.toFixed(0)) / (parseInt(lhit1.toFixed(0)) + parseInt(lhit2.toFixed(0)) + parseInt(lfa.toFixed(0)))).toFixed(4);
 				sugPop.innerHTML = f_max.toNumber();
 			}
 		}
@@ -2222,7 +2222,7 @@ let selectTree = function() {
 					hitResult2_bottom.innerHTML = lhit2.toFixed(0);
 					falseAlarmResult1.innerHTML = lfa1.toFixed(0);
 					falseAlarmResult2.innerHTML = lfa2.toFixed(0);
-					results.innerHTML = (parseInt(lhit1.plus(lhit2).toFixed(0)) / (parseInt(lhit1.plus(lhit2).toFixed(0)) + parseInt((lfa1).plus(lfa2).toFixed(0)))).toFixed(4);
+					results.innerHTML = 100*(parseInt(lhit1.plus(lhit2).toFixed(0)) / (parseInt(lhit1.plus(lhit2).toFixed(0)) + parseInt((lfa1).plus(lfa2).toFixed(0)))).toFixed(4) + "%";
 				}
 	  	});
 
@@ -2277,20 +2277,36 @@ let selectTree = function() {
 					hitRate.value = result.toPrecision(4);
 				} else if (event.target.className == "c2hitRate1") {
 					missRate1.value = result.toPrecision(4);
+					hitRate2.value = hitRate1.value
+					missRate2.value = result.toPrecision(4);
 				} else if (event.target.className == "c2missRate1") {
 					hitRate1.value = result.toPrecision(4);
+					missRate2.value = missRate1.value;
+					hitRate2.value = result.toPrecision(4);
 				} else if (event.target.className == "c2hitRate2") {
 					missRate2.value = result.toPrecision(4);
+					missRate1.value = result.toPrecision(4);
+					hitRate1.value = hitRate2.value;
 				} else if (event.target.className == "c2missRate2") {
 					hitRate2.value = result.toPrecision(4);
+					hitRate1.value = result.toPrecision(4);
+					missRate1.value = missRate2.value;
 				} else if (event.target.className == "c2crRate1") {
 					faRate1.value = result.toPrecision(4);
+					faRate2.value = result.toPrecision(4);
+					crRate2.value = crRate1.value;
 				} else if (event.target.className == "c2faRate1") {
 					crRate1.value = result.toPrecision(4);
+					crRate2.value = result.toPrecision(4);
+					faRate2.value = faRate1.value;
 				} else if (event.target.className == "c2crRate2") {
 					faRate2.value = result.toPrecision(4);
+					faRate1.value = result.toPrecision(4);
+					crRate1.value = crRate2.value;
 				} else if (event.target.className == "c2faRate2") {
 					crRate2.value = result.toPrecision(4);
+					crRate1.value = result.toPrecision(4);
+					faRate1.value = faRate2.value;
 				} else if(event.target.className == "c2faRate") {
 					crRate.value = result.toPrecision(4);
 				} else if(event.target.className == "c2crRate") {
@@ -2402,20 +2418,36 @@ let selectTree = function() {
 					hitRate.value = result.toPrecision(4);
 				} else if (event.target.className == "c2hitRate1") {
 					missRate1.value = result.toPrecision(4);
+					hitRate2.value = hitRate1.value
+					missRate2.value = result.toPrecision(4);
 				} else if (event.target.className == "c2missRate1") {
 					hitRate1.value = result.toPrecision(4);
+					missRate2.value = missRate1.value;
+					hitRate2.value = result.toPrecision(4);
 				} else if (event.target.className == "c2hitRate2") {
 					missRate2.value = result.toPrecision(4);
+					missRate1.value = result.toPrecision(4);
+					hitRate1.value = hitRate2.value;
 				} else if (event.target.className == "c2missRate2") {
 					hitRate2.value = result.toPrecision(4);
+					hitRate1.value = result.toPrecision(4);
+					missRate1.value = missRate2.value;
 				} else if (event.target.className == "c2crRate1") {
 					faRate1.value = result.toPrecision(4);
+					faRate2.value = result.toPrecision(4);
+					crRate2.value = crRate1.value;
 				} else if (event.target.className == "c2faRate1") {
 					crRate1.value = result.toPrecision(4);
+					crRate2.value = result.toPrecision(4);
+					faRate2.value = faRate1.value;
 				} else if (event.target.className == "c2crRate2") {
 					faRate2.value = result.toPrecision(4);
+					faRate1.value = result.toPrecision(4);
+					crRate1.value = crRate2.value;
 				} else if (event.target.className == "c2faRate2") {
 					crRate2.value = result.toPrecision(4);
+					crRate1.value = result.toPrecision(4);
+					faRate1.value = faRate2.value;
 				} else if(event.target.className == "c2faRate") {
 					crRate.value = result.toPrecision(4);
 				} else if(event.target.className == "c2crRate") {
@@ -2424,7 +2456,7 @@ let selectTree = function() {
 					nbaseRate.value = result.toPrecision(4);
 				} else if (event.target.className == "c2nbaseRate") {
 					baseRate.value = result.toPrecision(4);
-				}
+				} 
 
 				let nb = new Decimal(nbaseRate.value).dividedBy(100);
 				let b = new Decimal(baseRate.value).dividedBy(100);
@@ -2502,8 +2534,7 @@ let selectTree = function() {
 				hitResult2_bottom.innerHTML = lhit2.toFixed(0);
 				falseAlarmResult1.innerHTML = lfa1.toFixed(0);
 				falseAlarmResult2.innerHTML = lfa2.toFixed(0);
-				results.innerHTML = (parseInt(lhit1.plus(lhit2).toFixed(0)) / (parseInt(lhit1.plus(lhit2).toFixed(0)) + parseInt((lfa1).plus(lfa2).toFixed(0)))).toFixed(4);
-
+				results.innerHTML = (100*(parseInt(lhit1.plus(lhit2).toFixed(0)) / (parseInt(lhit1.plus(lhit2).toFixed(0)) + parseInt((lfa1).plus(lfa2).toFixed(0))))).toFixed(2) + "%";
 				sugPop.innerHTML = f_max;
 			}
 		}
@@ -2772,6 +2803,7 @@ let selectTree = function() {
 							}
 							else if (bottom3DivClass == "c3hitRate12") {
 								hitRate12 = bottom3Div.children[jjjjjjj];
+
 							}
 							else if (bottom3DivClass == "c3hit12") {
 								hit12 = bottom3Div.children[jjjjjjj];
@@ -2880,52 +2912,16 @@ let selectTree = function() {
 									
 									let innerProbClass = innerProbDiv.children[jjjj].className;
 
-									
-									if (innerProbClass == "hitResult1 prob_bottom") {
-										hitResult1_bottom = innerProbDiv.children[jjjj];
+									if (innerProbClass == "hitResult prob_sup") {
+										hitResult_sup = innerProbDiv.children[jjjj];
 									}
-									else if (innerProbClass == "hitResult2 prob_bottom") {
-										hitResult2_bottom = innerProbDiv.children[jjjj];
-									}
-									else if (innerProbClass == "hitResult3 prob_bottom") {
-										hitResult3_bottom = innerProbDiv.children[jjjj];
-									}
-									else if (innerProbClass == "hitResult4 prob_bottom") {
-										hitResult4_bottom = innerProbDiv.children[jjjj];
-									}
-									else if (innerProbClass == "faResult1 prob_bottom") {
-										falseAlarmResult1 = innerProbDiv.children[jjjj];						
-									}
-									else if (innerProbClass == "faResult2 prob_bottom") {
-										falseAlarmResult2 = innerProbDiv.children[jjjj];						
-									}
-									else if (innerProbClass == "faResult3 prob_bottom") {
-										falseAlarmResult3 = innerProbDiv.children[jjjj];						
-									}
-									else if (innerProbClass == "faResult4 prob_bottom") {
-										falseAlarmResult4 = innerProbDiv.children[jjjj];						
-									}
-									else if (innerProbClass == "prob_sup") {
-										let subProbDiv = innerProbDiv.children[jjjj];
-										for( let jjjjjj = 0; jjjjjj < subProbDiv.children.length; jjjjjj++) {
-											let subProbDivClass = subProbDiv.children[jjjjjj].className;
-												
-											if (subProbDivClass == "hitResult1_sup") {
-												hitResult1_sup = subProbDiv.children[jjjjjj];
-											}
-											else if (subProbDivClass == "hitResult2_sup") {
-												hitResult2_sup = subProbDiv.children[jjjjjj];	
-											}
-											else if (subProbDivClass == "hitResult3_sup") {
-												hitResult3_sup = subProbDiv.children[jjjjjj];	
-											}
-											else if (subProbDivClass == "hitResult4_sup") {
-												hitResult4_sup = subProbDiv.children[jjjjjj];	
-											}
-										}
-									}
+									else if (innerProbClass == "hitResult prob_bottom") {
+										hitResult_bottom = innerProbDiv.children[jjjj];
 
-									
+									}
+									else if (innerProbClass == "faResult prob_bottom") {
+										falseAlarmResult = innerProbDiv.children[jjjj];						
+									}
 								}
 							}
 							else if (probDivClass == "results") {
@@ -3003,18 +2999,14 @@ let selectTree = function() {
 
 			 
 			 // equation result
-			 hitResult1_sup.innerHTML = 50;
-			 hitResult2_sup.innerHTML = 50;
-			 hitResult3_sup.innerHTML = 50;
-			 hitResult4_sup.innerHTML = 50;
-			 hitResult1_bottom.innerHTML = 50;
-			 hitResult2_bottom.innerHTML = 50;
-			 hitResult3_bottom.innerHTML = 50;
-			 hitResult4_bottom.innerHTML = 50;
-			 falseAlarmResult1.innerHTML = 50;
-			 falseAlarmResult2.innerHTML = 50;
-			 falseAlarmResult3.innerHTML = 50;
-			 falseAlarmResult4.innerHTML = 50;
+			 hitResult_sup.innerHTML = 50;
+			
+			 hitResult_bottom.innerHTML = 50;
+			
+			 falseAlarmResult.innerHTML = 50;
+			 // falseAlarmResult2.innerHTML = 50;
+			 // falseAlarmResult3.innerHTML = 50;
+			 // falseAlarmResult4.innerHTML = 50;
 			 
 			 sugPop.innerHTML = 1000;
 		}
@@ -3142,6 +3134,7 @@ let selectTree = function() {
 
 				let h11 = new Decimal(hitRate11.value);
 				let h12 = new Decimal(hitRate12.value);
+				//console.log(h12.toNumber());
 				let h21 = new Decimal(hitRate21.value);
 				let h22 = new Decimal(hitRate22.value);
 
@@ -3177,33 +3170,33 @@ let selectTree = function() {
 				let lmiss2 = lmiss.minus(lhit2);
 
 				let lfa1 = ps.times(nb).times(fa).times(fa1);
-				let lcr1 = lnb.minus(lfa1);
+				let lcr1 = lfa.minus(lfa1);
 
-				let lfa2 = ps.times(nb).times(fa).times(fa2);
-				let lcr2 = lnb.minus(lfa2);
+				let lfa2 = ps.times(nb).times(cr).times(fa2);
+				let lcr2 = lcr.minus(lfa2);
 
 				let lhit11 = ps.times(b).times(h).times(h1).times(h11);
 				let lmiss11 = lhit1.minus(lhit11);
 
-				let lhit12 = ps.times(b).times(h).times(h1).times(h12);
+				let lhit12 = ps.times(b).times(h).times(m1).times(h12);
 				let lmiss12 = lmiss1.minus(lhit12);
 
 				let lhit21 = ps.times(b).times(m).times(h2).times(h21);
 				let lmiss21 = lhit2.minus(lhit21);
 
-				let lhit22 = ps.times(b).times(m).times(h2).times(h22);
+				let lhit22 = ps.times(b).times(m).times(m2).times(h22);
 				let lmiss22 = lmiss2.minus(lhit22);
 
 				let lfa11 = ps.times(nb).times(fa).times(fa1).times(fa11);
 				let lcr11 = lfa1.minus(lfa11);
 
-				let lfa12 = ps.times(nb).times(fa).times(fa1).times(fa12);
+				let lfa12 = ps.times(nb).times(fa).times(cr1).times(fa12);
 				let lcr12 = lcr1.minus(lfa12);
 
 				let lfa21 = ps.times(nb).times(cr).times(fa2).times(fa21);
 				let lcr21 = lfa2.minus(lfa21);
 
-				let lfa22 = ps.times(nb).times(cr).times(fa2).times(fa22);
+				let lfa22 = ps.times(nb).times(cr).times(cr2).times(fa22);
 				let lcr22 = lcr2.minus(lfa22);
 
 				popOutput.innerHTML = popSinput;
@@ -3243,23 +3236,23 @@ let selectTree = function() {
 				correctReject21.innerHTML = lcr21.toFixed(0);
 				correctReject22.innerHTML = lcr22.toFixed(0);
 
-				hitResult1_sup.innerHTML = lhit11.toFixed(0);
-				hitResult2_sup.innerHTML = lhit12.toFixed(0);
-				hitResult2_sup.innerHTML = lhit21.toFixed(0);
-				hitResult2_sup.innerHTML = lhit22.toFixed(0);
+				hitResult_sup.innerHTML = lhit11.toFixed(0);
+				//hitResult2_sup.innerHTML = lhit12.toFixed(0);
+				//hitResult2_sup.innerHTML = lhit21.toFixed(0);
+				//hitResult2_sup.innerHTML = lhit22.toFixed(0);
 
-				hitResult1_bottom.innerHTML = lhit11.toFixed(0);
-				hitResult2_bottom.innerHTML = lhit12.toFixed(0);
-				hitResult3_bottom.innerHTML = lhit21.toFixed(0);
-				hitResult4_bottom.innerHTML = lhit22.toFixed(0);
+				hitResult_bottom.innerHTML = lhit11.toFixed(0);
+				// hitResult2_bottom.innerHTML = lhit12.toFixed(0);
+				// hitResult3_bottom.innerHTML = lhit21.toFixed(0);
+				// hitResult4_bottom.innerHTML = lhit22.toFixed(0);
 
-				falseAlarmResult1.innerHTML = lfa11.toFixed(0);
-				falseAlarmResult2.innerHTML = lfa12.toFixed(0);
-				falseAlarmResult3.innerHTML = lfa21.toFixed(0);
-				falseAlarmResult4.innerHTML = lfa22.toFixed(0);
+				falseAlarmResult.innerHTML = lfa11.toFixed(0);
+				//falseAlarmResult2.innerHTML = lfa12.toFixed(0);
+				//falseAlarmResult3.innerHTML = lfa21.toFixed(0);
+				//falseAlarmResult4.innerHTML = lfa22.toFixed(0);
 
-				let up_equation = lhit11.plus(lhit12).plus(lhit21).plus(lhit22).toFixed(0);
-				let down_equation = lhit11.plus(lhit12).plus(lhit21).plus(lhit22).plus(lfa11).plus(lfa12).plus(lfa21).plus(lfa22.toFixed(0));
+				let up_equation = lhit11.toFixed(0);
+				let down_equation = lhit11.plus(lfa11).toFixed(0);
 				results.innerHTML = ((parseInt(up_equation)) / (parseInt(down_equation))).toFixed(4);
 				//results.innerHTML = (parseInt(lhit.toFixed(0)) / (parseInt(lhit.toFixed(0)) + parseInt((lfa).toFixed(0)))).toFixed(4);
 				//results.innerHTML = ps.times(b).times(h).dividedBy(ps.times(b).times(h).plus(ps.times(nb).times(fa))).toNumber().toPrecision(3);
@@ -3320,33 +3313,33 @@ let selectTree = function() {
 					let lmiss2 = lmiss.minus(lhit2);
 
 					let lfa1 = ps.times(nb).times(fa).times(fa1);
-					let lcr1 = lnb.minus(lfa1);
+					let lcr1 = lfa.minus(lfa1);
 
-					let lfa2 = ps.times(nb).times(fa).times(fa2);
-					let lcr2 = lnb.minus(lfa2);
+					let lfa2 = ps.times(nb).times(cr).times(fa2);
+					let lcr2 = lcr.minus(lfa2);
 
 					let lhit11 = ps.times(b).times(h).times(h1).times(h11);
 					let lmiss11 = lhit1.minus(lhit11);
 
-					let lhit12 = ps.times(b).times(h).times(h1).times(h12);
+					let lhit12 = ps.times(b).times(h).times(m1).times(h12);
 					let lmiss12 = lmiss1.minus(lhit12);
 
 					let lhit21 = ps.times(b).times(m).times(h2).times(h21);
 					let lmiss21 = lhit2.minus(lhit21);
 
-					let lhit22 = ps.times(b).times(m).times(h2).times(h22);
+					let lhit22 = ps.times(b).times(m).times(m2).times(h22);
 					let lmiss22 = lmiss2.minus(lhit22);
 
 					let lfa11 = ps.times(nb).times(fa).times(fa1).times(fa11);
 					let lcr11 = lfa1.minus(lfa11);
 
-					let lfa12 = ps.times(nb).times(fa).times(fa1).times(fa12);
+					let lfa12 = ps.times(nb).times(fa).times(cr1).times(fa12);
 					let lcr12 = lcr1.minus(lfa12);
 
 					let lfa21 = ps.times(nb).times(cr).times(fa2).times(fa21);
 					let lcr21 = lfa2.minus(lfa21);
 
-					let lfa22 = ps.times(nb).times(cr).times(fa2).times(fa22);
+					let lfa22 = ps.times(nb).times(cr).times(cr2).times(fa22);
 					let lcr22 = lcr2.minus(lfa22);
 
 					popOutput.innerHTML = popSinput;
@@ -3386,23 +3379,23 @@ let selectTree = function() {
 					correctReject21.innerHTML = lcr21.toFixed(0);
 					correctReject22.innerHTML = lcr22.toFixed(0);
 
-					hitResult1_sup.innerHTML = lhit11.toFixed(0);
-					hitResult2_sup.innerHTML = lhit12.toFixed(0);
-					hitResult2_sup.innerHTML = lhit21.toFixed(0);
-					hitResult2_sup.innerHTML = lhit22.toFixed(0);
+					hitResult_sup.innerHTML = lhit11.toFixed(0);
+					//hitResult2_sup.innerHTML = lhit12.toFixed(0);
+					//hitResult2_sup.innerHTML = lhit21.toFixed(0);
+					//hitResult2_sup.innerHTML = lhit22.toFixed(0);
 
-					hitResult1_bottom.innerHTML = lhit11.toFixed(0);
-					hitResult2_bottom.innerHTML = lhit12.toFixed(0);
-					hitResult3_bottom.innerHTML = lhit21.toFixed(0);
-					hitResult4_bottom.innerHTML = lhit22.toFixed(0);
+					hitResult_bottom.innerHTML = lhit11.toFixed(0);
+					// hitResult2_bottom.innerHTML = lhit12.toFixed(0);
+					// hitResult3_bottom.innerHTML = lhit21.toFixed(0);
+					// hitResult4_bottom.innerHTML = lhit22.toFixed(0);
 
-					falseAlarmResult1.innerHTML = lfa11.toFixed(0);
-					falseAlarmResult2.innerHTML = lfa12.toFixed(0);
-					falseAlarmResult3.innerHTML = lfa21.toFixed(0);
-					falseAlarmResult4.innerHTML = lfa22.toFixed(0);
+					falseAlarmResult.innerHTML = lfa11.toFixed(0);
+					//falseAlarmResult2.innerHTML = lfa12.toFixed(0);
+					//falseAlarmResult3.innerHTML = lfa21.toFixed(0);
+					//falseAlarmResult4.innerHTML = lfa22.toFixed(0);
 
-					let up_equation = lhit11.plus(lhit12).plus(lhit21).plus(lhit22).toFixed(0);
-					let down_equation = lhit11.plus(lhit12).plus(lhit21).plus(lhit22).plus(lfa11).plus(lfa12).plus(lfa21).plus(lfa22).toFixed(0);
+					let up_equation = lhit11.toFixed(0);
+					let down_equation = lhit11.plus(lfa11).toFixed(0);
 					results.innerHTML = ((parseInt(up_equation)) / (parseInt(down_equation))).toFixed(4);
 				}
 	  	});
@@ -3471,20 +3464,36 @@ let selectTree = function() {
 					hitRate.value = result.toPrecision(4);
 				} else if (event.target.className == "c3hitRate1") {
 					missRate1.value = result.toPrecision(4);
+					missRate2.value = result.toPrecision(4);
+					hitRate2.value = hitRate1.value;
 				} else if (event.target.className == "c3missRate1") {
 					hitRate1.value = result.toPrecision(4);
+					hitRate2.value = result.toPrecision(4);
+					missRate2.value = missRate1.value;
 				} else if (event.target.className == "c3hitRate2") {
 					missRate2.value = result.toPrecision(4);
+					missRate1.value = result.toPrecision(4);
+					hitRate1.value = hitRate2.value;
 				} else if (event.target.className == "c3missRate2") {
 					hitRate2.value = result.toPrecision(4);
+					missRate1.value = missRate2.value;
+					hitRate1.value = result.toPrecision(4);
 				} else if (event.target.className == "c3crRate1") {
 					faRate1.value = result.toPrecision(4);
+					faRate2.value = result.toPrecision(4);
+					crRate2.value = crRate1.value;
 				} else if (event.target.className == "c3faRate1") {
 					crRate1.value = result.toPrecision(4);
+					faRate2.value = faRate1.value;
+					crRate2.value = result.toPrecision(4);
 				} else if (event.target.className == "c3crRate2") {
 					faRate2.value = result.toPrecision(4);
+					faRate1.value = result.toPrecision(4);
+					crRate1.value = crRate2.value;
 				} else if (event.target.className == "c3faRate2") {
 					crRate2.value = result.toPrecision(4);
+					crRate1.value = result.toPrecision(4);
+					faRate1.value = faRate2.value;
 				} else if(event.target.className == "c3faRate") {
 					crRate.value = result.toPrecision(4);
 				} else if(event.target.className == "c3crRate") {
@@ -3495,35 +3504,141 @@ let selectTree = function() {
 					baseRate.value = result.toPrecision(4);
 				} else if (event.target.className == "c3missRate11") {
 					hitRate11.value = result.toPrecision(4);
-				} else if (event.target.className == "c3hitRate11") {
-					missRate11.value = result.toPrecision(4);
-				} else if (event.target.className == "c3missRate12") {
 					hitRate12.value = result.toPrecision(4);
-				} else if (event.target.className == "c3hitRate12") {
-					missRate12.value = result.toPrecision(4);
-				} else if (event.target.className == "c3missRate21") {
 					hitRate21.value = result.toPrecision(4);
-				} else if (event.target.className == "c3hitRate21") {
-					missRate21.value = result.toPrecision(4);
-				} else if (event.target.className == "c3missRate22") {
 					hitRate22.value = result.toPrecision(4);
+					missRate12.value = missRate11.value;
+					missRate21.value = missRate11.value;
+					missRate22.value = missRate11.value;
+				} else if (event.target.className == "c3hitRate11") {
+					hitRate12.value = hitRate11.value;
+					hitRate21.value = hitRate11.value;
+					hitRate22.value = hitRate11.value;
+					missRate11.value = result.toPrecision(4);
+					missRate12.value = result.toPrecision(4);
+					missRate21.value = result.toPrecision(4);
+					missRate22.value = result.toPrecision(4);
+
+				} else if (event.target.className == "c3missRate12") {
+					hitRate11.value = result.toPrecision(4);
+					hitRate12.value = result.toPrecision(4);
+					hitRate21.value = result.toPrecision(4);
+					hitRate22.value = result.toPrecision(4);
+					missRate11.value = missRate12.value;
+					missRate21.value = missRate12.value;
+					missRate22.value = missRate12.value;
+				} else if (event.target.className == "c3hitRate12") {
+					hitRate11.value = hitRate12.value;
+					hitRate21.value = hitRate12.value;
+					hitRate22.value = hitRate12.value;
+					missRate11.value = result.toPrecision(4);
+					missRate12.value = result.toPrecision(4);
+					missRate21.value = result.toPrecision(4);
+					missRate22.value = result.toPrecision(4);
+				} else if (event.target.className == "c3missRate21") {
+
+					hitRate11.value = result.toPrecision(4);
+					hitRate12.value = result.toPrecision(4);
+					hitRate21.value = result.toPrecision(4);
+					hitRate22.value = result.toPrecision(4);
+					missRate12.value = missRate21.value;
+					missRate11.value = missRate21.value;
+					missRate22.value = missRate21.value;
+				} else if (event.target.className == "c3hitRate21") {
+					hitRate12.value = hitRate21.value;
+					hitRate11.value = hitRate21.value;
+					hitRate22.value = hitRate21.value;
+					missRate11.value = result.toPrecision(4);
+					missRate12.value = result.toPrecision(4);
+					missRate21.value = result.toPrecision(4);
+					missRate22.value = result.toPrecision(4);
+				} else if (event.target.className == "c3missRate22") {
+					hitRate11.value = result.toPrecision(4);
+					hitRate12.value = result.toPrecision(4);
+					hitRate21.value = result.toPrecision(4);
+					hitRate22.value = result.toPrecision(4);
+					missRate12.value = missRate22.value;
+					missRate21.value = missRate22.value;
+					missRate11.value = missRate22.value;
 				} else if (event.target.className == "c3hitRate22") {
+					hitRate12.value = hitRate22.value;
+					hitRate21.value = hitRate22.value;
+					hitRate11.value = hitRate22.value;
+					missRate11.value = result.toPrecision(4);
+					missRate12.value = result.toPrecision(4);
+					missRate21.value = result.toPrecision(4);
 					missRate22.value = result.toPrecision(4);
 				} else if (event.target.className == "c3crRate11") {
 					faRate11.value = result.toPrecision(4);
-				} else if (event.target.className == "c3faRate11") {
-					crRate11.value = result.toPrecision(4);
-				} else if (event.target.className == "c3crRate12") {
 					faRate12.value = result.toPrecision(4);
-				} else if (event.target.className == "c3faRate12") {
-					crRate12.value = result.toPrecision(4);
-				} else if (event.target.className == "c3crRate21") {
 					faRate21.value = result.toPrecision(4);
-				} else if (event.target.className == "c3faRate21") {
-					crRate21.value = result.toPrecision(4);
-				} else if (event.target.className == "c3crRate22") {
 					faRate22.value = result.toPrecision(4);
+
+					crRate12.value = crRate11.value;
+					crRate21.value = crRate11.value;
+					crRate22.value = crRate11.value;
+				} else if (event.target.className == "c3faRate11") {
+					faRate12.value = faRate11.value;
+					faRate21.value = faRate11.value;
+					faRate22.value = faRate11.value;
+
+					crRate11.value = result.toPrecision(4);
+					crRate12.value = result.toPrecision(4);
+					crRate21.value = result.toPrecision(4);
+					crRate22.value = result.toPrecision(4);
+				} else if (event.target.className == "c3crRate12") {
+					faRate11.value = result.toPrecision(4);
+					faRate12.value = result.toPrecision(4);
+					faRate21.value = result.toPrecision(4);
+					faRate22.value = result.toPrecision(4);
+
+					crRate11.value = crRate12.value;
+					crRate21.value = crRate12.value;
+					crRate22.value = crRate12.value;
+				} else if (event.target.className == "c3faRate12") {
+					faRate11.value = faRate12.value;
+					faRate21.value = faRate12.value;
+					faRate22.value = faRate12.value;
+
+					crRate11.value = result.toPrecision(4);
+					crRate12.value = result.toPrecision(4);
+					crRate21.value = result.toPrecision(4);
+					crRate22.value = result.toPrecision(4);
+				} else if (event.target.className == "c3crRate21") {
+					faRate11.value = result.toPrecision(4);
+					faRate12.value = result.toPrecision(4);
+					faRate21.value = result.toPrecision(4);
+					faRate22.value = result.toPrecision(4);
+
+					crRate12.value = crRate21.value;
+					crRate11.value = crRate21.value;
+					crRate22.value = crRate21.value;
+				} else if (event.target.className == "c3faRate21") {
+					faRate12.value = faRate21.value;
+					faRate11.value = faRate21.value;
+					faRate22.value = faRate21.value;
+
+					crRate11.value = result.toPrecision(4);
+					crRate12.value = result.toPrecision(4);
+					crRate21.value = result.toPrecision(4);
+					crRate22.value = result.toPrecision(4);
+				} else if (event.target.className == "c3crRate22") {
+					faRate11.value = result.toPrecision(4);
+					faRate12.value = result.toPrecision(4);
+					faRate21.value = result.toPrecision(4);
+					faRate22.value = result.toPrecision(4);
+
+					crRate12.value = crRate22.value;
+					crRate21.value = crRate22.value;
+					crRate11.value = crRate22.value;
 				} else if (event.target.className == "c3faRate22") {
+					faRate12.value = faRate22.value;
+					faRate21.value = faRate22.value;
+					faRate11.value = faRate22.value;
+
+					crRate11.value = result.toPrecision(4);
+					crRate12.value = result.toPrecision(4);
+					crRate21.value = result.toPrecision(4);
 					crRate22.value = result.toPrecision(4);
 				}
 
@@ -3613,35 +3728,35 @@ let selectTree = function() {
 				let lmiss2 = lmiss.minus(lhit2);
 
 				let lfa1 = ps.times(nb).times(fa).times(fa1);
-				let lcr1 = lnb.minus(lfa1);
+				let lcr1 = lfa.minus(lfa1);
 
-				let lfa2 = ps.times(nb).times(fa).times(fa2);
-				let lcr2 = lnb.minus(lfa2);
+				let lfa2 = ps.times(nb).times(cr).times(fa2);
+				let lcr2 = lcr.minus(lfa2);
+
 
 				let lhit11 = ps.times(b).times(h).times(h1).times(h11);
 				let lmiss11 = lhit1.minus(lhit11);
 
-				let lhit12 = ps.times(b).times(h).times(h1).times(h12);
+				let lhit12 = ps.times(b).times(h).times(m1).times(h12);
 				let lmiss12 = lmiss1.minus(lhit12);
 
 				let lhit21 = ps.times(b).times(m).times(h2).times(h21);
 				let lmiss21 = lhit2.minus(lhit21);
 
-				let lhit22 = ps.times(b).times(m).times(h2).times(h22);
+				let lhit22 = ps.times(b).times(m).times(m2).times(h22);
 				let lmiss22 = lmiss2.minus(lhit22);
 
 				let lfa11 = ps.times(nb).times(fa).times(fa1).times(fa11);
 				let lcr11 = lfa1.minus(lfa11);
 
-				let lfa12 = ps.times(nb).times(fa).times(fa1).times(fa12);
+				let lfa12 = ps.times(nb).times(fa).times(cr1).times(fa12);
 				let lcr12 = lcr1.minus(lfa12);
 
 				let lfa21 = ps.times(nb).times(cr).times(fa2).times(fa21);
 				let lcr21 = lfa2.minus(lfa21);
 
-				let lfa22 = ps.times(nb).times(cr).times(fa2).times(fa22);
+				let lfa22 = ps.times(nb).times(cr).times(cr2).times(fa22);
 				let lcr22 = lcr2.minus(lfa22);
-
 				popOutput.innerHTML = popSinput;
 				baseOutput.innerHTML = lb.toFixed(0);
 				noiseOutput.innerHTML = lnb.toFixed(0);
@@ -3679,33 +3794,28 @@ let selectTree = function() {
 				correctReject21.innerHTML = lcr21.toFixed(0);
 				correctReject22.innerHTML = lcr22.toFixed(0);
 
-				hitResult1_sup.innerHTML = lhit11.toFixed(0);
-				hitResult2_sup.innerHTML = lhit12.toFixed(0);
-				hitResult2_sup.innerHTML = lhit21.toFixed(0);
-				hitResult2_sup.innerHTML = lhit22.toFixed(0);
+				hitResult_sup.innerHTML = lhit11.toFixed(0);
+				//hitResult2_sup.innerHTML = lhit12.toFixed(0);
+				//hitResult2_sup.innerHTML = lhit21.toFixed(0);
+				//hitResult2_sup.innerHTML = lhit22.toFixed(0);
 
-				hitResult1_bottom.innerHTML = lhit11.toFixed(0);
-				hitResult2_bottom.innerHTML = lhit12.toFixed(0);
-				hitResult3_bottom.innerHTML = lhit21.toFixed(0);
-				hitResult4_bottom.innerHTML = lhit22.toFixed(0);
+				hitResult_bottom.innerHTML = lhit11.toFixed(0);
+				// hitResult2_bottom.innerHTML = lhit12.toFixed(0);
+				// hitResult3_bottom.innerHTML = lhit21.toFixed(0);
+				// hitResult4_bottom.innerHTML = lhit22.toFixed(0);
 
-				falseAlarmResult1.innerHTML = lfa11.toFixed(0);
-				falseAlarmResult2.innerHTML = lfa12.toFixed(0);
-				falseAlarmResult3.innerHTML = lfa21.toFixed(0);
-				falseAlarmResult4.innerHTML = lfa22.toFixed(0);
+				falseAlarmResult.innerHTML = lfa11.toFixed(0);
+				//falseAlarmResult2.innerHTML = lfa12.toFixed(0);
+				//falseAlarmResult3.innerHTML = lfa21.toFixed(0);
+				//falseAlarmResult4.innerHTML = lfa22.toFixed(0);
 
-				
-
-				let up_equation = lhit11.plus(lhit12).plus(lhit21).plus(lhit22).toFixed(0);
-				let down_equation = lhit11.plus(lhit12).plus(lhit21).plus(lhit22).plus(lfa11).plus(lfa12).plus(lfa21).plus(lfa22).toFixed(0);
+				let up_equation = lhit11.toFixed(0);
+				let down_equation = lhit11.plus(lfa11).toFixed(0);
 				results.innerHTML = ((parseInt(up_equation)) / (parseInt(down_equation))).toFixed(4);
-				// let postiveTestTreeResult = hitTreeResult.plus(falseAlarmTreeResult);
-				// let negativeTestTreeResult = missTreeResult.plus(corretRejectTreeResult);
 				
 				sugPop.innerHTML = f_max.toNumber();
 				// assigned values for tree output
 				
-
 
 			} else {
 			
@@ -3723,20 +3833,36 @@ let selectTree = function() {
 					hitRate.value = result.toPrecision(4);
 				} else if (event.target.className == "c3hitRate1") {
 					missRate1.value = result.toPrecision(4);
+					missRate2.value = result.toPrecision(4);
+					hitRate2.value = hitRate1.value;
 				} else if (event.target.className == "c3missRate1") {
 					hitRate1.value = result.toPrecision(4);
+					hitRate2.value = result.toPrecision(4);
+					missRate2.value = missRate1.value;
 				} else if (event.target.className == "c3hitRate2") {
 					missRate2.value = result.toPrecision(4);
+					missRate1.value = result.toPrecision(4);
+					hitRate1.value = hitRate2.value;
 				} else if (event.target.className == "c3missRate2") {
 					hitRate2.value = result.toPrecision(4);
+					missRate1.value = missRate2.value;
+					hitRate1.value = result.toPrecision(4);
 				} else if (event.target.className == "c3crRate1") {
 					faRate1.value = result.toPrecision(4);
+					faRate2.value = result.toPrecision(4);
+					crRate2.value = crRate1.value;
 				} else if (event.target.className == "c3faRate1") {
 					crRate1.value = result.toPrecision(4);
+					faRate2.value = faRate1.value;
+					crRate2.value = result.toPrecision(4);
 				} else if (event.target.className == "c3crRate2") {
 					faRate2.value = result.toPrecision(4);
+					faRate1.value = result.toPrecision(4);
+					crRate1.value = crRate2.value;
 				} else if (event.target.className == "c3faRate2") {
 					crRate2.value = result.toPrecision(4);
+					crRate1.value = result.toPrecision(4);
+					faRate1.value = faRate2.value;
 				} else if(event.target.className == "c3faRate") {
 					crRate.value = result.toPrecision(4);
 				} else if(event.target.className == "c3crRate") {
@@ -3747,35 +3873,141 @@ let selectTree = function() {
 					baseRate.value = result.toPrecision(4);
 				} else if (event.target.className == "c3missRate11") {
 					hitRate11.value = result.toPrecision(4);
-				} else if (event.target.className == "c3hitRate11") {
-					missRate11.value = result.toPrecision(4);
-				} else if (event.target.className == "c3missRate12") {
 					hitRate12.value = result.toPrecision(4);
-				} else if (event.target.className == "c3hitRate12") {
-					missRate12.value = result.toPrecision(4);
-				} else if (event.target.className == "c3missRate21") {
 					hitRate21.value = result.toPrecision(4);
-				} else if (event.target.className == "c3hitRate21") {
-					missRate21.value = result.toPrecision(4);
-				} else if (event.target.className == "c3missRate22") {
 					hitRate22.value = result.toPrecision(4);
+					missRate12.value = missRate11.value;
+					missRate21.value = missRate11.value;
+					missRate22.value = missRate11.value;
+				} else if (event.target.className == "c3hitRate11") {
+					hitRate12.value = hitRate11.value;
+					hitRate21.value = hitRate11.value;
+					hitRate22.value = hitRate11.value;
+					missRate11.value = result.toPrecision(4);
+					missRate12.value = result.toPrecision(4);
+					missRate21.value = result.toPrecision(4);
+					missRate22.value = result.toPrecision(4);
+
+				} else if (event.target.className == "c3missRate12") {
+					hitRate11.value = result.toPrecision(4);
+					hitRate12.value = result.toPrecision(4);
+					hitRate21.value = result.toPrecision(4);
+					hitRate22.value = result.toPrecision(4);
+					missRate11.value = missRate12.value;
+					missRate21.value = missRate12.value;
+					missRate22.value = missRate12.value;
+				} else if (event.target.className == "c3hitRate12") {
+					hitRate11.value = hitRate12.value;
+					hitRate21.value = hitRate12.value;
+					hitRate22.value = hitRate12.value;
+					missRate11.value = result.toPrecision(4);
+					missRate12.value = result.toPrecision(4);
+					missRate21.value = result.toPrecision(4);
+					missRate22.value = result.toPrecision(4);
+				} else if (event.target.className == "c3missRate21") {
+
+					hitRate11.value = result.toPrecision(4);
+					hitRate12.value = result.toPrecision(4);
+					hitRate21.value = result.toPrecision(4);
+					hitRate22.value = result.toPrecision(4);
+					missRate12.value = missRate21.value;
+					missRate11.value = missRate21.value;
+					missRate22.value = missRate21.value;
+				} else if (event.target.className == "c3hitRate21") {
+					hitRate12.value = hitRate21.value;
+					hitRate11.value = hitRate21.value;
+					hitRate22.value = hitRate21.value;
+					missRate11.value = result.toPrecision(4);
+					missRate12.value = result.toPrecision(4);
+					missRate21.value = result.toPrecision(4);
+					missRate22.value = result.toPrecision(4);
+				} else if (event.target.className == "c3missRate22") {
+					hitRate11.value = result.toPrecision(4);
+					hitRate12.value = result.toPrecision(4);
+					hitRate21.value = result.toPrecision(4);
+					hitRate22.value = result.toPrecision(4);
+					missRate12.value = missRate22.value;
+					missRate21.value = missRate22.value;
+					missRate11.value = missRate22.value;
 				} else if (event.target.className == "c3hitRate22") {
+					hitRate12.value = hitRate22.value;
+					hitRate21.value = hitRate22.value;
+					hitRate11.value = hitRate22.value;
+					missRate11.value = result.toPrecision(4);
+					missRate12.value = result.toPrecision(4);
+					missRate21.value = result.toPrecision(4);
 					missRate22.value = result.toPrecision(4);
 				} else if (event.target.className == "c3crRate11") {
 					faRate11.value = result.toPrecision(4);
-				} else if (event.target.className == "c3faRate11") {
-					crRate11.value = result.toPrecision(4);
-				} else if (event.target.className == "c3crRate12") {
 					faRate12.value = result.toPrecision(4);
-				} else if (event.target.className == "c3faRate12") {
-					crRate12.value = result.toPrecision(4);
-				} else if (event.target.className == "c3crRate21") {
 					faRate21.value = result.toPrecision(4);
-				} else if (event.target.className == "c3faRate21") {
-					crRate21.value = result.toPrecision(4);
-				} else if (event.target.className == "c3crRate22") {
 					faRate22.value = result.toPrecision(4);
+
+					crRate12.value = crRate11.value;
+					crRate21.value = crRate11.value;
+					crRate22.value = crRate11.value;
+				} else if (event.target.className == "c3faRate11") {
+					faRate12.value = faRate11.value;
+					faRate21.value = faRate11.value;
+					faRate22.value = faRate11.value;
+
+					crRate11.value = result.toPrecision(4);
+					crRate12.value = result.toPrecision(4);
+					crRate21.value = result.toPrecision(4);
+					crRate22.value = result.toPrecision(4);
+				} else if (event.target.className == "c3crRate12") {
+					faRate11.value = result.toPrecision(4);
+					faRate12.value = result.toPrecision(4);
+					faRate21.value = result.toPrecision(4);
+					faRate22.value = result.toPrecision(4);
+
+					crRate11.value = crRate12.value;
+					crRate21.value = crRate12.value;
+					crRate22.value = crRate12.value;
+				} else if (event.target.className == "c3faRate12") {
+					faRate11.value = faRate12.value;
+					faRate21.value = faRate12.value;
+					faRate22.value = faRate12.value;
+
+					crRate11.value = result.toPrecision(4);
+					crRate12.value = result.toPrecision(4);
+					crRate21.value = result.toPrecision(4);
+					crRate22.value = result.toPrecision(4);
+				} else if (event.target.className == "c3crRate21") {
+					faRate11.value = result.toPrecision(4);
+					faRate12.value = result.toPrecision(4);
+					faRate21.value = result.toPrecision(4);
+					faRate22.value = result.toPrecision(4);
+
+					crRate12.value = crRate21.value;
+					crRate11.value = crRate21.value;
+					crRate22.value = crRate21.value;
+				} else if (event.target.className == "c3faRate21") {
+					faRate12.value = faRate21.value;
+					faRate11.value = faRate21.value;
+					faRate22.value = faRate21.value;
+
+					crRate11.value = result.toPrecision(4);
+					crRate12.value = result.toPrecision(4);
+					crRate21.value = result.toPrecision(4);
+					crRate22.value = result.toPrecision(4);
+				} else if (event.target.className == "c3crRate22") {
+					faRate11.value = result.toPrecision(4);
+					faRate12.value = result.toPrecision(4);
+					faRate21.value = result.toPrecision(4);
+					faRate22.value = result.toPrecision(4);
+
+					crRate12.value = crRate22.value;
+					crRate21.value = crRate22.value;
+					crRate11.value = crRate22.value;
 				} else if (event.target.className == "c3faRate22") {
+					faRate12.value = faRate22.value;
+					faRate21.value = faRate22.value;
+					faRate11.value = faRate22.value;
+
+					crRate11.value = result.toPrecision(4);
+					crRate12.value = result.toPrecision(4);
+					crRate21.value = result.toPrecision(4);
 					crRate22.value = result.toPrecision(4);
 				}
 
@@ -3865,33 +4097,34 @@ let selectTree = function() {
 				let lmiss2 = lmiss.minus(lhit2);
 
 				let lfa1 = ps.times(nb).times(fa).times(fa1);
-				let lcr1 = lnb.minus(lfa1);
+				let lcr1 = lfa.minus(lfa1);
 
-				let lfa2 = ps.times(nb).times(fa).times(fa2);
-				let lcr2 = lnb.minus(lfa2);
+				let lfa2 = ps.times(nb).times(cr).times(fa2);
+				let lcr2 = lcr.minus(lfa2);
 
+				
 				let lhit11 = ps.times(b).times(h).times(h1).times(h11);
 				let lmiss11 = lhit1.minus(lhit11);
 
-				let lhit12 = ps.times(b).times(h).times(h1).times(h12);
+				let lhit12 = ps.times(b).times(h).times(m1).times(h12);
 				let lmiss12 = lmiss1.minus(lhit12);
 
 				let lhit21 = ps.times(b).times(m).times(h2).times(h21);
 				let lmiss21 = lhit2.minus(lhit21);
 
-				let lhit22 = ps.times(b).times(m).times(h2).times(h22);
+				let lhit22 = ps.times(b).times(m).times(m2).times(h22);
 				let lmiss22 = lmiss2.minus(lhit22);
 
 				let lfa11 = ps.times(nb).times(fa).times(fa1).times(fa11);
 				let lcr11 = lfa1.minus(lfa11);
 
-				let lfa12 = ps.times(nb).times(fa).times(fa1).times(fa12);
+				let lfa12 = ps.times(nb).times(fa).times(cr1).times(fa12);
 				let lcr12 = lcr1.minus(lfa12);
 
 				let lfa21 = ps.times(nb).times(cr).times(fa2).times(fa21);
 				let lcr21 = lfa2.minus(lfa21);
 
-				let lfa22 = ps.times(nb).times(cr).times(fa2).times(fa22);
+				let lfa22 = ps.times(nb).times(cr).times(cr2).times(fa22);
 				let lcr22 = lcr2.minus(lfa22);
 
 				popOutput.innerHTML = popSinput;
@@ -3931,24 +4164,24 @@ let selectTree = function() {
 				correctReject21.innerHTML = lcr21.toFixed(0);
 				correctReject22.innerHTML = lcr22.toFixed(0);
 
-				hitResult1_sup.innerHTML = lhit11.toFixed(0);
-				hitResult2_sup.innerHTML = lhit12.toFixed(0);
-				hitResult2_sup.innerHTML = lhit21.toFixed(0);
-				hitResult2_sup.innerHTML = lhit22.toFixed(0);
+				hitResult_sup.innerHTML = lhit11.toFixed(0);
+				//hitResult2_sup.innerHTML = lhit12.toFixed(0);
+				//hitResult2_sup.innerHTML = lhit21.toFixed(0);
+				//hitResult2_sup.innerHTML = lhit22.toFixed(0);
 
-				hitResult1_bottom.innerHTML = lhit11.toFixed(0);
-				hitResult2_bottom.innerHTML = lhit12.toFixed(0);
-				hitResult3_bottom.innerHTML = lhit21.toFixed(0);
-				hitResult4_bottom.innerHTML = lhit22.toFixed(0);
+				hitResult_bottom.innerHTML = lhit11.toFixed(0);
+				// hitResult2_bottom.innerHTML = lhit12.toFixed(0);
+				// hitResult3_bottom.innerHTML = lhit21.toFixed(0);
+				// hitResult4_bottom.innerHTML = lhit22.toFixed(0);
 
-				falseAlarmResult1.innerHTML = lfa11.toFixed(0);
-				falseAlarmResult2.innerHTML = lfa12.toFixed(0);
-				falseAlarmResult3.innerHTML = lfa21.toFixed(0);
-				falseAlarmResult4.innerHTML = lfa22.toFixed(0);
+				falseAlarmResult.innerHTML = lfa11.toFixed(0);
+				//falseAlarmResult2.innerHTML = lfa12.toFixed(0);
+				//falseAlarmResult3.innerHTML = lfa21.toFixed(0);
+				//falseAlarmResult4.innerHTML = lfa22.toFixed(0);
 
-				let up_equation = lhit11.plus(lhit12).plus(lhit21).plus(lhit22).toFixed(0);
-				let down_equation = lhit11.plus(lhit12).plus(lhit21).plus(lhit22).plus(lfa11).plus(lfa12).plus(lfa21).plus(lfa22).toFixed(0);
-				results.innerHTML = ((parseInt(up_equation)) / (parseInt(down_equation))).toFixed(4);
+				let up_equation = lhit11.toFixed(0);
+				let down_equation = lhit11.plus(lfa11).toFixed(0);
+				results.innerHTML = (100*((parseInt(up_equation)) / (parseInt(down_equation)))).toFixed(2) + "%";
 				sugPop.innerHTML = f_max.toNumber();
 			}
 		}

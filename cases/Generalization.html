@@ -84,7 +84,13 @@
          <p>
            The probability of breast cancer is 1% for a woman at age 40 who participates in routine screening. If a woman has breast cancer, the probability is 80% that she will receive a positive mammography. If a woman does not have breast cancer, the probability is 10% that she will also receive a positive mammography. A woman in this age group had a positive mammography in a routine screening. <br><br>
            What is the probability that she actually has breast cancer?
-         </p>
+          </p>
+           <!-- Trigger/Open The Modal -->
+          <button id="anBtncue1C" style="display: block; font-size: 12px;margin-top: 20px;">Show answer</button>
+
+          <div id="ancue1C" class="closed">
+              <p>The answer is 0.0748 / 7.48%</p>
+          </div>
 
           
         </div>
@@ -101,9 +107,16 @@
             - 7.7 % that she will receive an unclear result, and <br>
             - 84.6% that she will receive a false negative mammogram. <br><br>
             What is the probability that a woman with a dominant gene mutation actually has breast cancer, given that she has a positive mammogram?
-
             
           </p>
+
+           <button id="anBtnc1v3C" style="display: block; font-size: 12px;margin-top: 20px;">Show answer</button>
+
+            <div id="anc1v3C" class="closed">
+              <p>The answer is 0.5275 / 52.75%</p>
+            </div>
+
+    
         </div>
 
       
@@ -124,6 +137,15 @@
 
           </p>
 
+          <button id="anBtnh3C" style="display: block; font-size: 12px;margin-top: 20px;">Show answer</button>
+
+            <div id="anh3C" class="closed">
+              <p>Disease A is 0.0346 / 3.46% <br>
+                Disease B is 0.0077 / 0.77%<br>
+                Any of the disease is 0.0423 / 4.23%
+              </p>
+            </div>
+
         </div>
 
         <div id="c2C" class="tab-pane fade">
@@ -131,6 +153,15 @@
           The probability of breast cancer is 1% for a woman at age 40 who participates in routine screening.If a woman has breast cancer,the probability is 80% that she will have a positive mammogram. If a woman does not have breast cancer,the probability is 9.6% that she will also have a positive mammogram. If a woman has breast cancer, the probability is 95% that she will have a positive ultrasound test.If a woman does not have breast cancer,the probability is 4% that she will also have a positive ultrasound test. <br><br>
           What is the probability that she actually has breast cancer?
           </p>
+
+          <button id="anBtnc2C" style="display: block; font-size: 12px;margin-top: 20px;">Show answer</button>
+
+            <div id="anc2C" class="closed">
+              <p>If the mammogram test first and then ultrasound, the answer is 0.5555 / 55.55% <br>
+                If the ultrasound test first and then mammogram, the answer is 0.5127 / 51.27%
+
+              </p>
+            </div>
         </div>
 
 
@@ -146,6 +177,12 @@
             What is the probability that a person actually has the complaint if all 3 tests are positive?
 
           </p>
+
+          <button id="anBtnc3C" style="display: block; font-size: 12px;margin-top: 20px;">Show answer</button>
+
+            <div id="anc3C" class="closed">
+              <p>The answer is 0.6994 / 69.94%</p>
+            </div>
 
         </div>
 
@@ -526,7 +563,7 @@
     <div class="col-sm-7">
 
         <ul class="nav nav-tabs">
-          <li class="active"><a data-toggle = "tab" href="#E1Tree" id="E1tab">1 cue</a></li>
+          <li class="active"><a data-toggle = "tab" href="#E1Tree" id="E1tab">Basic Task (1 cue)</a></li>
           <li><a data-toggle = "tab" href="#E2Tree" id="E2tab">1 cue 3 values</a></li>
           <li><a data-toggle = "tab" href="#E3Tree" id="E3tab">3 hypotheses</a></li>
           <li><a data-toggle = "tab" href="#E4Tree" id="E4tab">2 cues</a></li>
@@ -1306,14 +1343,24 @@
                    <div class="c3probability1"> 
                   
                     <div>p(H/D) = </div>
+
+                    <div>p(H/D) = </div>
                       <div class="innerProb"> 
+                        <span class="hitResult prob_sup">50</span> 
+                        <span class="hitResult prob_bottom">50</span> <span class="prob_bottom">+</span><span class="faResult prob_bottom">50</span>
+                      </div>
+                      <span> = </span>
+                    <div class="results"> 0.5</div>
+                  
+                  </div>
+                     <!--  <div class="innerProb"> 
                         <span class="prob_sup"><span class="hitResult1_sup">50</span><span class="prob_bottom">+</span><span class="hitResult2_sup">50</span><span class="prob_bottom">+</span><span class="hitResult3_sup">50</span><span class="prob_bottom">+</span><span class="hitResult4_sup">50</span></span>
                         <span class="hitResult1 prob_bottom">50</span> <span class="prob_bottom">+</span><span class="hitResult2 prob_bottom">50</span><span class="prob_bottom">+</span><span class="hitResult3 prob_bottom">50</span><span class="prob_bottom">+</span><span class="hitResult4 prob_bottom">50</span><span class="prob_bottom">+</span><span class="faResult1 prob_bottom">50</span><span class="prob_bottom">+</span><span class="faResult2 prob_bottom">50</span><span class="prob_bottom">+</span><span class="faResult3 prob_bottom">50</span><span class="prob_bottom">+</span><span class="faResult4 prob_bottom">50</span>
                       </div>
                       <span> = </span>
                     <div class="results"> 0.5</div>
                   
-                  </div>
+                  </div> -->
 
                    Suggested population size: <div class="sugPop">1000</div> <br>
                
@@ -1474,8 +1521,6 @@
   <script src='../decimal.js-10.0.1/decimal.min.js'></script>
   <script src="../js/demo_general.js"></script>
   <script src="../js/nav_general.js"></script>
-  
-
  
 </body>
 

@@ -16,12 +16,22 @@ let h3Content = document.querySelector("#h3C");
 let cue2Content = document.querySelector("#c2C");
 let cue3Content = document.querySelector("#c3C");
 
+// answers
+
+
 cue1.addEventListener("click", function() {
 	BT.innerHTML = "Basic Task";
 	content.innerHTML = cue1Content.innerHTML;
 	BT.style.cssText = "border:1px solid lightgrey";
 	SC.style.cssText = "border:none";
 	BS.style.border="none";
+
+	let cue1CBtn = document.getElementById("anBtncue1C");
+	let cue1Canswer = document.getElementById("ancue1C");
+	cue1CBtn.addEventListener("click", function() {
+			cue1Canswer.classList.toggle("closed");
+	});
+
 });
 
 cue1v3.addEventListener("click", function() {
@@ -30,6 +40,13 @@ cue1v3.addEventListener("click", function() {
 	BT.style.cssText = "border:1px solid lightgrey";
 	SC.style.cssText = "border:none";
 	BS.style.border="none";
+
+
+	let c1v3CBtn = document.getElementById("anBtnc1v3C");
+	let c1v3Canswer = document.getElementById("anc1v3C");
+	c1v3CBtn.addEventListener("click", function() {
+		c1v3Canswer.classList.toggle("closed");
+	});
 });
 
 h3.addEventListener("click", function() {
@@ -38,6 +55,12 @@ h3.addEventListener("click", function() {
 	BT.style.cssText = "border:1px solid lightgrey";
 	SC.style.cssText = "border:none";
 	BS.style.border="none";
+
+	let h3CBtn = document.getElementById("anBtnh3C");
+	let h3Canswer = document.getElementById("anh3C");
+	h3CBtn.addEventListener("click", function() {
+		h3Canswer.classList.toggle("closed");
+	});
 });
 
 cue2.addEventListener("click", function() {
@@ -46,6 +69,12 @@ cue2.addEventListener("click", function() {
 	BT.style.cssText = "border:1px solid lightgrey";
 	SC.style.cssText = "border:none";
 	BS.style.border="none";
+
+	let c2CBtn = document.getElementById("anBtnc2C");
+	let c2Canswer = document.getElementById("anc2C");
+	c2CBtn.addEventListener("click", function() {
+		c2Canswer.classList.toggle("closed");
+	});
 });
 
 cue3.addEventListener("click", function() {
@@ -54,6 +83,12 @@ cue3.addEventListener("click", function() {
 	BT.style.cssText = "border:1px solid lightgrey";
 	SC.style.cssText = "border:none";
 	BS.style.border="none";
+
+	let c3CBtn = document.getElementById("anBtnc3C");
+	let c3Canswer = document.getElementById("anc3C");
+	c3CBtn.addEventListener("click", function() {
+		c3Canswer.classList.toggle("closed");
+	});
 });
 
 
@@ -84,12 +119,14 @@ let c2qContent = document.querySelector("#Case2Q");
 
 let ccContent = document.querySelector("#CaseComparison");
 
+
 case1.addEventListener("click", function() {
 	SC.innerHTML = "Stolen Cash Case";
 	content.innerHTML = c1Content.innerHTML;
 	SC.style.cssText = "border:1px solid lightgrey";
 	BT.style.cssText = "border:none";
 	BS.style.border="none";
+
 });
 
 c1sNav.addEventListener("click", function() {
@@ -238,3 +275,8 @@ evidences5B.addEventListener("click", function() {
 
 });
 
+let cue1CBtn = document.getElementById("anBtncue1C");
+let cue1Canswer = document.getElementById("ancue1C");
+cue1CBtn.addEventListener("click", function() {
+		cue1Canswer.classList.toggle("closed");
+})
