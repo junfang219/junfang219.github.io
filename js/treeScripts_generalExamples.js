@@ -2115,8 +2115,8 @@ let selectTree = function() {
 
 				let lhit = ps.times(b).times(h);
 				let lmiss = lb.minus(lhit);
-				let lfa = ps.times(lnb).times(fa);
-				let lcr = ps.times(lnb).times(cr);
+				let lfa = lnb.times(fa);
+				let lcr = lnb.minus(lfa);
 
 				let lhit1 = ps.times(b).times(h).times(h1);
 				let lmiss1 = lhit.minus(lhit1);
@@ -2125,10 +2125,10 @@ let selectTree = function() {
 				let lmiss2 = lmiss.minus(lhit2);
 
 				let lfa1 = ps.times(nb).times(fa).times(fa1);
-				let lcr1 = lnb.minus(lfa1);
+				let lcr1 = lfa.minus(lfa1);
 
-				let lfa2 = ps.times(nb).times(fa).times(fa2);
-				let lcr2 = lnb.minus(lfa2);
+				let lfa2 = ps.times(nb).times(cr).times(fa2);
+				let lcr2 = lcr.minus(lfa2);
 
 				popOutput.innerHTML = popSinput;
 				baseOutput.innerHTML = lb.toFixed(0);
@@ -2182,8 +2182,8 @@ let selectTree = function() {
 
 					let lhit = ps.times(b).times(h);
 					let lmiss = lb.minus(lhit);
-					let lfa = ps.times(lnb).times(fa);
-					let lcr = ps.times(lnb).times(cr);
+					let lfa = lnb.times(fa);
+					let lcr = lnb.minus(lfa);
 
 					let lhit1 = ps.times(b).times(h).times(h1);
 					let lmiss1 = lhit.minus(lhit1);
@@ -2192,10 +2192,10 @@ let selectTree = function() {
 					let lmiss2 = lmiss.minus(lhit2);
 
 					let lfa1 = ps.times(nb).times(fa).times(fa1);
-					let lcr1 = lnb.minus(lfa1);
+					let lcr1 = lfa.minus(lfa1);
 
-					let lfa2 = ps.times(nb).times(fa).times(fa2);
-					let lcr2 = lnb.minus(lfa2);
+					let lfa2 = ps.times(nb).times(cr).times(fa2);
+					let lcr2 = lcr.minus(lfa2);
 
 					popOutput.innerHTML = popSinput;
 					baseOutput.innerHTML = lb.toFixed(0);
@@ -2356,8 +2356,8 @@ let selectTree = function() {
 
 				let lhit = ps.times(b).times(h);
 				let lmiss = lb.minus(lhit);
-				let lfa = ps.times(lnb).times(fa);
-				let lcr = ps.times(lnb).times(cr);
+				let lfa = lnb.times(fa);
+				let lcr = lnb.minus(lfa);
 
 				let lhit1 = ps.times(b).times(h).times(h1);
 				let lmiss1 = lhit.minus(lhit1);
@@ -2366,10 +2366,10 @@ let selectTree = function() {
 				let lmiss2 = lmiss.minus(lhit2);
 
 				let lfa1 = ps.times(nb).times(fa).times(fa1);
-				let lcr1 = lnb.minus(lfa1);
+				let lcr1 = lfa.minus(lfa1);
 
-				let lfa2 = ps.times(nb).times(fa).times(fa2);
-				let lcr2 = lnb.minus(lfa2);
+				let lfa2 = ps.times(nb).times(cr).times(fa2);
+				let lcr2 = lcr.minus(lfa2);
 
 				popOutput.innerHTML = popSinput;
 				baseOutput.innerHTML = lb.toFixed(0);
@@ -2494,8 +2494,8 @@ let selectTree = function() {
 
 				let lhit = ps.times(b).times(h);
 				let lmiss = lb.minus(lhit);
-				let lfa = ps.times(lnb).times(fa);
-				let lcr = ps.times(lnb).times(cr);
+				let lfa = lnb.times(fa);
+				let lcr = lnb.minus(lfa);
 
 				let lhit1 = ps.times(b).times(h).times(h1);
 				let lmiss1 = lhit.minus(lhit1);
@@ -2504,10 +2504,10 @@ let selectTree = function() {
 				let lmiss2 = lmiss.minus(lhit2);
 
 				let lfa1 = ps.times(nb).times(fa).times(fa1);
-				let lcr1 = lnb.minus(lfa1);
+				let lcr1 = lfa.minus(lfa1);
 
-				let lfa2 = ps.times(nb).times(fa).times(fa2);
-				let lcr2 = lnb.minus(lfa2);
+				let lfa2 = ps.times(nb).times(cr).times(fa2);
+				let lcr2 = lcr.minus(lfa2);
 
 				popOutput.innerHTML = popSinput;
 				baseOutput.innerHTML = lb.toFixed(0);
