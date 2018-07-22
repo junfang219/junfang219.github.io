@@ -1764,12 +1764,10 @@ let selectTree = function() {
 
 		// Probability div output
 		let results;
-		let hitResult1_sup;
-		let hitResult2_sup;
-		let hitResult1_bottom;
-		let hitResult2_bottom;
-		let falseAlarmResult1;
-		let falseAlarmResult2;
+		let hitResult_sup;
+
+		let hitResult_bottom;
+		let falseAlarmResult;
 
 		//Probability & Percentage btn
 		let probability;
@@ -1933,34 +1931,16 @@ let selectTree = function() {
 									
 									let innerProbClass = innerProbDiv.children[jjjj].className;
 
-									
-									if (innerProbClass == "hitResult1 prob_bottom") {
-										hitResult1_bottom = innerProbDiv.children[jjjj];
+									if (innerProbClass == "hitResult prob_sup") {
+										hitResult_sup = innerProbDiv.children[jjjj];
 									}
-									else if (innerProbClass == "hitResult2 prob_bottom") {
-										hitResult2_bottom = innerProbDiv.children[jjjj];
-									}
-									else if (innerProbClass == "faResult1 prob_bottom") {
-										falseAlarmResult1 = innerProbDiv.children[jjjj];						
-									}
-									else if (innerProbClass == "faResult2 prob_bottom") {
-										falseAlarmResult2 = innerProbDiv.children[jjjj];						
-									}
-									else if (innerProbClass == "prob_sup") {
-										let subProbDiv = innerProbDiv.children[jjjj];
-										for( let jjjjjj = 0; jjjjjj < subProbDiv.children.length; jjjjjj++) {
-											let subProbDivClass = subProbDiv.children[jjjjjj].className;
-												
-											if (subProbDivClass == "hitResult1_sup") {
-												hitResult1_sup = subProbDiv.children[jjjjjj];
-											}
-											else if (subProbDivClass == "hitResult2_sup") {
-												hitResult2_sup = subProbDiv.children[jjjjjj];
-												
-											}
-										}
-									}
+									else if (innerProbClass == "hitResult prob_bottom") {
+										hitResult_bottom = innerProbDiv.children[jjjj];
 
+									}
+									else if (innerProbClass == "faResult prob_bottom") {
+										falseAlarmResult = innerProbDiv.children[jjjj];						
+									}
 									
 								}
 							}
@@ -2018,12 +1998,12 @@ let selectTree = function() {
 
 			 
 			 // equation result
-			 hitResult1_sup.innerHTML = 100;
-			 hitResult2_sup.innerHTML = 100;
-			 hitResult1_bottom.innerHTML = 100;
-			 hitResult2_bottom.innerHTML = 100;
-			 falseAlarmResult1.innerHTML = 100;
-			 falseAlarmResult2.innerHTML = 100;
+			 hitResult_sup.innerHTML = 100;
+			 //hitResult2_sup.innerHTML = 100;
+			 hitResult_bottom.innerHTML = 100;
+			 //hitResult2_bottom.innerHTML = 100;
+			 falseAlarmResult.innerHTML = 100;
+			 //falseAlarmResult2.innerHTML = 100;
 
 			 sugPop.innerHTML = 1000;
 			 
@@ -2149,13 +2129,13 @@ let selectTree = function() {
 				falseAlarm2.innerHTML = lfa2.toFixed(0);
 				correctReject2.innerHTML = lcr2.toFixed(0);
 
-				hitResult1_sup.innerHTML = lhit1.toFixed(0);
-				hitResult2_sup.innerHTML = lhit2.toFixed(0);
-				hitResult1_bottom.innerHTML = lhit1.toFixed(0);
-				hitResult2_bottom.innerHTML = lhit2.toFixed(0);
-				falseAlarmResult1.innerHTML = lfa1.toFixed(0);
-				falseAlarmResult2.innerHTML = lfa2.toFixed(0);
-				results.innerHTML = (parseInt(lhit1.plus(lhit2).toFixed(0)) / (parseInt(lhit1.plus(lhit2).toFixed(0)) + parseInt((lfa1).plus(lfa2).toFixed(0)))).toFixed(4);
+				hitResult_sup.innerHTML = lhit1.toFixed(0);
+				
+				hitResult_bottom.innerHTML = lhit1.toFixed(0);
+				
+				falseAlarmResult.innerHTML = lfa1.toFixed(0);
+				
+				results.innerHTML = (parseInt(lhit1.toFixed(0)) / (parseInt(lhit1.toFixed(0)) + parseInt((lfa1).toFixed(0)))).toFixed(4);
 				//results.innerHTML = ps.times(b).times(h).dividedBy(ps.times(b).times(h).plus(ps.times(nb).times(fa))).toNumber().toPrecision(3);
 				//sugPop.innerHTML = 1000;
 				}
@@ -2216,13 +2196,13 @@ let selectTree = function() {
 					falseAlarm2.innerHTML = lfa2.toFixed(0);
 					correctReject2.innerHTML = lcr2.toFixed(0);
 
-					hitResult1_sup.innerHTML = lhit1.toFixed(0);
-					hitResult2_sup.innerHTML = lhit2.toFixed(0);
-					hitResult1_bottom.innerHTML = lhit1.toFixed(0);
-					hitResult2_bottom.innerHTML = lhit2.toFixed(0);
-					falseAlarmResult1.innerHTML = lfa1.toFixed(0);
-					falseAlarmResult2.innerHTML = lfa2.toFixed(0);
-					results.innerHTML = 100*(parseInt(lhit1.plus(lhit2).toFixed(0)) / (parseInt(lhit1.plus(lhit2).toFixed(0)) + parseInt((lfa1).plus(lfa2).toFixed(0)))).toFixed(4) + "%";
+					hitResult_sup.innerHTML = lhit1.toFixed(0);
+					
+					hitResult_bottom.innerHTML = lhit1.toFixed(0);
+					
+					falseAlarmResult.innerHTML = lfa1.toFixed(0);
+					
+					results.innerHTML = 100*(parseInt(lhit1.toFixed(0)) / (parseInt(lhit1.toFixed(0)) + parseInt((lfa1).toFixed(0)))).toFixed(2)+ "%";
 				}
 	  	});
 
@@ -2390,14 +2370,13 @@ let selectTree = function() {
 				falseAlarm2.innerHTML = lfa2.toFixed(0);
 				correctReject2.innerHTML = lcr2.toFixed(0);
 
-				hitResult1_sup.innerHTML = lhit1.toFixed(0);
-				hitResult2_sup.innerHTML = lhit2.toFixed(0);
-				hitResult1_bottom.innerHTML = lhit1.toFixed(0);
-				hitResult2_bottom.innerHTML = lhit2.toFixed(0);
-				falseAlarmResult1.innerHTML = lfa1.toFixed(0);
-				falseAlarmResult2.innerHTML = lfa2.toFixed(0);
-				results.innerHTML = (parseInt(lhit1.plus(lhit2).toFixed(0)) / (parseInt(lhit1.plus(lhit2).toFixed(0)) + parseInt((lfa1).plus(lfa2).toFixed(0)))).toFixed(4);
-
+				hitResult_sup.innerHTML = lhit1.toFixed(0);
+				
+				hitResult_bottom.innerHTML = lhit1.toFixed(0);
+				
+				falseAlarmResult.innerHTML = lfa1.toFixed(0);
+				
+				results.innerHTML = (parseInt(lhit1.toFixed(0)) / (parseInt(lhit1.toFixed(0)) + parseInt((lfa1).toFixed(0)))).toFixed(4);
 				sugPop.innerHTML = f_max;
 
 			} else {
@@ -2528,13 +2507,14 @@ let selectTree = function() {
 				falseAlarm2.innerHTML = lfa2.toFixed(0);
 				correctReject2.innerHTML = lcr2.toFixed(0);
 
-				hitResult1_sup.innerHTML = lhit1.toFixed(0);
-				hitResult2_sup.innerHTML = lhit2.toFixed(0);
-				hitResult1_bottom.innerHTML = lhit1.toFixed(0);
-				hitResult2_bottom.innerHTML = lhit2.toFixed(0);
-				falseAlarmResult1.innerHTML = lfa1.toFixed(0);
-				falseAlarmResult2.innerHTML = lfa2.toFixed(0);
-				results.innerHTML = (100*(parseInt(lhit1.plus(lhit2).toFixed(0)) / (parseInt(lhit1.plus(lhit2).toFixed(0)) + parseInt((lfa1).plus(lfa2).toFixed(0))))).toFixed(2) + "%";
+				hitResult_sup.innerHTML = lhit1.toFixed(0);
+
+				hitResult_bottom.innerHTML = lhit1.toFixed(0);
+			
+				falseAlarmResult.innerHTML = lfa1.toFixed(0);
+
+				results.innerHTML = 100*(parseInt(lhit1.toFixed(0)) / (parseInt(lhit1.toFixed(0)) + parseInt((lfa1).toFixed(0)))).toFixed(2) + "%";
+	
 				sugPop.innerHTML = f_max;
 			}
 		}
