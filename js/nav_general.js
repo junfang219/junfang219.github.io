@@ -25,6 +25,8 @@ cue1.addEventListener("click", function() {
 	BT.style.cssText = "border:1px solid lightgrey";
 	SC.style.cssText = "border:none";
 	BS.style.border="none";
+	taxi.style.cssText = "border:none";
+	DNA.style.cssText = "border:none";
 
 	let cue1CBtn = document.getElementById("anBtncue1C");
 	let cue1Canswer = document.getElementById("ancue1C");
@@ -40,6 +42,8 @@ cue1v3.addEventListener("click", function() {
 	BT.style.cssText = "border:1px solid lightgrey";
 	SC.style.cssText = "border:none";
 	BS.style.border="none";
+	taxi.style.cssText = "border:none";
+	DNA.style.cssText = "border:none";
 
 
 	let c1v3CBtn = document.getElementById("anBtnc1v3C");
@@ -55,6 +59,8 @@ h3.addEventListener("click", function() {
 	BT.style.cssText = "border:1px solid lightgrey";
 	SC.style.cssText = "border:none";
 	BS.style.border="none";
+	taxi.style.cssText = "border:none";
+	DNA.style.cssText = "border:none";
 
 	let h3CBtn = document.getElementById("anBtnh3C");
 	let h3Canswer = document.getElementById("anh3C");
@@ -69,6 +75,8 @@ cue2.addEventListener("click", function() {
 	BT.style.cssText = "border:1px solid lightgrey";
 	SC.style.cssText = "border:none";
 	BS.style.border="none";
+	taxi.style.cssText = "border:none";
+	DNA.style.cssText = "border:none";
 
 	let c2CBtn = document.getElementById("anBtnc2C");
 	let c2Canswer = document.getElementById("anc2C");
@@ -83,6 +91,8 @@ cue3.addEventListener("click", function() {
 	BT.style.cssText = "border:1px solid lightgrey";
 	SC.style.cssText = "border:none";
 	BS.style.border="none";
+	taxi.style.cssText = "border:none";
+	DNA.style.cssText = "border:none";
 
 	let c3CBtn = document.getElementById("anBtnc3C");
 	let c3Canswer = document.getElementById("anc3C");
@@ -91,7 +101,50 @@ cue3.addEventListener("click", function() {
 	});
 });
 
+//get taxi elements
+let taxi = document.querySelector("#navTaxi");
 
+let taxiC = document.querySelector("#Taxi");
+
+taxi.addEventListener("click", function() {
+	content.innerHTML = taxiC.innerHTML;
+	taxi.style.cssText = "border:1px solid lightgrey";
+	SC.style.cssText = "none";
+	BS.style.border="none";
+	DNA.style.border="none";
+	BT.style.cssText = "border:none;";
+
+	let taxiBtn = document.getElementById("anBtnTaxi");
+	let taxiCanswer = document.getElementById("anTaxi");
+	taxiBtn.addEventListener("click", function() {
+			taxiCanswer.classList.toggle("closed");
+	});
+
+});
+
+
+
+//get DNA
+
+let DNA = document.querySelector("#navDNA");
+
+let DNAC = document.querySelector("#DNA");
+
+DNA.addEventListener("click", function() {
+	content.innerHTML = DNAC.innerHTML;
+	DNA.style.cssText = "border:1px solid lightgrey";
+	SC.style.cssText = "border:none";
+	BS.style.border="none";
+	taxi.style.border="none";
+	BT.style.cssText = "border:none;";
+
+	let DNABtn = document.getElementById("anBtnDNA");
+	let DNACanswer = document.getElementById("anDNA");
+	DNABtn.addEventListener("click", function() {
+			DNACanswer.classList.toggle("closed");
+	});
+
+});
 
 //get tab 2 elements
 
@@ -121,11 +174,13 @@ let ccContent = document.querySelector("#CaseComparison");
 
 
 case1.addEventListener("click", function() {
-	SC.innerHTML = "Stolen Cash Case";
+	SC.innerHTML = "Stolen Cash";
 	content.innerHTML = c1Content.innerHTML;
 	SC.style.cssText = "border:1px solid lightgrey";
 	BT.style.cssText = "border:none";
 	BS.style.border="none";
+	taxi.style.cssText = "border:none";
+	DNA.style.cssText = "border:none";
 
 });
 
@@ -135,6 +190,8 @@ c1sNav.addEventListener("click", function() {
 	SC.style.cssText = "border:1px solid lightgrey";
 	BT.style.cssText = "border:none";
 	BS.style.border="none";
+	taxi.style.cssText = "border:none";
+	DNA.style.cssText = "border:none";
 });
 
 c1qNav.addEventListener("click", function() {
@@ -143,6 +200,8 @@ c1qNav.addEventListener("click", function() {
 	SC.style.cssText = "border:1px solid lightgrey";
 	BT.style.cssText = "border:none";
 	BS.style.border="none";
+	taxi.style.cssText = "border:none";
+	DNA.style.cssText = "border:none";
 });
 
 case2.addEventListener("click", function() {
@@ -151,6 +210,8 @@ case2.addEventListener("click", function() {
 	SC.style.cssText = "border:1px solid lightgrey";
 	BT.style.cssText = "border:none";
 	BS.style.border="none";
+	taxi.style.cssText = "border:none";
+	DNA.style.cssText = "border:none";
 });
 
 c2sNav.addEventListener("click", function() {
@@ -159,6 +220,8 @@ c2sNav.addEventListener("click", function() {
 	SC.style.cssText = "border:1px solid lightgrey";
 	BT.style.cssText = "border:none";
 	BS.style.border="none";
+	taxi.style.cssText = "border:none";
+	DNA.style.cssText = "border:none";
 });
 
 c2qNav.addEventListener("click", function() {
@@ -167,6 +230,8 @@ c2qNav.addEventListener("click", function() {
 	SC.style.cssText = "border:1px solid lightgrey";
 	BT.style.cssText = "border:none";
 	BS.style.border="none";
+	taxi.style.cssText = "border:none";
+	DNA.style.cssText = "border:none";
 });
 
 ccNav.addEventListener("click", function() {
@@ -175,6 +240,8 @@ ccNav.addEventListener("click", function() {
 	SC.style.cssText = "border:1px solid lightgrey";
 	BT.style.cssText = "border:none";
 	BS.style.border="none";
+	taxi.style.cssText = "border:none";
+	DNA.style.cssText = "border:none";
 });
 
 // get tab 3 elements
@@ -209,6 +276,8 @@ BScase.addEventListener("click", function() {
 	BS.style.cssText = "border:1px solid lightgrey";
 	BT.style.cssText = "border:none;";
 	SC.style.cssText = "border:none;";
+	taxi.style.cssText = "border:none";
+	DNA.style.cssText = "border:none";
 
 })
 
@@ -218,6 +287,8 @@ evidencesB.addEventListener("click", function() {
 	content.innerHTML = evidencesC.innerHTML;
 	BT.style.cssText = "border:none;";
 	SC.style.cssText = "border:none;";
+	taxi.style.cssText = "border:none";
+	DNA.style.cssText = "border:none";
 
 });
 
@@ -228,6 +299,8 @@ questionsB.addEventListener("click", function() {
 	questionsB.style.cssText = "border:1px solid lightgrey";
 	BT.style.cssText = "border:none;";
 	SC.style.cssText = "border:none;";
+	taxi.style.cssText = "border:none";
+	DNA.style.cssText = "border:none";
 });
 
 evidences1B.addEventListener("click", function() {
@@ -236,6 +309,8 @@ evidences1B.addEventListener("click", function() {
 	BS.style.cssText = "border:1px solid lightgrey";
 	BT.style.cssText = "border:none;";
 	SC.style.cssText = "border:none;";
+	taxi.style.cssText = "border:none";
+	DNA.style.cssText = "border:none";
 
 });
 
@@ -245,6 +320,8 @@ evidences2B.addEventListener("click", function() {
 	BS.style.cssText = "border:1px solid lightgrey";
 	BT.style.cssText = "border:none;";
 	SC.style.cssText = "border:none;";
+	taxi.style.cssText = "border:none";
+	DNA.style.cssText = "border:none";
 
 });
 
@@ -254,6 +331,8 @@ evidences3B.addEventListener("click", function() {
 	BS.style.cssText = "border:1px solid lightgrey";
 	BT.style.cssText = "border:none;";
 	SC.style.cssText = "border:none;";
+	taxi.style.cssText = "border:none";
+	DNA.style.cssText = "border:none";
 
 });
 
@@ -263,6 +342,8 @@ evidences4B.addEventListener("click", function() {
 	BS.style.cssText = "border:1px solid lightgrey";
 	BT.style.cssText = "border:none;";
 	SC.style.cssText = "border:none;";
+	taxi.style.cssText = "border:none";
+	DNA.style.cssText = "border:none";
 
 });
 
@@ -272,6 +353,8 @@ evidences5B.addEventListener("click", function() {
 	BS.style.cssText = "border:1px solid lightgrey";
 	BT.style.cssText = "border:none;";
 	SC.style.cssText = "border:none;";
+	taxi.style.cssText = "border:none";
+	DNA.style.cssText = "border:none";
 
 });
 

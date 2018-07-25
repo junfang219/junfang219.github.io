@@ -32,7 +32,7 @@
 
   <div class="row">
 
-    <div class="col-sm-5">
+    <div class="col-sm-6">
 
       <ul class="nav nav-tabs">
       
@@ -44,11 +44,15 @@
               <li><a href="#" id="c2">2 cues</a></li>
               <li><a href="#" id="c3">3 cues</a></li>
             </ul>
-          </li>
+        </li>
 
-        <li class="dropdown"><a class="dropdown-toggle" data-toggle = "dropdown" href="#" id="SC">Stolen Cash Case<span class="caret"></span></a>
+        <li><a data-toggle = "tab" href="#Taxi" id="navTaxi">Taxi</a></li>
+
+        <li><a data-toggle = "tab" href="#DNA" id="navDNA">DNA</a></li>
+
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle = "dropdown" href="#" id="SC">Stolen Cash<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#" id="SC1">Stolen Cash Case</a></li>
+            <li><a href="#" id="SC1">Stolen Cash</a></li>
             <li><a href="#" id="SC1S">Case 1 Scenarios</a></li>
             <li><a href="#" id="SC1Q">Case 1 Questions</a></li>
             <li><a href="#" id="SC2">Case 2</a></li>
@@ -70,7 +74,7 @@
             <li><a href="#" id="navquestions">Questions</a></li>
           </ul>
         </li>
-
+	
 
       </ul>
 
@@ -184,6 +188,40 @@
               <p>The answer is 0.6994 / 69.94%</p>
             </div>
 
+        </div>
+
+
+        <div id="Taxi" class="tab-pane fade">
+        	<p>
+        	Suppose you were told that a taxi-cab was involved in a hit-and-run accident one night. Of the taxi-cabs in the city, 85% belonged to the Green company
+			and 15% to the Blue company. An eyewitness had identified the cab as a blue cab. But when her ability to identify cabs under appropriate visibility conditions was tested, she was wrong 20% of the time. What is the probability that the taxi-cab involved in the accident was blue?
+        	</p>
+
+        	<button id="anBtnTaxi" style="display: block; font-size: 12px;margin-top: 20px;">Show answer</button>
+
+            <div id="anTaxi" class="closed">
+              <p>The answer is 0.4138 / 41.38%</p>
+            </div>
+        </div>
+
+         <div id="DNA" class="tab-pane fade">
+        	<p>
+        	<u>Rape case:</u> A match was found between the DNA profile of suspect and a trace found on the victim (hardly any other evidence). <br><br>
+
+			<u>Expert statement in probabilities:</u> There are 10 million men who fit the description of the perpetrator. The probability that the DNA profile of a randomly selected man matches the trace found on the victim is approximately 0.0001%. If a man has this DNA profile, the DNA test will almost certainly produce a match. If he does not have this DNA profile, the test will produce a match with a probability of 0.001%. <br><br>
+
+			<b>Question 1:</b> What is the probability that the reported match is a true match, that is, that the suspect indeed has the same DNA profile as found in the trace? <br><br>
+
+			<b>Question 2:</b> What is the probability that the suspect is the source of the trace found on the victim? <br><br>
+        	</p>
+
+        	<button id="anBtnDNA" style="display: block; font-size: 12px;margin-top: 20px;">Show answer</button>
+
+            <div id="anDNA" class="closed">
+              <p>Question 1: The answer is 0.0909/ 9.09% <br>
+              	Question 2: The answer is 0.009/ 0.9% <br>
+              </p>
+            </div>
         </div>
 
         <div id="Case1" class="tab-pane fade">
@@ -560,7 +598,7 @@
 
   
 
-    <div class="col-sm-7">
+    <div class="col-sm-6">
 
         <ul class="nav nav-tabs">
           <li class="active"><a data-toggle = "tab" href="#E1Tree" id="E1tab">Basic Task (1 cue)</a></li>
@@ -594,6 +632,7 @@
                    <option value="10,000">10,000</option>
                    <option value="100,000">100,000</option>
                    <option value="1,000,000">1,000,000</option>
+                   <option value="10,000,000">10,000,000</option>
                   </select>
 
                 </div>
@@ -715,6 +754,7 @@
                    <option value="10,000">10,000</option>
                    <option value="100,000">100,000</option>
                    <option value="1,000,000">1,000,000</option>
+                   <option value="10,000,000">10,000,000</option>
                   </select>
 
                 </div>
@@ -839,6 +879,7 @@
                    <option value="10,000">10,000</option>
                    <option value="100,000">100,000</option>
                    <option value="1,000,000">1,000,000</option>
+                   <option value="10,000,000">10,000,000</option>
                   </select>
 
                 </div>
@@ -973,6 +1014,7 @@
                    <option value="10,000">10,000</option>
                    <option value="100,000">100,000</option>
                    <option value="1,000,000">1,000,000</option>
+                   <option value="10,000,000">10,000,000</option>
                   </select>
 
                 </div>
@@ -1132,6 +1174,7 @@
                    <option value="10,000">10,000</option>
                    <option value="100,000">100,000</option>
                    <option value="1,000,000">1,000,000</option>
+                   <option value="10,000,000">10,000,000</option>
                   </select>
 
                 </div>
