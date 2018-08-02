@@ -23,8 +23,8 @@ cue1.addEventListener("click", function() {
 	BT.innerHTML = "Basic Task";
 	content.innerHTML = cue1Content.innerHTML;
 	BT.style.cssText = "border:1px solid lightgrey";
-	SC.style.cssText = "border:none";
-	BS.style.border="none";
+	// SC.style.cssText = "border:none";
+	// BS.style.border="none";
 	taxi.style.cssText = "border:none";
 	DNA.style.cssText = "border:none";
 
@@ -40,8 +40,8 @@ cue1v3.addEventListener("click", function() {
 	BT.innerHTML = "1 cue 3 values";
 	content.innerHTML = cue1v3Content.innerHTML;
 	BT.style.cssText = "border:1px solid lightgrey";
-	SC.style.cssText = "border:none";
-	BS.style.border="none";
+	// SC.style.cssText = "border:none";
+	// BS.style.border="none";
 	taxi.style.cssText = "border:none";
 	DNA.style.cssText = "border:none";
 
@@ -57,8 +57,8 @@ h3.addEventListener("click", function() {
 	BT.innerHTML = "3 hypotheses";
 	content.innerHTML = h3Content.innerHTML;
 	BT.style.cssText = "border:1px solid lightgrey";
-	SC.style.cssText = "border:none";
-	BS.style.border="none";
+	// SC.style.cssText = "border:none";
+	// BS.style.border="none";
 	taxi.style.cssText = "border:none";
 	DNA.style.cssText = "border:none";
 
@@ -73,8 +73,8 @@ cue2.addEventListener("click", function() {
 	BT.innerHTML = "2 cues";
 	content.innerHTML = cue2Content.innerHTML;
 	BT.style.cssText = "border:1px solid lightgrey";
-	SC.style.cssText = "border:none";
-	BS.style.border="none";
+	// SC.style.cssText = "border:none";
+	// BS.style.border="none";
 	taxi.style.cssText = "border:none";
 	DNA.style.cssText = "border:none";
 
@@ -89,8 +89,8 @@ cue3.addEventListener("click", function() {
 	BT.innerHTML = "3 cues";
 	content.innerHTML = cue3Content.innerHTML;
 	BT.style.cssText = "border:1px solid lightgrey";
-	SC.style.cssText = "border:none";
-	BS.style.border="none";
+	// SC.style.cssText = "border:none";
+	// BS.style.border="none";
 	taxi.style.cssText = "border:none";
 	DNA.style.cssText = "border:none";
 
@@ -109,8 +109,8 @@ let taxiC = document.querySelector("#Taxi");
 taxi.addEventListener("click", function() {
 	content.innerHTML = taxiC.innerHTML;
 	taxi.style.cssText = "border:1px solid lightgrey";
-	SC.style.cssText = "none";
-	BS.style.border="none";
+	// SC.style.cssText = "none";
+	// BS.style.border="none";
 	DNA.style.border="none";
 	BT.style.cssText = "border:none;";
 
@@ -133,8 +133,8 @@ let DNAC = document.querySelector("#DNA");
 DNA.addEventListener("click", function() {
 	content.innerHTML = DNAC.innerHTML;
 	DNA.style.cssText = "border:1px solid lightgrey";
-	SC.style.cssText = "border:none";
-	BS.style.border="none";
+	// SC.style.cssText = "border:none";
+	// BS.style.border="none";
 	taxi.style.border="none";
 	BT.style.cssText = "border:none;";
 
