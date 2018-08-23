@@ -54,7 +54,7 @@ cue1v3.addEventListener("click", function() {
 });
 
 h3.addEventListener("click", function() {
-	BT.innerHTML = "3 hypotheses";
+	BT.innerHTML = "1 cue 3 hypotheses";
 	content.innerHTML = h3Content.innerHTML;
 	BT.style.cssText = "border:1px solid lightgrey";
 	// SC.style.cssText = "border:none";
