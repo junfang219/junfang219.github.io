@@ -1,0 +1,304 @@
+
+#inst {
+	height: 60px;
+	overflow: scroll;
+
+}
+
+#instruction {
+	margin-top: 2px;
+	margin-bottom: 5px;
+	padding: 6px;
+	border: 1px solid lightgrey;
+	border-radius: 18px;
+}
+
+.pager {
+	margin: 0px;
+	padding-top: 0px;
+}
+
+.dropdown-content{
+	background-color: lavender;
+	padding: 10px;
+	font-size: 16px;
+	height: 750px;
+}
+
+.left {
+	background-color: lavender;
+	padding: 15px;
+	font-size: 18px;
+	height: 750px;
+
+}
+
+.h1Output {
+	display: inline-flex;
+	font-size: 18px;
+	padding: 0px;
+	color: orange;
+	margin-left: 230px;
+	width: 100px;
+}
+
+.h2Output {
+	display: inline-flex;
+	font-size: 18px;
+	padding: 0px;
+	color: orange;
+	margin-left: 60px;
+	width: 80px;
+}
+
+.test1 {
+	display: flex;
+	font-size: 15px;
+	padding: 0px;
+	color: orange;
+	margin-left: 70px;
+	width: 600px;
+}
+
+#testL1 {
+	display: inline-flex;
+	margin-left: 50px;
+}
+
+#testL2 {
+	display: inline-flex;
+	margin-left: 20px;
+	width: 200px;
+
+}
+
+#testR1 {
+	display: inline-flex;
+	margin-left: 0px;
+	width: 100px;
+	padding-left: 15px;
+}
+
+#testR2 {
+	display: inline-flex;
+	margin-left: 15px;
+
+}
+
+.test2{
+	display: inline-flex;
+	font-size: 18px;
+	padding: 0px;
+	color: orange;
+	margin-left: 10px;
+	width: 80px;
+}
+
+.h3Output {
+	display: inline-flex;
+	font-size: 18px;
+	padding: 0px;
+	color: orange;
+	margin-left: 0px;
+	width: 100px;
+}
+
+#maxvalue {
+	width: 200px;
+
+}
+
+label {
+	font-weight: 0px;
+	margin-left: 10px;
+}
+
+.main{
+	/*display: flex;*/
+	align-items: flex-start;
+	padding: 20px;
+	/*padding: 10px;*/
+}
+
+/* Style the buttons */
+.btn {
+    border: none;
+    outline: none;
+    padding: 10px 16px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+
+/* Style the active class, and buttons on mouse-over */
+.active1, .btn:hover {
+    background-color: #666;
+    color: white;
+}
+
+
+.tree {
+	display: inline-block;
+	/*margin-left: 80px;*/
+	width: 700px;
+	margin-left: 120px;
+}
+
+
+.pop {
+	margin-left: 280px;
+	font-size: 20px;
+}
+
+.pop_number {
+	margin-left: 281px;
+	font-size: 20px;
+	color: #0000CD;
+}
+
+
+.baseRate{
+	width: 70px;
+	margin-left: 80px;
+	display: inline-flex;
+	font-size: 15px;
+}
+
+.base {
+	margin-left: 15px;
+	font-size: 20px;
+	color: #0000CD;
+	display: inline-block;
+	width: 100px;
+
+}
+
+.nbaseRate{
+	margin-left: 95px;
+	font-size: 15px;
+	/*color: #0000CD;*/
+	display: inline-block;
+	width: 70px;
+}
+
+
+.noise{
+	margin-left: 15px;
+	font-size: 20px;
+	color: #0000CD;
+	display: inline-block;
+}
+
+.hit {
+	font-size: 20px;
+	color: #0000CD;
+	margin-left: 15px;
+	display: inline;
+	width: 60px;
+}
+
+.miss, .fa {
+	font-size: 20px;
+	color: #0000CD;
+	margin-left: 15px;
+	width: 30px;
+}
+
+.cr {
+	font-size: 20px;
+	color: #0000CD;
+	margin-left: 15px;
+}
+
+.hitRate {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 0px;
+	display:inline-flex;
+}
+
+
+.missRate {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 50px;
+	display:inline-flex;
+}
+
+.crRate {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 80px;
+	display:inline-flex;
+}
+
+.faRate {
+	width: 55px;
+	font-size: 15px;
+	margin-left: 45px;
+	display:inline-flex;
+
+}
+
+
+.bottom{
+	display: flex;
+	margin-left: 0px;
+}
+
+.bottomNotation {
+	display: flex;
+	margin-left: 5px;
+}
+
+
+.probability1 {
+	font-size: 18px;
+	display: flex;
+	margin-left: 100px;
+}
+
+.prob_sup {
+	display: block;
+    padding-left: 25px;
+    position: relative;
+    border-bottom: 1px solid #515151;
+	color:green;
+	font-size: 12px;
+
+}
+
+.prob_bottom {
+	display: inline;
+    padding: 0 3px;
+    position: relative;
+    font-size: 12px;
+    top: 0px;
+}
+
+
+
+table {
+	padding: 0px;
+	display: inline-block;
+	margin-left: 0px;
+	margin-top: 20px;
+	border: 1px solid black;
+	border-collapse: collapse;
+
+}
+
+td,th {
+	border: 1px solid black;
+	width: 500px;
+	/*padding: 10px;*/
+}
+
+.results {
+	margin-bottom: 40px;
+}
+
+.sugPop {
+	display: inline;
+}
