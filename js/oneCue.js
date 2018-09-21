@@ -2,9 +2,13 @@
 		let main = document.querySelector('.main');
 		
 		// Declare input
+		let population = document.querySelector(".pop1");
+		
 		let h1Input;
 		let h2Input;
-		let test = document.getElementsByClassName("test");
+		let test = document.querySelector(".test");
+		let testL = document.querySelector(".testL");
+		let testR = document.querySelector(".testR");
 
 		let popSize;
 		let popSinput;
@@ -16,8 +20,13 @@
 		let faRate;
 		let crRate;
 
+		let label1 = document.querySelector(".label1");
+		let label2 = document.querySelector(".label2");
+
 
 		// Declare tree output
+		let popTree = document.querySelector('.pop'); 
+
 		let popOutput;
 		let h1Output;
 		let h2Output;
@@ -30,6 +39,9 @@
 		let correctReject;
 
 		let sugPop;
+
+		let treeTest1 = document.querySelector('.testT1')
+		let treeTest2 = document.querySelector('.testT2')
 
 		let testL1 = document.getElementById('testL1');
 		let testL2 = document.getElementById('testL2');
@@ -57,9 +69,9 @@
 			if (currChild.className == "hypothesis") {
 				let hypoDiv = currChild;
 				
-				h1Input = hypoDiv.firstElementChild;
-				h2Input = hypoDiv.children[2];
-				test = hypoDiv.lastElementChild;
+				h1Input = hypoDiv.children[2];
+				h2Input = hypoDiv.children[4];
+				
 			} 
 			else if (currChild.className == "popSize") {
 				let popDiv = currChild;
@@ -328,14 +340,26 @@
 	  		h2Output.innerHTML = h2Input.value;
 	  	});
 
-		test.addEventListener("change", function(){
-	  		testL1.innerHTML = test.value;
-	  		testR1.innerHTML = test.value;
-	  		testL2.innerHTML = 'no  ' + test.value;
-	  		testR2.innerHTML = 'no  ' + test.value;
+		testL.addEventListener("change", function(){
+	  		testL1.innerHTML = testL.value;
+	  		testR1.innerHTML = testL.value;
+	  		
 	  	});
 
-	
+	  	testR.addEventListener("change", function(){
+	  		testL2.innerHTML = testR.value;
+	  		testR2.innerHTML = testR.value;
+
+	  	});
+
+	  	population.addEventListener("change", function() {
+	  		popTree.innerHTML = population.value;
+	  	})
+
+		test.addEventListener("change", function() {
+	  		treeTest1.innerHTML = test.value;
+	  		treeTest2.innerHTML = test.value;
+	  	})
 
 
 
@@ -514,4 +538,18 @@ function max_factor(p, q, r, s) {
     break;
   }
   return max;
+ }
+
+ function labelFunction() {
+ 	labelBtn = document.querySelector(".showing")
+ 	if (label1.style.display === "none" && label2.style.display) {
+ 		label1.style.display = "block";
+ 		label2.style.display = "flex";
+ 		labelBtn.innerHTML = "hide labels";
+
+ 	}else {
+ 		label1.style.display = "none";
+ 		label2.style.display = "none";
+ 		labelBtn.innerHTML = "show labels";
+ 	}
  }
